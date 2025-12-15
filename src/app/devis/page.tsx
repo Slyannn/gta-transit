@@ -3,13 +3,53 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ChevronRight, ChevronLeft, Send, Package, User, MapPin, Truck, Search, X } from "lucide-react";
-import { LOCATIONS } from "./locations";
+import { LOCATIONS, AIRPORTS, SEAPORTS } from "./locations";
 
 export default function DevisPage() {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<any>({});
+  const [formData, setFormData] = useState<any>({ modeTransport: "Maritime" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const getLocationsList = () => {
+    switch (formData.modeTransport) {
+      case "Maritime": return SEAPORTS;
+      case "Aérien": return AIRPORTS;
+      default: return []; // Pour routier ou autre, pas de liste restreinte pour l'instant ou liste complète si besoin
+    }
+  };
+
+  const getDepartLabel = () => {
+    switch (formData.modeTransport) {
+      case "Maritime": return "Port de départ";
+      case "Aérien": return "Aéroport de départ";
+      default: return "Ville d'enlèvement";
+    }
+  };
+
+  const getArriveeLabel = () => {
+    switch (formData.modeTransport) {
+      case "Maritime": return "Port de destination";
+      case "Aérien": return "Aéroport de destination";
+      default: return "Ville de livraison";
+    }
+  };
+
+  const getDepartPlaceholder = () => {
+    switch (formData.modeTransport) {
+        case "Maritime": return "Ex: Le Havre, Marseille...";
+        case "Aérien": return "Ex: Paris CDG, Lyon...";
+        default: return "Ex: Paris, Lyon...";
+    }
+  }
+
+  const getArriveePlaceholder = () => {
+      switch (formData.modeTransport) {
+          case "Maritime": return "Ex: Douala, Abidjan...";
+          case "Aérien": return "Ex: Douala, Abidjan...";
+          default: return "Ex: Douala, Abidjan...";
+      }
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -77,8 +117,8 @@ export default function DevisPage() {
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-primary mb-4">Demande de Cotation</h1>
-          <p className="text-gray-600">
-            Obtenez une estimation précise pour votre transport en quelques clics.
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            Vous avez besoin de transporter un ou plusieurs produits vers une destination internationale (Europe, Afrique, Asie, Amérique, Antilles, Australie...), il vous faut un partenaire transitaire qui respecte ses engagements. Spécialiste du transport international, GTA maîtrise le fret Maritime et Aérien et assure les formalités administratives et douanières.
           </p>
         </div>
 
@@ -120,14 +160,22 @@ export default function DevisPage() {
                       <Truck className="text-accent" /> Transport & Trajet
                     </h2>
                     <div className="space-y-6">
+
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-3">Mode de transport souhaité</label>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                          {["Maritime", "Aérien", "Routier", "Douane"].map((mode) => (
+                        <label className="block text-sm font-medium text-gray-700 mb-3">Comment souhaitez-vous acheminer vos colis ? Mode de transport ?</label>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                          {["Maritime", "Aérien", "Routier", "Douane", "Logistique", "Autre"].map((mode) => (
                             <label key={mode} className="cursor-pointer">
-                              <input type="radio" name="modeTransport" value={mode} onChange={handleChange} className="peer sr-only" />
-                              <div className="p-4 border-2 border-gray-200 rounded-xl text-center hover:border-accent peer-checked:border-accent peer-checked:bg-accent/5 peer-checked:text-accent font-semibold transition-all text-gray-800">
-                                 {mode}
+                              <input 
+                                type="radio" 
+                                name="modeTransport" 
+                                value={mode} 
+                                checked={formData.modeTransport === mode}
+                                onChange={handleChange} 
+                                className="peer sr-only" 
+                              />
+                              <div className="p-4 border-2 border-gray-200 rounded-xl text-center hover:border-accent peer-checked:border-accent peer-checked:bg-accent/5 peer-checked:text-accent font-semibold transition-all text-gray-800 text-sm">
+                                 {mode === "Routier" ? "Route : Camion" : mode === "Logistique" ? "Entreposage et Logistique" : mode === "Douane" ? "Solution Douane" : mode}
                               </div>
                             </label>
                           ))}
@@ -138,15 +186,21 @@ export default function DevisPage() {
                         <div className="bg-gray-50 p-6 rounded-xl border border-gray-100">
                           <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2"><MapPin size={18} className="text-gray-400"/> Départ (Enlèvement)</h3>
                           <div className="space-y-4">
+                            <div>
+                                <label className="text-xs text-gray-500 mb-1 block">Pays d'enlèvement</label>
+                                <input type="text" name="paysDepart" onChange={handleChange} className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" placeholder="Ex: France" />
+                            </div>
                             <AutocompleteInput 
-                              label="Ville, Port ou Aéroport de Départ"
+                              label={getDepartLabel()}
                               name="depart"
                               value={formData.depart || ""}
                               onChange={(val) => handleAutocompleteSelect("depart", val)}
-                              placeholder="Ex: Paris, Le Havre..."
+                              placeholder={getDepartPlaceholder()}
+                              options={getLocationsList()}
+                              isFreeText={formData.modeTransport !== "Maritime" && formData.modeTransport !== "Aérien"}
                             />
                             <div>
-                              <label className="text-xs text-gray-500 mb-1 block">Date souhaitée</label>
+                              <label className="text-xs text-gray-500 mb-1 block">Date d'enlèvement souhaitée</label>
                               <input type="date" name="dateDepart" onChange={handleChange} className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" />
                             </div>
                           </div>
@@ -154,13 +208,23 @@ export default function DevisPage() {
                         <div className="bg-gray-50 p-6 rounded-xl border border-gray-100">
                           <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2"><MapPin size={18} className="text-gray-400"/> Arrivée (Livraison)</h3>
                           <div className="space-y-4">
+                             <div>
+                                <label className="text-xs text-gray-500 mb-1 block">Pays de livraison</label>
+                                <input type="text" name="paysArrivee" onChange={handleChange} className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" placeholder="Ex: Cameroun" />
+                            </div>
                             <AutocompleteInput 
-                              label="Ville, Port ou Aéroport d'Arrivée"
+                              label={getArriveeLabel()}
                               name="arrivee"
                               value={formData.arrivee || ""}
                               onChange={(val) => handleAutocompleteSelect("arrivee", val)}
-                              placeholder="Ex: Douala, Abidjan..."
+                              placeholder={getArriveePlaceholder()}
+                              options={getLocationsList()}
+                              isFreeText={formData.modeTransport !== "Maritime" && formData.modeTransport !== "Aérien"}
                             />
+                             <div>
+                              <label className="text-xs text-gray-500 mb-1 block">Date de livraison souhaitée</label>
+                              <input type="date" name="dateArrivee" onChange={handleChange} className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -172,49 +236,100 @@ export default function DevisPage() {
                       <Package className="text-accent" /> La Marchandise
                     </h2>
                     <div className="space-y-6">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Nature de la marchandise</label>
-                        <textarea 
-                          name="description" 
-                          rows={3} 
-                          placeholder="Décrivez votre envoi (ex: Effets personnels, Déménagement, Véhicule...)" 
-                          onChange={handleChange} 
-                          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" 
-                        />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                         <div>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Nature des marchandises</label>
+                           <input type="text" name="natureMarchandise" placeholder="Ex: Denrées, Meubles..." onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" />
+                         </div>
+                         <div>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Description / Caractéristiques</label>
+                           <textarea 
+                              name="description" 
+                              rows={1} 
+                              placeholder="Sac, Valise, Palette, Voiture 4x4, Camion..." 
+                              onChange={handleChange} 
+                              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" 
+                            />
+                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                          <div>
-                           <label className="block text-sm font-medium text-gray-700 mb-2">Type de conteneur</label>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Type de conteneur souhaité</label>
                            <select name="typeContainer" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none bg-white text-gray-900">
                              <option value="">Sélectionner...</option>
-                             <option value="groupage">Groupage (LCL)</option>
-                             <option value="20_dry">Conteneur 20’ dry</option>
-                             <option value="40_dry">Conteneur 40’ dry</option>
-                             <option value="40_hc">Conteneur 40’ High Cube</option>
-                             <option value="reefer">Conteneur Frigorifique</option>
-                             <option value="vehicule">Véhicule (Roro/Container)</option>
-                             <option value="autre">Autre / Je ne sais pas</option>
+                             <option value="groupage">Conteneur de groupage (LCL)</option>
+                             <option value="perso">Conteneur personnalisé (FCL)</option>
+                             <optgroup label="Détail Conteneurs">
+                                <option value="20_dry">Conteneur 20’ dry</option>
+                                <option value="20_reefer">Conteneur 20’ reefer/frigorifique</option>
+                                <option value="20_opentop">Conteneur 20’ open top</option>
+                                <option value="20_flatrack">Conteneur 20’ flat rack</option>
+                                <option value="40_dry">Conteneur 40’ dry</option>
+                                <option value="40_hc">Conteneur 40’ High Cube</option>
+                                <option value="40_reefer">Conteneur 40’ reefer/frigorifique</option>
+                                <option value="40_opentop">Conteneur 40’ open top</option>
+                                <option value="40_flatrack">Conteneur 40’ flat rack</option>
+                             </optgroup>
                            </select>
                          </div>
+                         <div>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Dimensions (L x l x H)</label>
+                           <input type="text" name="dimensions" placeholder="Ex: 120x80x100 cm" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" />
+                         </div>
+                       </div>
+
+                       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                           <div>
-                           <label className="block text-sm font-medium text-gray-700 mb-2">Poids estimé (kg)</label>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Nb Colis</label>
+                           <input type="number" name="nbColis" placeholder="ex: 10" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" />
+                         </div>
+                          <div>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Poids Total (kg)</label>
                            <input type="number" name="poids" placeholder="ex: 500" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" />
                          </div>
                           <div>
-                           <label className="block text-sm font-medium text-gray-700 mb-2">Volume estimé (m³)</label>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Volume Total (m³)</label>
                            <input type="number" name="volume" placeholder="ex: 2.5" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" />
+                         </div>
+                         <div>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Valeur (€)</label>
+                           <input type="number" name="valeur" placeholder="Estimation" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" />
                          </div>
                        </div>
                     </div>
                   </div>
 
                   <div>
-                     <label className="block text-sm font-medium text-gray-700 mb-2">Message complémentaire ou Instructions spéciales</label>
+                     <h2 className="text-2xl font-bold text-primary mb-6 flex items-center gap-2 border-b border-gray-100 pb-3">
+                      <Search className="text-accent" /> Votre Projet
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                        <div>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Objectif de la demande</label>
+                           <select name="objectif" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none bg-white text-gray-900">
+                             <option value="">Sélectionner...</option>
+                             <option value="envoi_immediat">Envoi immédiat</option>
+                             <option value="planification">Planification future</option>
+                             <option value="comparaison">Comparaison de tarifs</option>
+                           </select>
+                        </div>
+                        <div>
+                           <label className="block text-sm font-medium text-gray-700 mb-2">Fréquence du trajet</label>
+                           <select name="frequence" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none bg-white text-gray-900">
+                             <option value="">Sélectionner...</option>
+                             <option value="unique">Envoi unique (One shot)</option>
+                             <option value="regulier">Régulier</option>
+                             <option value="hebdo">Hebdomadaire</option>
+                             <option value="mensuel">Mensuel</option>
+                           </select>
+                        </div>
+                    </div>
+                     <label className="block text-sm font-medium text-gray-700 mb-2">Précisions sur le projet / Budget estimatif</label>
                       <textarea 
                         name="message" 
                         rows={2} 
-                        placeholder="Précisez ici vos contraintes spécifiques..." 
+                        placeholder="Détails supplémentaires, budget approximatif..." 
                         onChange={handleChange} 
                         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" 
                       />
@@ -247,23 +362,35 @@ export default function DevisPage() {
                       <input required type="text" name="prenom" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none text-gray-900 bg-white" />
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email professionnel ou personnel *</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
                       <input required type="email" name="email" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none text-gray-900 bg-white" />
                     </div>
-                    <div className="md:col-span-2">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Adresse *</label>
+                      <input required type="text" name="adresse" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none text-gray-900 bg-white" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Pays *</label>
+                      <input required type="text" name="pays" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none text-gray-900 bg-white" />
+                    </div>
+                    <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Téléphone *</label>
                       <input required type="tel" name="telephone" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none text-gray-900 bg-white" />
                     </div>
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Société (Optionnel)</label>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Société</label>
                       <input type="text" name="societe" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none text-gray-900 bg-white" />
+                    </div>
+                     <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Site Web (Optionnel)</label>
+                      <input type="text" name="website" onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none text-gray-900 bg-white" />
                     </div>
                   </div>
 
                   <div className="bg-blue-50 p-4 rounded-lg flex items-start gap-3 mt-6">
                     <input required type="checkbox" id="rgpd" className="mt-1 w-4 h-4 text-accent rounded border-gray-300 focus:ring-accent shrink-0" />
                     <label htmlFor="rgpd" className="text-sm text-blue-800">
-                      En soumettant ce formulaire, j'accepte que les informations saisies soient utilisées pour me recontacter dans le cadre de ma demande de devis.
+                      J’accepte les mentions légales. Vos données sont collectées par GTA aux fins de traiter votre demande et répondre à vos questions. Elles seront traitées conformément à notre Politique de Confidentialité.
                     </label>
                   </div>
                 </motion.div>
@@ -316,27 +443,33 @@ export default function DevisPage() {
   );
 }
 
-// Composant Autocomplete inchangé (je le remets pour être sûr)
-function AutocompleteInput({ label, name, value, onChange, placeholder }: { label?: string, name: string, value: string, onChange: (val: string) => void, placeholder?: string }) {
+// Composant Autocomplete modifié pour accepter une liste d'options
+function AutocompleteInput({ label, name, value, onChange, placeholder, options = [], isFreeText = false }: { label?: string, name: string, value: string, onChange: (val: string) => void, placeholder?: string, options?: string[], isFreeText?: boolean }) {
   const [query, setQuery] = useState(value);
   const [isOpen, setIsOpen] = useState(false);
   const [filteredLocations, setFilteredLocations] = useState<string[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Si pas d'options fournies ou mode texte libre (Routier), on ne filtre pas
+    if (options.length === 0 || isFreeText) {
+        setFilteredLocations([]);
+        return;
+    }
+
     if (query.length > 0) {
-      const filtered = LOCATIONS.filter(loc => 
+      const filtered = options.filter(loc => 
         loc.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredLocations(filtered.slice(0, 8));
     } else {
       setFilteredLocations([]);
     }
-    
-    if (query !== value) {
-       // logic if needed
-    }
-  }, [query]);
+  }, [query, options, isFreeText]);
+
+  useEffect(() => {
+      setQuery(value);
+  }, [value]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -357,7 +490,9 @@ function AutocompleteInput({ label, name, value, onChange, placeholder }: { labe
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
     onChange(e.target.value);
-    setIsOpen(true);
+    if (!isFreeText && options.length > 0) {
+        setIsOpen(true);
+    }
   };
 
   return (
@@ -369,7 +504,7 @@ function AutocompleteInput({ label, name, value, onChange, placeholder }: { labe
           name={name}
           value={query}
           onChange={handleInputChange}
-          onFocus={() => setIsOpen(true)}
+          onFocus={() => { if(!isFreeText && options.length > 0) setIsOpen(true); }}
           placeholder={placeholder}
           className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white" 
           autoComplete="off"

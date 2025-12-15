@@ -17,6 +17,7 @@ const navItems = [
     icon: Ship,
     hasDropdown: true,
     dropdownItems: [
+      { name: "Transport maritime", href: "/maritime" },
       { name: "Cameroun Bagages", href: "/maritime/groupage" },
       { name: "Différents types de conteneurs", href: "/maritime/conteneurs" }
     ]
@@ -27,8 +28,8 @@ const navItems = [
     icon: Plane,
     hasDropdown: true,
     dropdownItems: [
-      { name: "Afrique Bagages", href: "/aerien/afrique-bagages" },
-      { name: "Fret Standard", href: "/aerien/standard" }
+      { name: "Fret Standard", href: "/aerien" },
+      { name: "Afrique Bagages", href: "/aerien/afrique-bagages" }
     ]
   },
   { 
@@ -51,22 +52,10 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 z-10">
+        <Link href="/" className="flex items-start gap-2 z-10">
            {/* Logo GTA Stylisé CSS */}
-           <div className="flex items-center mr-1">
-              <span className="text-4xl font-black text-blue-700 tracking-tighter" style={{ fontFamily: 'Arial, sans-serif' }}>GT</span>
-              <div className="relative">
-                 <span className="text-4xl font-black text-blue-700 tracking-tighter" style={{ fontFamily: 'Arial, sans-serif' }}>A</span>
-                 {/* Barre Orange sur le A */}
-                 <div className="absolute top-[55%] left-[-10%] w-[120%] h-[5px] bg-orange-500 -rotate-12 shadow-sm rounded-sm" />
-              </div>
-           </div>
-           
-           {/* Texte Empilé */}
-           <div className="flex flex-col justify-center leading-[0.9]">
-              <span className="text-[10px] font-extrabold text-primary uppercase tracking-widest">GROUPEUR</span>
-              <span className="text-[10px] font-extrabold text-primary uppercase tracking-widest">TRANSITAIRE</span>
-              <span className="text-[10px] font-extrabold text-primary uppercase tracking-widest">ASSOCIÉS</span>
+           <div className="h-20 w-[350px] overflow-hidden flex items-center justify-center">
+             <img src="/Logo_GTA_1.jpg" alt="Logo GTA" className="h-full w-auto object-cover scale-[1.35] -translate-y-3" />
            </div>
         </Link>
 

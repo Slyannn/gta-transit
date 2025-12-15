@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const ServicesSection = () => {
   return (
-    <section className="py-20 bg-zinc-50">
+    <section className="py-20 bg-zinc-50" id="services">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Une gamme complète de services</h2>

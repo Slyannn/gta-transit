@@ -54,11 +54,14 @@ export default function ModalitesVehiculesPage() {
               </div>
               <ul className="space-y-4">
                 <ListItem text="Carte grise originale ou Certificat d'Immatriculation Provisoire (CPI)" />
-                <ListItem text="Facture d'achat du garage ou Certificat de cession (si achat à un particulier)" />
-                <ListItem 
-                  text="Certificat de non gage" 
-                  extra={<a href="https://siv.interieur.gouv.fr/map-usg-ui/do/accueil_certificat" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-accent text-sm font-bold hover:underline mt-1"><Download size={14} className="mr-1"/> Télécharger le certificat</a>}
-                />
+              <ListItem 
+                text="Facture d'achat du garage ou Certificat de cession (si achat à un particulier)" 
+                extra={<a href="https://www.service-public.fr/simulateur/calcul/15776" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-accent text-sm font-bold hover:underline mt-1"><Download size={14} className="mr-1"/> Télécharger le certificat</a>}
+              />
+              <ListItem 
+                text="Certificat de non gage" 
+                extra={<a href="https://siv.interieur.gouv.fr/map-usg-ui/do/accueil_certificat" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-accent text-sm font-bold hover:underline mt-1"><Download size={14} className="mr-1"/> Télécharger le certificat</a>}
+              />
                 <ListItem text="Avis de mutation (si applicable)" />
                 <ListItem text="Coordonnées complètes Expéditeur & Destinataire (Nom, Adresse, Tél, Email)" />
                 <ListItem text="Copie d'une pièce d'identité en cours de validité" />

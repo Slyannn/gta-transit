@@ -1,0 +1,541 @@
+Liste des ports maritimes
+liste des ports maritime dans le monde a incorporé dans les ports de départ
+et pays d'arrivée
+Quand le client sélectionne le pays d'arrivée sa lui donne également le port  d'arrivé et il doit sélectionné son port d'arrivé dans le cas ou ce pays aurait plusieurs ports a desservir
+
+Algérie 
+Alger, Algérie, Annaba, Bejaia, Mestghanem, Oran, Skikda 
+
+American Samoa 
+Pago Pago Pago 
+
+Angola 
+Cabinda, Lobito, Luanda, Namibe, Soyo 
+
+Anguilla 
+Ladkrabang, Road Bay 
+Antigua-et-Barbuda 
+Praia, St. Johns 
+
+Argentine 
+Bahia Blanca, Buenos Aires, Ensenada, La Plata, Mar del Plata, Puerto Deseado, Puerto Madryn, Rio Grande, Rosario, San Lorenzo, Ushuaia, Zarate 
+
+Aruba 
+Oranjestad 
+
+Australie 
+Adélaïde, Bell Bay, Brisbane, Broome, Burnie, Dampier, Darwin, Darwin, Darwin (Nt), Fremantle, Gladstone, Gove, Hobart, Kingston, Launceston, Longreach Tasmanian, Melbourn, Melbourne, Newcastle, Perth, Port Hedland, Port Kembla, Sydney, Torres Strait, Townsville, Wyndham 
+
+Autriche 
+Vienne, Wels 
+
+Azerbaïdjan 
+Bakou 
+
+Bahamas 
+Port franc, Nassau 
+
+Bahrain 
+Bahreïn, Manameh, Mina Sulman 
+
+Bangladesh 
+Chalna, Chittagong, Dhaka, Mongla, Mongla 
+
+Barbade 
+Bridgetown 
+
+Belgique 
+Anvers, Bruxelles, Ostende, Zeebgrugge 
+Belize 
+Belize 
+
+Bénin 
+Cotonou 
+
+Bermudes 
+Hamilton 
+
+Bolivie 
+San Pedro 
+
+Brésil 
+Aratu, Belem, Fortaleza, Imbituba, Itajai, Macapa, Maceio, Manaus, Paranagua, Pecem, Porto Alegre, Port Of Itaguai, Recife, Rio De Jan Eiro, Rio Grande, Salvador, Santana, Santos, Sao Francisco, Sao Sebastiao, Sepetiba, Sto. Tomas, Suape, Vila do Conde, 
+Vitoria 
+
+Brunei Darussalam 
+Kuala Belait, port de Muara 
+
+Bulgarie 
+Burgas, Sofia, Varna 
+
+Burmese 
+Rangoon 
+
+Cambodge 
+Kampong Saom, Phnom Penh, Sihanoukville 
+
+Cameroun 
+Douala, Kribi 
+
+Canada 
+Argentia, Calgary, Crofton, Baie Duncan, Edmonton, Georgetown, Halifax, Hull, Kingston, Montréal, Prince Rupert, Roberts Bank, Saskatoon, Shelburne, Squamish, Toronto, Vancouver et Winnipeg 
+
+Cap-Vert (Îles) 
+Porto Grande, Praia 
+
+Îles Caïmans 
+Georgetown 
+
+République Centrafricaine 
+Nola 
+
+Chili 
+Antofagasta, Arica, Bahia Posesion, Caldera, Caleta Barquito, Coquimbo, Île de Pâques, Iquique, Lirquen, Mejillones, Puerto Chacabuco, Puerto Montt, Puerto Natales, Punta Arenas, Punta Patache, San Antonio, San Vicente, San Vicente-Cap, Talcahuano, Tocopilla, Valparaiso 
+
+
+Chine 
+Anqing, Bayuquan, Beihai, Beijiao, Bengbu, Buji, Changsha, Changshu, Changzhou, Chengdu, Chenglingji, Chiwan, Chongqing, Dagang, Dalian, Dandong, Dianbai, Dongguan, Dongwan, Doumen, Fangcheng, Fangcheng Gezu Zizhixian, Fangcun, Foshan, Fushan, Fuyang, Fuzhou, Ganzhou, Gaoming, Guangzhou, Guigang, Gui Gang, Haikou, Haimen, Hangzhou, Harbin, Hefei, Hengyang, Heshan, Hong Kong, Huadu, Hua Du, Huaibei, Huangpu, Huangshi, Huizhou, Huzhou, Jambi, Jiangmen, Jiangyin, Jiao Xin, Jinan, Jingdezhen, Jinhua, Jinzhou, Jiujiang, Kaiping, Kunming, Kunshan, Lanshi, Lanzhou, Leliu, Lian Hua Shan, Lianyungang, Liaoyang, Linjiang, Linyi, Liudu, Liuzhou, Longkou, Maanshan, Machong, Maoming, Mawan, Mawei, Mianyang, Mongla, Nanchang, Nangangang, Nanhai, Nanjing, Nanning, Nansha, Nan Sha, Nantong, Ningbo, Panyu, Pinghu, Putian, Qingdao, Qingyuan, Qinhuangdao, Quanzhou, Rongqi, Sanshan, Sanshui, Shanghai, Shantou, Shantou, Shashi, Shatian, Shekou, Shenwan, Shenzhen, Shimizu, Shiqiao, Shui Dong, Shunde, Suzhou, Taian, Taiping, Taizhou, Tianjin, Tongling, Wai Gao Qiao, Wanzai, Weihai, Weitou, Wenzhou, Wuhan, Wuhu, Wuxi, Wuzhou, Xiamen, Xiaogan, Xiaolan, Xiaoshan, Xinfeng, Xingang, Xinhui, Xuzhou, Yangpu, Yangzhou, Yantai, Yantian, Yichang, Yingkou, Yunfu, Zaozhuang, Zhangjiagang, Zhangzhou, Zhanjiang, Zhaoqing, Zhengzhou, Zhenjiang, Zhongshan, Zhai, Zhuji, Zhuozhou 
+
+Colombie 
+Barranquilla, Buenaventura, Cartagena, Santa Marta 
+
+Comores 
+Mayotte, Moroni, Mutsamudu 
+
+Congo 
+Pointe Noire 
+
+Congo, Dem. Rép. de 
+Boma, Matadi 
+
+Costa Rica 
+Caldera, Puerto Limon 
+
+Côte d'Ivoire 
+Abidjan, San Pedro 
+
+Croatie 
+Dubrovnik, Ploce, Rijeka Bakar, Split, Zadar 
+
+Cuba 
+La Havane, Manzanillo, Santa Lucia, Santiago 
+
+Chypre 
+Famagouste, Larnaca, Limassol 
+
+République Tchèque 
+Prague, Rudna 
+
+Danemark 
+Aahus, Aalborg, Aarhus, Brabrand, Brondby, Copenhague, Esbjerg, Fredericia, Frederiksberg, Frederikshavn, Grenaa, Grindsted, Havdrup, Kastrup, Kobenhavn, Odense, Uldum, Viborg 
+Djibouti 
+Djibouti 
+
+Dominique 
+Portsmouth, Roseau 
+
+République Dominicaine 
+Boca Chica, Caucedo, Manzanillo, Puerto Plata, Rio Haina, Santo Domingo 
+
+Équateur 
+Esmeraldas, Guayaquil, Manta, San Lorenzo 
+
+Égypte 
+Ain Sukhna, Alexandria, Alexandria El Dekheila, Damietta, El Dekheila, El Iskandariya (Alexandria), Port Rashid, Port Said, Sokhna, Suez Canal 
+
+Salvador 
+Acajutla, San Salvador' 
+
+Guinée équatoriale 
+Bata, Luba, Malabo 
+
+Erythrée 
+Massawa 
+
+Estonie 
+Paldiski-Port de Tallinn, Tallinn 
+
+Éthiopie 
+Assab 
+
+Îles Féroé 
+Klaksvik, Thorshavn 
+
+Fidji (Îles Fidji) 
+Lautoka, Suva 
+
+Finlande 
+Bar, Hamina, Hanko, Helsinki, Kemi, Kotka, Kouvola, Maentyluoto, Mantyluoto, Oulu, Rauma, Turku 
+
+France 
+Bassens, Bordeaux, Brest, Dunkerque, Floroe, Fos Sur Mer, La Pallice, La Rochelle-Pallice, Le Havre, Le Verdon, Lyon, Marseille, Montoir De Bretagne, Rouen, Sete 
+
+Guyane française 
+Cayenne, Degrad des Cannes 
+
+Polynésie Française 
+Papeete, Pipavav 
+
+Gabon 
+Libreville, Mayumba, Port Gentil 
+
+Gambie 
+Banjul 
+
+Géorgie 
+Poti 
+
+Allemagne 
+Bonn, Brême, Bremerhaven, Cologne, Cuxhaven, Duisburg, Düsseldorf, Gersheim, Hambourg, Kiel, Koln, Mainz 
+
+Ghana 
+Accra, Takoradi, Tema 
+
+Gibraltar 
+Gibraltar 
+
+Grèce 
+Athinaï, Attique, Héraklion, Le Pirée, Rio, Salonique, Sokhna, Thessalonique, Volos 
+
+Groenland 
+Christianshaab, Daneborg, Egedesminde, Frederikshaab, Holsteinsborg, Ittoqqorttoormiit, Jakobshavn, Julianehaab, Kangerlussuaq, Nanortalik, Narsaq, Narssarssuaq, Nuuk, Savissivik, Scoresbysund, Siorapaluk, Sukkertoppen, Thule, Umanak, Upernivik 
+
+Grenade 
+Bao'an, St. George 
+
+Guadeloupe
+Basse Terre, Gustavia, Pointe-a-Pitre, St. Barts 
+
+Guam 
+Guam 
+
+Guatemala 
+Puerto Barrios, Puerto Quetzal, Santo Tomas De Castilla, Santo Tomas De Santo 
+
+Guinée 
+Conakry 
+
+Guinée-Bissau 
+Bissau 
+
+Guyane 
+Georgetown 
+
+Haïti 
+Port au Prince 
+
+Honduras 
+Puerto Castilla, Puerto Cortes, San Lorenzo 
+
+Hong Kong 
+Hong Kong, Hong Kong/M, Huangpu 
+Hongrie 
+Budapest 
+
+Islande 
+Eskifjordur, Grundartangi, Helguvik, Reydarfjordur, Reykjavik, Straumsvik, Vestmann Islandvestmc 
+
+Inde 
+Ahmedabad, Albert Victor (Beherai), Bombay, Calcutta, Chas, Chennai, Cochin, Faridabad, Goa, Haldia, Jawaharlal Nehru Port, Kandla, Kanpur, Ludhiana, Madras, Mahé, Mangalore, Marmagoa, Mumbai, Mumbai, Mumbai Old Port, Mundra, New Delhl, Nhava Sheva, Pipavav, Porbandar, Tuticorin, Visakhapatnam, Vishakhapatnam 
+
+Indonésie 
+Bandung, Java, Banjarmasin, Belawan, Biak, Irian Jaya, Bitung, Buatan, Jakarta, Jambi, Lobam, Riau, Macassar, Merak, Java, Olah Jasa Andal, Padang, Padang, Padang (Teluk Bajur), Sumatra, Palembang, Palembang, Sumatra, Panjang, Pekanbaru, Perawang, Pontianak, Kalimantan, Pulau Batam, Samarinda, Kalimantan, Semarang, Java, Sungai Guntung, Sumatra, Sungai Pakning, Surabaya, Tanjung Priok, Tebingtinggi, Sumatra, Ujung Pandang, Sulawesi 
+
+Iran 
+Bandar Abbas, Bandar Khomeini, Khorramshahr, Kish Island 
+
+Irak 
+Umm Qasr 
+
+Irlande 
+Baltimore, Cork, Drogheda, Dublin, Dun Laoghaire, Foynes, Galway, Limerick, Rosslare, Waterford 
+
+Israël 
+Ashdod, Haïfa, Tel-Aviv 
+
+Italie 
+Ancône, Augusta, Bari, Cagliari, Catane, Civitavecchia, Faenza, Gênes, Gioia Tauro, La Spezia, Livourne, Messine, Milan, Naples (Sintermar), Napoli, Palerme, Porto Marghera, Pozzallo, Ravenna, Salerne, Savona, Taranto, Trapani, Trieste, Vado Ligure, Venise 
+
+Jamaïque 
+Kingston, Montego Bay, Port Antonio 
+
+Japon 
+Aburatsu, Akita, Chiba, Fugusaki, Fukuyama, Hachinohe, Hakata, Hakodate, Hibi, Hibikinada, Himeji, Hirara, Hiroshima, Hitachinaka, Hosojima, Imabari, Imari, Ishigaki, Ishikari, Iwakuni, Iyomishima, Kanazawa, Kanda, Kawasaki, Kitakyushu-Kokura, Kobe, Kochi, Kumamoto, Kushiro, Maizuru, Matsuyama, Mill port, Mizushima, Moji, Muroran, Nagasaki, Nagoya, Naha, Nakanoseki, Nanko, Naoetsu, Niigata, Niihama, Oita, Okinawa, Omaezaki, Onahama, Osaka, Otaru, Saganoseki, Sakaiminato, Sakaisenboku, Sakata, Sanbu, Satsumasendai, Senboku, Sendai, Shibushi, Shimizu, Shimonoseki, Takahara, Takamatsu, Tokushima, Tokuyama, Tokyo, Tomakomai, Tomioka, Toyama, Toyohashi, Tsuruga, Wakayama, Yatsushiro, Yokkaichi, Yokohama 
+Jordanie 
+Amman, Aqaba 
+
+Kenya 
+Mombasa 
+
+Kiribati 
+Île de Tarawa 
+
+Corée (Nord) 
+Hungnam, Séoul, Wonsan 
+
+Corée (Sud) 
+Daesan, Gwangyang, Hyundai, Incheon, Inchon, Koje, Kunsan, Kwangyang, Malmoe, Masan, Onsan, Pohang, Pusan, Pyeong Taek, Pyungtaek, Seoul - Kimpo Apt, Tonghae, Ulsan, Yeosu, Yosu 
+
+Koweït 
+Khor al Muffatta, Koweït, Shuaiba, Shuaiba, Shuwaikh 
+
+Lettonie 
+Riga 
+
+Liban 
+Beyrouth, Tripoli 
+
+Liberia 
+Monrovia 
+
+Libye 
+Benghazi, Khoms, Marsa El Brega, Misurata, Ras Lanuf, Tripoli 
+
+Lituanie 
+Klaipeda 
+
+Macao 
+Macao, Macao, Macao 
+
+Madagascar 
+Antsiranana, Majunga, Nosy Be, Suarez, Toamasina, Toleary 
+
+Malaisie 
+Bintulu, Sarawak, Georgetown, Kota Kinabalu, Kuantan, Kuantan, Kuantan (Tanjong Gelang), Kuching, Labuan, Labuan, Sabah, Miri, Miri, Sarawak, Muar, Pasir Gudang, Penang, Port Kelang, Sandakan, Sabah, Sibu, Sarawak, Sipitang, Tanjung Pelepas, 
+Tawau 
+
+Maldives 
+Homme 
+
+Malte 
+Kemmuna, Malte, Marsaxlokkk, La Valette 
+
+
+Marshall (Îles) 
+Kwajalein, Majuro 
+
+Martinique 
+Fort De France 
+
+Mauritanie 
+Nouadhibou, Nouakchott 
+
+Île Maurice 
+Port Louis 
+
+Mexique 
+Acapulco, Altamira, Ensenada, Lazaro Cardenas, Manzanillo, Mazatlan, Mexico City, Progreso, Puerto Caldera, Tampico, Tuxpan, Veracruz 
+Micronésie (États fédérés de) 
+Chuup, Ebeye, Kosrae, Pohnpei, Truk 
+
+Moldavie 
+Tiraspol 
+
+Montserrat 
+Plymouth 
+
+Maroc 
+Agadir, Casablanca, Nador, Safi, Tanger 
+
+Mozambique 
+Beira, Maputo, Nacala, Pemba, Quelimane 
+
+Namibie 
+Luderitz, Walvis Bay 
+
+Pays-Bas 
+Amsterdam, Aruba, Europoort, Flushing, Hook of Holland, Moerdijk, Rotterdam, Tiburg, Vlissingen 
+
+Antilles Néerlandaises 
+Bonaire, Kralendijk, Oranjestad, Philipsburg, Saba, Saint-Eustache, Willemstad 
+
+Nouvelle-Calédonie 
+Nouméa 
+
+Nouvelle-Zélande 
+Auckland, Bluff, Christchurch, Dunedin, Gisborne, Lyttelton, Marsden Point, Napier, Nelson, New Plymouth, Port Chalmers, Tauranga, Timaru, Wellington, Westport 
+
+Nicaragua 
+Corinto, Managua, Pto. Limon, Puerto Limon 
+
+Nigeria 
+Apapa, Calabar, Lagos, Onne, Port Harcourt, Tincan, Warri 
+
+
+Île Norfolk 
+Kingston 
+
+Mariannes du Nord (Îles) 
+Rota, Saipan, Tinian 
+
+Norvège 
+Aalesund, Agnefest, Austevoll, Bergen, Bodo, Brevik, Egersund, Floroe, Fredrikstad, Fusa, Haavik, Halden, Hareid, Haugesund, Heroeya, Heroya, Husnes, Kristiansand S.Chris, Kristiansund N.Chris, Larvik, Lyngdal, Maaloy, Mestersvig, Mosjoen, Moss, Orkanger, Oslo, Porsgrunn, Sandnes, Sauda, Skien, Stavanger, Sunndalsoera, Svelgen, Trondheim 
+
+Oman 
+Cincinnati, Mina Qaboos, Muscat, Salalah, Sohar 
+
+Pakistan 
+Karachi, Lahore, Port Qasim 
+
+Palaos 
+Kororor 
+
+Panama 
+Balboa, Colon, Cristobal, Cruce Canal, Diego, Manzanillo, Panama 
+
+Papouasie-Nouvelle-Guinée 
+Alotau, Buji, Kavieng, Kimbe, Lae, Lihir, Madang, Oro Bay, Port Moresby, Rabaul, 
+Wewak 
+
+Paraguay 
+Asuncion 
+
+Pérou 
+Callao, Ilo, Matarani, Paita, Salaverry, San Juan 
+
+Philippines 
+Bacolod, Batam Island, Bugo, Cadiz, Cagayan De Oro, Cebu, Davao, General Santos, General Santos Dadia, Iligan, Mindanao, Manila, Manila, Manila.N, Manila North Harbour, San Antonio Este (Rio Negro), Subic Bay 
+
+Pologne 
+Gdansk, Gdynia, Swinoujscie, Szczecin, Varsovie 
+
+Portugal 
+Canal, Figueira Da Foz, Funchal, Madère, Leixoes, Lisboa, Portimao, Porto, Setubal, Sines, Viana do Castelo, Vila Do Conde 
+
+Porto Rico 
+Ponce, San Juan 
+
+Qatar 
+Doha, Mesaieed, Messaied, Umm Said 
+
+
+La Réunion 
+Le Port, Pointe des Galets, Port Réunion, St. Louis 
+
+Roumanie 
+Constanța 
+
+Russie 
+Anadyr, Arkhangelsk, De Kastri, Kaliningrad, Kholmsk, Korsakov, Magadan, Murmansk, Nakhodka, Novorossiysk, Petropavlovsk-Kamchatsky, Posyet, Rostov-on-Don, Saint Petersbourg, Sochi, Taganrog, Uglegorsk, Vanino, Vladivostok, Vostochny, Vyborg 
+
+Samoa 
+Apia 
+
+Sao Tomé-et-Principe 
+Sao Tomé, Sao Tomé Prn, Savannah 
+
+Arabie Saoudite 
+Dammam, Jeddah, Jubail 
+
+Sénégal 
+Dakar, Ziguinchor 
+
+Serbie et Monténégro 
+Bar 
+
+Seychelles (République des) 
+Port Victoria 
+
+Sierra Leone 
+Freetown 
+
+Singapour 
+Singapour 
+
+Slovénie 
+Koper 
+
+Îles Salomon 
+Honiara, Noro 
+
+République démocratique somalienne 
+berbère 
+
+Afrique du Sud 
+Le Cap, Durban, East London, Port Elizabeth, Richards Bay 
+Espagne 
+Algésiras, Alicante, Barcelone, Bilbao, Burgos, Cadix, Carboneras, Carthagène, Castellon De La Plana, Ceuta, El Ferrol, Gijon, Ibiza, Jable, Las Palmas (Dupl. Jae), Las Palmas, Madrid, Malaga, Marin, Melilla, Pasajes, Rades, Sagunto, San Antonio, Saint-Sébastien, Santa Cruz de Tenerife, Santander, Sevilla, Seville, Seville, Tarragona, Valencia, Vigo 
+Sri Lanka 
+Colombo 
+Saint-Kitts-et-Nevis 
+
+Basseterre, Charlestown 
+Sainte-Lucie 
+Port Castries, Vieux Fort 
+Saint-Vincent-et-les Grenadines 
+Canouan, Georgetown, Kingstown, Kingstown, Kingstown, St Vincent 
+
+Soudan 
+Port Soudan 
+
+Suriname 
+Paramaribo 
+le Svalbard 
+Foynes, Pointe Noire 
+
+Suède 
+Ahus, Bâle, Brevik, Gavle, Gotthenburg, Halmstad, Helsingborg, Karlshamn, Karlskrona, Lysekil, Malmö, Norrkoeping, Norrkoping, Pitea, Skelleftehamn, Sodertelje, Solvesborg, Stockholm, Uddevalla, Vaesteras, Varberg, Wallhamn, Ystad 
+
+Syrie 
+Latakia, Tartous 
+
+Taïwan 
+Fu-shou, Hualien, Jiaoxin, Kaohsiung, Keelung, Mailiao, Taichung, Taipei 
+
+Tanzanie 
+Dar Es Salaam, Es Salaam, Tanga, Zanzibar 
+
+Thaïlande 
+Bangkok, Bangpakong, Laem Chabang, Lat Krabang, Map Ta Phut, Paknam, Samut Prakan, Siam Seaport, Siracha, Songkhla 
+
+Togo 
+Lomé 
+
+Tonga (Îles) 
+Nukualofa, Tin Can Island, Tongatapu, Vavau 
+
+Trinité-et-Tobago 
+Point Lisas, Port of Spain, St.Thomas 
+
+Tunisie 
+Gabès, La Goulette, Radès, Sfax, Sousse, Tunis 
+
+Turquie 
+Ambarli, Antalya, Bosperus, Canal du Bosphore, Cesme, Derince, Gebze, Gemlik, Haydarpasa, Iskenderun, Istanbul, Izmir, Izmit (Evyap), Kumport, Mardas, Marport, Mersin, Samsun, Tekirdag, Trabzon 
+
+
+
+Tuvalu 
+Funafutiti 
+
+Ukraine 
+Dnipropetrovsk, Ilyichevsk, Mariupol, Odessa 
+
+Émirats arabes unis 
+Abu Dhabi, Ahmed Bin Rashid Port, Ajman, Al Fujairah, Dubaï, Fujairah, Jebel Ali, Khor Al Fakkan, Port Rashid, Ras Al Khaimah, Sharjah, Shibushi, Umm Al Quwain 
+
+Royaume-Uni 
+Aberdeen, Belfast, Blyth, Bristol, Charleston, Charlestown, Chester, Dartford, Felixstowe, Fishguard, Fleetwood, Gibraltar, Glasgow Apt, Goole, Grangemouth, Greenock, Hampton, Harwich, Holyhead, Hull, Immingham, Ipswich, Isle Of Grain, Larne, Liverpool, Londres, Newport, New York, Pembroke, Portbury, Radlet, Sheerness, Southampton, South Shields, Stranraer, Teesport, Thameport, Thamesport, Tilbury, Warrenpoint 
+
+Uruguay 
+Montevideo 
+
+ÉTATS-UNIS 
+Aberdeen, Allegan, Anchorage, Aukland, Ayer, Balboa, Baltimore, Belfast, Bell Bay, Birmingham, Blowing Point, Boston, Bridgetown, Buffalo, Camden, Charleston, Charlotte, Chicago, Cincinati, Clearwater, Cleveland, Clevland, Columbus, Dallas, Denver, Des Moines, Detroit, Dillingham, Dockside, Dunkirk, Dutch Harbor, East Saint Louis, Elizabeth, Everett, Fernandina Beach, Flushing, Fond Du Lac, Fort Lauderdale, Freeport, Gênes, Georgetown, Green Bay, Guam, Gulfport, Halifax, Hambourg, Hardwick, Havana, Honolulu, Houlton, Houston, Howey In The Hills, Huntsville, Huron, Indianapolis, Jacksonville, Jamestown, Kahului, Kane, Kansas City, Kawaihae, Kingston, Kodiak, Landis, Laredo, Las Vegas, Lisbonne, Long Beach, Longview, Los Angeles, Louisville, Madill, Memphis, Miami, Michigan Center, Millersville, Milwaukee, Minneapolis/St Paul Apt, Mobile, Moselle, Naples, Nashville, Nawiliwili, Newark, La Nouvelle Orléans, New Philadelphia, Newport News, Newport News, New York, Norfolk, Charleston Nord, Nsh, Oakland, Odessa, Ontario, Orlando, Oslo, Panama City (Fl), Pascagoula, Pennsauken, Philadelphia, Phillipsburg, Phoenix, Pittsburgh, Port Elizabeth, Port Everglades, Port Gibson, Portland, Portland (Me), Portsmouth, Richardton, Richmond, Saint Louis, Salt Lake City, San Antonio, San Diego, San Francisco, Seagoville, Seattle, Seattle (Wa), South Kearny, Stackbridge, St.Croix, St Louis, St.Louis, St.Louis, St Paul, St Petersburg, Tacoma, Tampa, Texas, Toledo, Tulsa, Valparaiso, Vancouver, Venise, Westport, Wilmington, Winston Salem 
+Îles Vierges américaines 
+Charlotte Amalie, Christiansted, Sainte-Croix 
+Vanuatu 
+Port Vila, Santo 
+
+Venezuela 
+Curaçao, El Guamache, Guanta, La Guaira, Maracaibo, Puerto Cabello, Puerto Sucre, San Lorenzo 
+
+Vietnam 
+Cai Lan, Cat Lai, Danang, Da Nang, Haiphong, Hanoi, Ho Chi Minh Ville, Nhatrang, Nha Trang, Phuoc Long, Quinhon, Quy Nhon, Tan Cang, Tan Thuan Dong 
+Îles Vierges (britanniques) 
+Charlotte Amalie, Christiansted, Kingshill, Sainte-Croix, Saint-Jean, Tortola 
+Yemen 
+Aden, Hodeidah, Mukalla 
+
+Zimbabwe 
+Harare

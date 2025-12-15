@@ -60,10 +60,8 @@ const Footer = () => {
           <h4 className="text-white font-bold text-lg mb-6">Liens Rapides</h4>
           <ul className="space-y-4 text-sm">
             <li><Link href="/about" className="hover:text-accent transition-colors">À propos</Link></li>
-            <li><Link href="/services" className="hover:text-accent transition-colors">Nos Services</Link></li>
-            <li><Link href="/carrieres" className="hover:text-accent transition-colors">Carrières</Link></li>
-            <li><Link href="/actualites" className="hover:text-accent transition-colors">Actualités</Link></li>
-            <li><Link href="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
+            <li><Link href="#services" className="hover:text-accent transition-colors">Nos Services</Link></li>
+            <li><Link href="/presentation" className="hover:text-accent transition-colors">Contact</Link></li>
           </ul>
         </div>
 
@@ -73,9 +71,7 @@ const Footer = () => {
            <ul className="space-y-4 text-sm">
             <li><Link href="/maritime" className="hover:text-accent transition-colors">Fret Maritime</Link></li>
             <li><Link href="/aerien" className="hover:text-accent transition-colors">Fret Aérien</Link></li>
-            <li><Link href="/douane" className="hover:text-accent transition-colors">Transit & Douane</Link></li>
-            <li><Link href="/routier" className="hover:text-accent transition-colors">Transport Routier</Link></li>
-            <li><Link href="/logistique" className="hover:text-accent transition-colors">Logistique</Link></li>
+            <li><Link href="/vehicules" className="hover:text-accent transition-colors">Transport de véhicules</Link></li>
           </ul>
         </div>
 
@@ -85,11 +81,11 @@ const Footer = () => {
           <ul className="space-y-4 text-sm">
             <li className="flex items-start gap-3">
               <MapPin size={18} className="text-accent mt-1 shrink-0" />
-              <span>122, Rue du Port,<br/>Zone Industrielle, Lomé</span>
+              <span>122, Rue du Port,<br/>Seine Saint Denis, France</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone size={18} className="text-accent shrink-0" />
-              <span>+228 90 12 34 56</span>
+              <span>+33 6 90 12 34 56</span>
             </li>
             <li className="flex items-center gap-3">
               <Mail size={18} className="text-accent shrink-0" />

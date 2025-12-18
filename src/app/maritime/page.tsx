@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Ship, Anchor, Globe, FileCheck, ArrowRight, CheckCircle } from "lucide-react";
+import { Ship, Anchor, Globe, FileCheck, ArrowRight, CheckCircle, TrendingDown, ShieldCheck, Package, Clock, Phone, Mail, MapPin } from "lucide-react";
 
 export default function MaritimePage() {
   return (
@@ -97,6 +97,114 @@ export default function MaritimePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SECTION AVANTAGES GROUPAGE MARITIME */}
+      <section className="py-20 bg-zinc-50 border-t border-gray-100">
+        <div className="container mx-auto px-4">
+           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden mb-12">
+              <div className="bg-primary text-white p-8 md:p-12 text-center">
+                <h2 className="text-3xl font-bold mb-4">Les avantages du groupage maritime</h2>
+                <p className="text-xl text-gray-200 italic font-light">"La solution économique et fiable pour vos expéditions"</p>
+              </div>
+              
+              <div className="p-8 md:p-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform hover:scale-110">
+                      <TrendingDown className="text-accent w-8 h-8" />
+                    </div>
+                    <h4 className="font-bold text-gray-800 text-lg mb-2">Économies</h4>
+                    <p className="text-gray-600 text-sm">Réduisez vos coûts de transport en regroupant vos marchandises avec d'autres expéditeurs.</p>
+                  </div>
+                  
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform hover:scale-110">
+                      <ShieldCheck className="text-accent w-8 h-8" />
+                    </div>
+                    <h4 className="font-bold text-gray-800 text-lg mb-2">Fiabilité</h4>
+                    <p className="text-gray-600 text-sm">Bénéficiez d'un service de transport sécurisé et fiable, avec des départs réguliers.</p>
+                  </div>
+
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform hover:scale-110">
+                      <Package className="text-accent w-8 h-8" />
+                    </div>
+                    <h4 className="font-bold text-gray-800 text-lg mb-2">Flexibilité</h4>
+                    <p className="text-gray-600 text-sm">Adaptez vos expéditions à vos besoins, avec des options de groupage adaptées à vos marchandises.</p>
+                  </div>
+
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform hover:scale-110">
+                      <Clock className="text-accent w-8 h-8" />
+                    </div>
+                    <h4 className="font-bold text-gray-800 text-lg mb-2">Suivi</h4>
+                    <p className="text-gray-600 text-sm">Suivez vos expéditions en temps réel, grâce à notre système de suivi avancé.</p>
+                  </div>
+                </div>
+
+                <div className="bg-zinc-50 rounded-xl p-8 border border-gray-100">
+                  <h3 className="font-bold text-primary text-xl mb-6 text-center">Nos Services Inclus</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="flex items-start gap-3">
+                       <div className="mt-1 bg-green-100 p-1 rounded-full text-green-600 shrink-0">
+                         <CheckCircle size={14} />
+                       </div>
+                       <span className="text-sm text-gray-700 font-medium">Groupage de conteneurs (consolidation/déconsolidation)</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                       <div className="mt-1 bg-green-100 p-1 rounded-full text-green-600 shrink-0">
+                         <CheckCircle size={14} />
+                       </div>
+                       <span className="text-sm text-gray-700 font-medium">Gestion des formalités douanières</span>
+                    </div>
+                     <div className="flex items-start gap-3">
+                       <div className="mt-1 bg-green-100 p-1 rounded-full text-green-600 shrink-0">
+                         <CheckCircle size={14} />
+                       </div>
+                       <span className="text-sm text-gray-700 font-medium">Options d'assurance tous risques</span>
+                    </div>
+                     <div className="flex items-start gap-3">
+                       <div className="mt-1 bg-green-100 p-1 rounded-full text-green-600 shrink-0">
+                         <CheckCircle size={14} />
+                       </div>
+                       <span className="text-sm text-gray-700 font-medium">Conseil & Accompagnement logistique</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-12 text-center">
+                   <div className="flex flex-col md:flex-row items-center justify-between bg-blue-50 p-6 rounded-2xl border border-blue-100 gap-6">
+                      <div className="flex items-center gap-4 text-left">
+                        <div className="bg-white p-3 rounded-full shadow-md text-accent">
+                          <Phone size={32} />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-primary text-lg">Contactez-nous pour en savoir plus</h4>
+                          <p className="text-gray-600 text-sm mb-2">
+                            Découvrez comment nous pouvons vous aider à réduire vos coûts.
+                          </p>
+                          <div className="flex flex-col sm:flex-row gap-4 mt-2">
+                             <a href="tel:+33607811308" className="flex items-center gap-2 text-primary font-bold hover:text-accent transition-colors">
+                                <Phone size={16} /> +33 6 07 81 13 08
+                             </a>
+                             <a href="mailto:gta_transitaire@yahoo.com" className="flex items-center gap-2 text-primary font-bold hover:text-accent transition-colors">
+                                <Mail size={16} /> gta_transitaire@yahoo.com
+                             </a>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="shrink-0">
+                        <a href="/devis" className="inline-flex items-center px-6 py-3 bg-accent text-white rounded-lg font-bold hover:bg-secondary transition-colors shadow-md">
+                          Nous contacter <ArrowRight size={16} className="ml-2" />
+                        </a>
+                      </div>
+                   </div>
+                </div>
+              </div>
+           </div>
         </div>
       </section>
 

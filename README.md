@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GTA Transit - Application Web
 
-## Getting Started
+Application web moderne pour **Groupeur Transitaire Associés (GTA)**, spécialiste du transport international (Maritime, Aérien, Routier) et commissionnaire en douane.
 
-First, run the development server:
+Développée avec [Next.js 16](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/) et [TypeScript](https://www.typescriptlang.org/).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Fonctionnalités Principales
+
+*   **Présentation des Services** : Pages dédiées pour le Fret Maritime, Aérien, Routier et le transport de véhicules.
+*   **Demande de Devis Dynamique** : Formulaire interactif (`/devis`) s'adaptant au mode de transport choisi (Maritime, Aérien, Routier) avec autocomplétion des ports et aéroports mondiaux.
+*   **Contenu Riche** : Sections informatives sur le rôle de Commissionnaire, les avantages du groupage, et la présentation de l'entreprise.
+*   **Interface Moderne** : Design responsive, animations fluides (Framer Motion) et UX soignée.
+*   **Suivi** : Page de tracking (structure en place).
+
+## 🛠️ Stack Technique
+
+*   **Framework** : Next.js 16 (App Router)
+*   **Langage** : TypeScript
+*   **Styles** : Tailwind CSS v4
+*   **Icônes** : Lucide React
+*   **Animations** : Framer Motion (`motion`)
+*   **Polices** : Geist & Geist Mono
+
+## 📂 Structure du Projet
+
+```
+src/
+├── app/
+│   ├── commissionnaire/   # Page Commissionnaire de transport
+│   ├── devis/             # Formulaire de devis (logique + UI)
+│   │   ├── locations.ts   # Données des ports et aéroports
+│   │   └── page.tsx       # Page principale du devis
+│   ├── layout/            # Composants globaux (Header, Footer)
+│   ├── maritime/          # Pages Fret Maritime (Groupage, Conteneurs...)
+│   ├── aerien/            # Pages Fret Aérien
+│   ├── vehicules/         # Pages Transport de Véhicules
+│   └── ...
+├── public/                # Images et assets statiques
+└── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚡ Installation et Démarrage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1.  **Cloner le dépôt :**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    ```bash
+    git clone <votre-repo-url>
+    cd gta-transit
+    ```
 
-## Learn More
+2.  **Installer les dépendances :**
 
-To learn more about Next.js, take a look at the following resources:
+    ```bash
+    npm install
+    # ou
+    yarn install
+    # ou
+    pnpm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3.  **Lancer le serveur de développement :**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    ```bash
+    npm run dev
+    ```
 
-## Deploy on Vercel
+    Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur pour voir le résultat.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Scripts Disponibles
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*   `npm run dev` : Lance le mode développement.
+*   `npm run build` : Compile l'application pour la production.
+*   `npm run start` : Lance le serveur de production (après le build).
+*   `npm run lint` : Vérifie le code avec ESLint.
+
+## 📝 Bonnes Pratiques
+
+*   **Composants** : Utiliser le dossier `src/app/components` pour les composants réutilisables.
+*   **Images** : Placer les images dans `public/` et utiliser le composant `Image` de Next.js pour l'optimisation quand c'est possible.
+*   **Données** : Les listes statiques (comme les ports/aéroports) sont gérées dans des fichiers TypeScript dédiés (ex: `locations.ts`).
+
+## 📄 Licence
+
+Ce projet est la propriété de GTA Transit.

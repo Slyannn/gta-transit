@@ -9,7 +9,11 @@ const navItems = [
   { 
     name: "QUI NOUS SOMMES ?", 
     href: "/presentation", 
-    hasDropdown: false 
+    hasDropdown: true,
+    dropdownItems:[
+      { name : "Qui nous sommes ?", href : "/presentation" },
+      { name : "Commissionnaire de transport international", href : "/commissionnaire" },
+    ] 
   },
   { 
     name: "FRET MARITIME", 
@@ -18,7 +22,7 @@ const navItems = [
     hasDropdown: true,
     dropdownItems: [
       { name: "Transport maritime", href: "/maritime" },
-      { name: "Cameroun Bagages", href: "/maritime/groupage" },
+      { name: "Cameroun Bagages", href: "/maritime/cameroun-bagages" },
       { name: "Différents types de conteneurs", href: "/maritime/conteneurs" }
     ]
   },
@@ -60,7 +64,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1 font-medium text-sm text-gray-700 relative" onMouseLeave={() => setHoveredIndex(null)}>
+        <nav className="hidden lg:flex items-center space-x-1 font-medium text-sm text-gray-700 relative" onMouseLeave={() => setHoveredIndex(null)}>
           {navItems.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -112,7 +116,7 @@ const Header = () => {
         </nav>
 
         {/* Right Actions */}
-        <div className="hidden md:flex items-center space-x-6 z-10">
+        <div className="hidden lg:flex items-center space-x-6 z-10">
           <Link href="/tracking" className="flex items-center gap-2 text-primary font-semibold hover:text-secondary transition-colors">
             <Search size={20} />
             Tracking
@@ -128,7 +132,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-primary z-10"
+          className="lg:hidden text-primary z-10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -142,7 +146,7 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden"
+            className="lg:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden"
           >
             <div className="p-4 flex flex-col space-y-4">
               {navItems.map((item) => (

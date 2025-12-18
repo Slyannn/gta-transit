@@ -76,7 +76,7 @@ export default function CamerounBagagesPage() {
                 <MapPin className="w-10 h-10 text-accent mb-4" />
                 <h3 className="text-xl text-secondary font-bold mb-2">4. Mise à disposition</h3>
                 <p className="text-gray-600 text-sm">
-                  Récupération dans nos entrepôts de <strong>DOUALA</strong> ou <strong>YAOUNDÉ</strong>. 
+                  Récupération dans nos entrepôts de <strong>DOUALA</strong> , <strong>YAOUNDÉ</strong> ou <strong>BAFOUSSAM</strong>. 
                   Possibilité de livraison dans d'autres villes.
                 </p>
               </div>

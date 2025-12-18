@@ -61,7 +61,7 @@ const Footer = () => {
           <ul className="space-y-4 text-sm">
             <li><Link href="/about" className="hover:text-accent transition-colors">À propos</Link></li>
             <li><Link href="#services" className="hover:text-accent transition-colors">Nos Services</Link></li>
-            <li><Link href="/presentation" className="hover:text-accent transition-colors">Contact</Link></li>
+            <li><Link href="/devis" className="hover:text-accent transition-colors">Contact</Link></li>
           </ul>
         </div>
 
@@ -81,15 +81,21 @@ const Footer = () => {
           <ul className="space-y-4 text-sm">
             <li className="flex items-start gap-3">
               <MapPin size={18} className="text-accent mt-1 shrink-0" />
-              <span>122, Rue du Port,<br/>Seine Saint Denis, France</span>
+              <span>
+                Entrepôt Wakam<br/>
+                (Nord Sud Transit)<br/>
+                145 avenue du président Wilson.<br/>
+                93210 La plaine Saint-Denis<br/>
+                France
+              </span>
             </li>
             <li className="flex items-center gap-3">
               <Phone size={18} className="text-accent shrink-0" />
-              <span>+33 6 90 12 34 56</span>
+              <span>+33 6 07 81 13 08</span>
             </li>
             <li className="flex items-center gap-3">
               <Mail size={18} className="text-accent shrink-0" />
-              <span>contact@gta-transit.com</span>
+              <span>gta_transitaire@yahoo.com</span>
             </li>
             <li className="flex items-center gap-3">
               <Clock size={18} className="text-accent shrink-0" />
@@ -104,9 +110,9 @@ const Footer = () => {
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
           <p>© {new Date().getFullYear()} GTA - Groupeur Transitaire Associés. Tous droits réservés.</p>
           <div className="flex gap-6">
-            <Link href="/mentions-legales" className="hover:text-white">Mentions légales</Link>
-            <Link href="/confidentialite" className="hover:text-white">Politique de confidentialité</Link>
-            <Link href="/cgv" className="hover:text-white">CGV</Link>
+            <Link href="#" className="hover:text-white">Mentions légales</Link>
+            <Link href="#" className="hover:text-white">Politique de confidentialité</Link>
+            <Link href="#" className="hover:text-white">CGV</Link>
           </div>
         </div>
       </div>

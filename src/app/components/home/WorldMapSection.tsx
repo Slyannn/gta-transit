@@ -35,11 +35,11 @@ const WorldMapSection = () => {
                transition={{ delay: 0.2 }}
             >
               <a 
-                href="/contact" 
+                href="/devis" 
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-accent hover:text-white transition-all duration-300 shadow-lg group transform hover:scale-105"
               >
                 <Globe className="mr-3 h-5 w-5 text-accent group-hover:text-white group-hover:rotate-180 transition-all duration-500" />
-                CONTACTER NOTRE RÉSEAU
+                DECOUVRIR NOTRE RÉSEAU
               </a>
             </motion.div>
           </div>

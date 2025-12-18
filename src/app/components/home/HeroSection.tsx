@@ -13,7 +13,7 @@ const HeroSection = () => {
             backgroundImage: "url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop')",
           }}
         >
-           <div className="absolute inset-0 left-0 w-1/2 h-full pointer-events-none"
+           <div className="absolute inset-0 left-0 lg:w-1/2 h-full pointer-events-none"
                 style={{
                   background: "linear-gradient(to right, rgba(8,47,73,0.7) 75%, rgba(8,47,73,0) 100%)"
                 }}

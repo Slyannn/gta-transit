@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle, Globe, Anchor, ShieldCheck } from "lucide-react";
+import { CheckCircle, Globe, Anchor, ShieldCheck, ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 export default function PresentationPage() {
@@ -63,7 +63,7 @@ export default function PresentationPage() {
              {/* Placeholder pour une image de bureau/équipe */}
              <div 
                className="absolute inset-0 bg-cover bg-center"
-               style={{ backgroundImage: "url('https://images.unsplash.com/photo-1616432043562-3671ea2e5242?q=80&w=2574&auto=format&fit=crop')" }} // Équipe logistique professionnelle
+               style={{ backgroundImage: "url('https://img.freepik.com/photos-gratuite/gestionnaires-logistiques-analysent-inventaire-comparent-donnees-ordinateur-portable-bloc-notes-dans-entrepot-hommes-afro-americains-verifient-calendrier-approvisionnement-marchandises-travaillent-dans-entrepot-du-departement-distribution_482257-71407.jpg')" }} // Équipe logistique professionnelle
              ></div>
           </motion.div>
         </div>
@@ -83,7 +83,7 @@ export default function PresentationPage() {
                <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
                  <div 
                    className="absolute inset-0 bg-cover bg-center"
-                   style={{ backgroundImage: "url('/Commissionaire.jpeg')" }} // Image Business/Contrat
+                   style={{ backgroundImage: "url('https://images.unsplash.com/photo-1713859326033-f75e04439c3e?q=80&w=1074&auto=format&fit=crop')" }} // Image Business/Contrat
                  ></div>
                  <div className="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
                </div>
@@ -135,6 +135,16 @@ export default function PresentationPage() {
                     <h4 className="font-bold text-gray-800 text-lg">Optimisation des Coûts</h4>
                     <p className="text-gray-500 mt-2">Notre volume d'affaires nous permet de négocier les meilleurs tarifs auprès des compagnies maritimes et aériennes pour votre compte.</p>
                   </div>
+                </div>
+                
+                <div className="pt-4">
+                  <a 
+                    href="/commissionnaire" 
+                    className="group inline-flex items-center px-6 py-3 border-2 border-accent text-accent rounded-lg font-bold hover:bg-accent hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                  >
+                    Découvrir notre statut de Commissionnaire
+                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                  </a>
                 </div>
               </div>
             </motion.div>

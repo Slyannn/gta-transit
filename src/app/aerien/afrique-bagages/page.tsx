@@ -10,7 +10,7 @@ export default function AfriqueBagagesPage() {
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2669&auto=format&fit=crop')" }} // Image voyage/bus/avion
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1718197029571-51a53883c636?q=80&w=1332&auto=format&fit=crop')" }} // Image voyage/bus/avion
         ></div>
         <div className="z-10 text-center px-4">
           <motion.h1 

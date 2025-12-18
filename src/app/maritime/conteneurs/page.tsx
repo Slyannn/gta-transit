@@ -10,7 +10,7 @@ export default function ConteneursPage() {
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2670&auto=format&fit=crop')" }} // Port de conteneurs
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1494412651409-8963ce7935a7?q=80&w=2670&auto=format&fit=crop')" }} // Photo aérienne de caisses de fret
         ></div>
         <div className="z-10 text-center px-4">
           <motion.h1 

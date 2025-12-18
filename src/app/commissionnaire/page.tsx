@@ -11,7 +11,10 @@ export default function CommissionnairePage() {
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('/Commissionaire.jpeg')" }}
+          style={{ 
+            backgroundImage: "url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop')" ,            
+            backgroundPosition: "center 75%",
+          }}
         ></div>
         <div className="z-10 text-center px-4">
           <motion.h1 

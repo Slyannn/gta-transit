@@ -198,7 +198,7 @@ export default function MaritimePage() {
                       
                       <div className="shrink-0">
                         <a href="/devis" className="inline-flex items-center px-6 py-3 bg-accent text-white rounded-lg font-bold hover:bg-secondary transition-colors shadow-md">
-                          Nous contacter <ArrowRight size={16} className="ml-2" />
+                          Obtenir un devis <ArrowRight size={16} className="ml-2" />
                         </a>
                       </div>
                    </div>

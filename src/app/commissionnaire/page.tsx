@@ -73,20 +73,20 @@ export default function CommissionnairePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              "Mise à disposition des conteneurs (plus de 160 dossiers/mois)",
+              "Mise à disposition des conteneurs aux professionnels et aux particuliers (plus de 160 dossiers/mois)",
               "Organisation de Transport International",
-              "Groupage Fret Aérien et Maritime",
+              "Groupage Fret Aérien et Fret Maritime",
               "Import / Export, Négoces et Douane",
               "Solutions logistiques sur mesure",
               "Sélection rigoureuse des transporteurs",
               "Gestion documentaire et douanière",
               "Suivi opérationnel continu",
               "Sécurisation des flux internationaux",
-              "Transport cosmétiques, pharma & industriel",
+              "Transport de produits cosmétiques, pharmaceutiques et industriels",
               "Transport maritime de véhicules",
               "Déménagement national et international",
               "Courses Express, Enlèvement, Livraison",
-              "Transport effets personnels dédouanés",
+              "Transport des effets personnels rendus dédouanés",
               "Point relais colis (SHEIN, AMAZON, etc.)"
             ].map((item, index) => (
               <motion.div 
@@ -95,7 +95,7 @@ export default function CommissionnairePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="flex items-start gap-3 p-4 bg-zinc-50 rounded-xl hover:shadow-md transition-all"
+                className="flex items-start gap-3 p-4 bg-zinc-50 rounded-xl hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-gray-100"
               >
                 <div className="mt-1 bg-primary/10 p-1.5 rounded-full text-primary shrink-0">
                   <Check size={14} strokeWidth={3} />

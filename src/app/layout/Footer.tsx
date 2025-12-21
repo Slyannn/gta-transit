@@ -18,6 +18,9 @@ const Footer = () => {
           <div className="flex w-full md:w-auto gap-4">
              <input 
               type="email" 
+              name="emailNewsletter"
+              id="emailNewsletter"
+
               placeholder="Votre email" 
               className="bg-gray-800 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent w-full md:w-80"
              />
@@ -60,8 +63,9 @@ const Footer = () => {
           <h4 className="text-white font-bold text-lg mb-6">Liens Rapides</h4>
           <ul className="space-y-4 text-sm">
             <li><Link href="/about" className="hover:text-accent transition-colors">À propos</Link></li>
-            <li><Link href="#services" className="hover:text-accent transition-colors">Nos Services</Link></li>
-            <li><Link href="/devis" className="hover:text-accent transition-colors">Contact</Link></li>
+            <li><Link href="/#services" className="hover:text-accent transition-colors">Nos Services</Link></li>
+            <li><Link href="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
+            <li><Link href="/devis" className="text-accent font-bold hover:text-white transition-colors">Demander un devis</Link></li>
           </ul>
         </div>
 
@@ -69,6 +73,7 @@ const Footer = () => {
         <div>
            <h4 className="text-white font-bold text-lg mb-6">Nos Services</h4>
            <ul className="space-y-4 text-sm">
+            <li><Link href="/commissionnaire" className="hover:text-accent transition-colors">Commissionnaire de transport international</Link></li>
             <li><Link href="/maritime" className="hover:text-accent transition-colors">Fret Maritime</Link></li>
             <li><Link href="/aerien" className="hover:text-accent transition-colors">Fret Aérien</Link></li>
             <li><Link href="/vehicules" className="hover:text-accent transition-colors">Transport de véhicules</Link></li>
@@ -76,32 +81,58 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div>
-          <h4 className="text-white font-bold text-lg mb-6">Contact</h4>
-          <ul className="space-y-4 text-sm">
-            <li className="flex items-start gap-3">
-              <MapPin size={18} className="text-accent mt-1 shrink-0" />
-              <span>
-                Entrepôt Wakam<br/>
-                (Nord Sud Transit)<br/>
-                145 avenue du président Wilson.<br/>
-                93210 La plaine Saint-Denis<br/>
-                France
-              </span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Phone size={18} className="text-accent shrink-0" />
-              <span>+33 6 07 81 13 08</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Mail size={18} className="text-accent shrink-0" />
-              <span>gta_transitaire@yahoo.com</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Clock size={18} className="text-accent shrink-0" />
-              <span>Lun - Ven: 08h - 18h</span>
-            </li>
-          </ul>
+        <div className="space-y-6">
+          <h4 className="text-white font-bold text-lg mb-2">Contact</h4>
+          
+          {/* Siège */}
+          <div className="flex items-start gap-3 group">
+             <MapPin size={20} className="text-accent mt-1 shrink-0 group-hover:animate-bounce" />
+             <div>
+                <strong className="text-white block mb-1">Siège social</strong>
+                <a 
+                  href="https://maps.google.com/?q=126+Avenue+de+la+République+93800+Épinay-sur-Seine" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-400 hover:text-white transition-colors block leading-snug"
+                >
+                  126, Avenue de la République.<br/>
+                  93800 Épinay-sur-Seine.
+                </a>
+             </div>
+          </div>
+
+          {/* Entrepôt */}
+          <div className="flex items-start gap-3 group">
+             <MapPin size={20} className="text-accent mt-1 shrink-0 group-hover:animate-bounce" />
+             <div>
+                <strong className="text-white block mb-1">Entrepôt Wakam</strong>
+                <a 
+                  href="https://maps.google.com/?q=145+avenue+du+président+Wilson+93210+La+plaine+Saint-Denis" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-400 hover:text-white transition-colors block leading-snug"
+                >
+                  145 avenue du président Wilson.<br/>
+                  93210 La plaine Saint-Denis
+                </a>
+             </div>
+          </div>
+
+          {/* Phone */}
+          <div className="flex items-start gap-3">
+              <Phone size={20} className="text-accent mt-1 shrink-0" />
+              <div className="flex flex-col gap-1 text-sm">
+                <a href="tel:+33607811308" className="hover:text-accent transition-colors block">+33 6 07 81 13 08</a>
+                <a href="tel:+33684883811" className="hover:text-accent transition-colors block">+33 6 84 88 38 11</a>
+                <a href="tel:+33986228353" className="hover:text-accent transition-colors block text-xs text-gray-500">Bureau : +33 9 86 22 83 53</a>
+              </div>
+          </div>
+
+          {/* Email */}
+          <div className="flex items-center gap-3">
+              <Mail size={20} className="text-accent shrink-0" />
+              <a href="mailto:gta_transitaire@yahoo.com" className="text-sm hover:text-accent transition-colors">gta_transitaire@yahoo.com</a>
+          </div>
         </div>
       </div>
 

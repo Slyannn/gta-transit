@@ -208,7 +208,7 @@ export default function PresentationPage() {
               </h2>
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">
                 Présent directement ou indirectement dans tous les ports et aéroports du monde, 
-                GTA suit au plus près l’ensemble des frets confiés.
+                GTA suit au plus près l’ensemble des frets qui lui sont confiés.
               </p>
               
               <div className="flex flex-wrap gap-3">

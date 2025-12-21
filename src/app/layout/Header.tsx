@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Search, FileText, Menu, X, Ship, Plane, Truck, ChevronDown } from "lucide-react";
+import { Search, FileText, Menu, X, Ship, Plane, Truck, ChevronDown, MapPin } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -117,9 +117,9 @@ const Header = () => {
 
         {/* Right Actions */}
         <div className="hidden lg:flex items-center space-x-6 z-10">
-          <Link href="/tracking" className="flex items-center gap-2 text-primary font-semibold hover:text-secondary transition-colors">
-            <Search size={20} />
-            Tracking
+          <Link href="/contact" className="flex items-center gap-2 text-primary font-semibold hover:text-secondary transition-colors">
+            <MapPin size={20} />
+            Contact
           </Link>
           <Link 
             href="/devis" 
@@ -178,8 +178,8 @@ const Header = () => {
                 </div>
               ))}
               <div className="pt-4 flex flex-col gap-4">
-                 <Link href="/tracking" className="flex items-center gap-2 text-primary font-semibold">
-                    <Search size={18} /> Tracking
+                 <Link href="/contact" className="flex items-center gap-2 text-primary font-semibold">
+                    <MapPin size={18} /> Contact
                  </Link>
                  <Link href="/devis" className="flex items-center justify-center gap-2 bg-accent text-white px-4 py-3 rounded-lg font-bold">
                    DEMANDER UN DEVIS

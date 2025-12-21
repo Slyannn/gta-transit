@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, MapPin, Search } from "lucide-react";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
@@ -49,11 +49,11 @@ const HeroSection = () => {
               </a>
               
               <a 
-                href="/tracking" 
+                href="/contact" 
                 className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white border-2 border-white/30 rounded-full hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm"
               >
-                <Search className="mr-2 h-5 w-5" />
-                SUIVRE UN COLIS
+                <MapPin className="mr-2 h-5 w-5" />
+                Nous contacter
               </a>
             </div>
           </motion.div>

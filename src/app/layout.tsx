@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
+import { Toaster } from "sonner";
 
 export default function RootLayout({
   children,
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50`}
       >
+        <Toaster position="top-center" richColors />
         <Header />
         {children}
         <Footer />

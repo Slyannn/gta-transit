@@ -56,7 +56,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-start gap-2 z-10">
+        <Link href="/" className="flex items-start gap-2 z-10" onClick={() => setIsMobileMenuOpen(false)}>
            {/* Logo GTA Stylisé CSS */}
            <div className="h-20 w-[350px] overflow-hidden flex items-center justify-center">
              <img src="/Logo_GTA_1.jpg" alt="Logo GTA" className="h-full w-auto object-cover scale-[1.35] -translate-y-3" />
@@ -178,10 +178,18 @@ const Header = () => {
                 </div>
               ))}
               <div className="pt-4 flex flex-col gap-4">
-                 <Link href="/contact" className="flex items-center gap-2 text-primary font-semibold">
+                 <Link 
+                   href="/contact" 
+                   className="flex items-center gap-2 text-primary font-semibold"
+                   onClick={() => setIsMobileMenuOpen(false)}
+                 >
                     <MapPin size={18} /> Contact
                  </Link>
-                 <Link href="/devis" className="flex items-center justify-center gap-2 bg-accent text-white px-4 py-3 rounded-lg font-bold">
+                 <Link 
+                   href="/devis" 
+                   className="flex items-center justify-center gap-2 bg-accent text-white px-4 py-3 rounded-lg font-bold"
+                   onClick={() => setIsMobileMenuOpen(false)}
+                 >
                    DEMANDER UN DEVIS
                  </Link>
               </div>

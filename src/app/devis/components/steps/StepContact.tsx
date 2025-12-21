@@ -70,7 +70,7 @@ export default function StepContact() {
           )}
         </div>
         <div className="md:col-span-2">
-          <label className={getLabelClass(errors.adresse)}>Adresse (Recherche automatique) *</label>
+          <label className={getLabelClass(errors.adresse)}>Adresse *</label>
           <AutocompleteInput
             name="adresse"
             value={formData.adresse || ""}

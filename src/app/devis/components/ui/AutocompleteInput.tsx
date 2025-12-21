@@ -35,12 +35,21 @@ export default function AutocompleteInput({
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  
+  // Flag pour empêcher la réouverture après sélection
+  const ignoreNextSearch = useRef(false);
 
   // Debounce pour l'API
   useEffect(() => {
     if (disabled || !onSearch) return;
 
     const timeoutId = setTimeout(async () => {
+      // Si on vient de sélectionner, on ignore cette recherche
+      if (ignoreNextSearch.current) {
+        ignoreNextSearch.current = false;
+        return;
+      }
+
       if (query.length > 2) {
         const results = await onSearch(query);
         setSuggestions(results);
@@ -91,6 +100,9 @@ export default function AutocompleteInput({
   const handleSelect = (item: any) => {
     // Si c'est un objet (API adresse), on prend son label pour l'affichage
     const label = typeof item === "object" ? item.label : item;
+
+    // On signale qu'on ne veut pas relancer la recherche
+    ignoreNextSearch.current = true;
 
     setQuery(label);
     onChange(label); // Met à jour juste la valeur texte du champ

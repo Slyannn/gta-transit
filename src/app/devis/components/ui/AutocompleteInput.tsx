@@ -12,8 +12,6 @@ interface AutocompleteInputProps {
   isFreeText?: boolean;
   disabled?: boolean;
   error?: boolean;
-  onSearch?: (query: string) => Promise<any[]>; // Retourne des objets complets maintenant
-  onSelect?: (item: any) => void; // Callback quand on sélectionne un objet complet
 }
 
 export default function AutocompleteInput({
@@ -26,58 +24,35 @@ export default function AutocompleteInput({
   isFreeText = false,
   disabled = false,
   error = false,
-  onSearch,
-  onSelect,
 }: AutocompleteInputProps) {
   const [query, setQuery] = useState(value);
   const [isOpen, setIsOpen] = useState(false);
-  // On stocke les objets complets si API, sinon juste des strings
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [filteredLocations, setFilteredLocations] = useState<string[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  
-  // Flag pour empêcher la réouverture après sélection
-  const ignoreNextSearch = useRef(false);
 
-  // Debounce pour l'API
   useEffect(() => {
-    if (disabled || !onSearch) return;
-
-    const timeoutId = setTimeout(async () => {
-      // Si on vient de sélectionner, on ignore cette recherche
-      if (ignoreNextSearch.current) {
-        ignoreNextSearch.current = false;
-        return;
-      }
-
-      if (query.length > 2) {
-        const results = await onSearch(query);
-        setSuggestions(results);
-        setIsOpen(true);
-      }
-    }, 300);
-
-    return () => clearTimeout(timeoutId);
-  }, [query, onSearch, disabled]);
-
-  // Filtrage local (existant)
-  useEffect(() => {
-    if (disabled || onSearch) return; // Skip si API
-
+    if (disabled) {
+      setIsOpen(false);
+      return;
+    }
     if (options.length === 0 && !isFreeText) {
-      setSuggestions([]);
+      setFilteredLocations([]);
       return;
     }
 
+    // Filtrage dynamique
     if (query.length > 0) {
       const filtered = options.filter((loc) =>
         loc.toLowerCase().includes(query.toLowerCase())
       );
-      setSuggestions(filtered.slice(0, 50));
+      // Limite le nombre de résultats pour éviter une liste trop longue
+      setFilteredLocations(filtered.slice(0, 50));
     } else {
-      setSuggestions(options.slice(0, 50));
+      // Si vide, on montre les premiers éléments
+      setFilteredLocations(options.slice(0, 50));
     }
-  }, [query, options, isFreeText, disabled, onSearch]);
+  }, [query, options, isFreeText, disabled]);
 
   // Update query when value changes
   useEffect(() => {
@@ -97,27 +72,16 @@ export default function AutocompleteInput({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [wrapperRef]);
 
-  const handleSelect = (item: any) => {
-    // Si c'est un objet (API adresse), on prend son label pour l'affichage
-    const label = typeof item === "object" ? item.label : item;
-
-    // On signale qu'on ne veut pas relancer la recherche
-    ignoreNextSearch.current = true;
-
-    setQuery(label);
-    onChange(label); // Met à jour juste la valeur texte du champ
-
-    if (onSelect && typeof item === "object") {
-      onSelect(item); // Renvoie l'objet complet au parent pour remplir Ville/CP
-    }
-
+  const handleSelect = (loc: string) => {
+    setQuery(loc);
+    onChange(loc);
     setIsOpen(false);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
     onChange(e.target.value);
-    if (!onSearch) setIsOpen(true);
+    setIsOpen(true);
   };
 
   const toggleDropdown = () => {
@@ -135,7 +99,6 @@ export default function AutocompleteInput({
       className={`relative ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
       ref={wrapperRef}
     >
-      {/* ... (Label et Input inchangés) ... */}
       {label && (
         <label
           className={`text-xs font-medium mb-1 block ${
@@ -203,27 +166,24 @@ export default function AutocompleteInput({
       {error && <p className="text-red-500 text-xs mt-1">Ce champ est requis</p>}
 
       <AnimatePresence>
-        {isOpen && (suggestions.length > 0 || isFreeText) && (
+        {isOpen && (filteredLocations.length > 0 || isFreeText) && (
           <motion.ul
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             className="absolute z-50 w-full bg-white mt-1 rounded-lg shadow-xl border border-gray-100 max-h-60 overflow-y-auto"
           >
-            {suggestions.length > 0 ? (
-              suggestions.map((item, index) => {
-                const label = typeof item === "object" ? item.label : item;
-                return (
-                  <li
-                    key={index}
-                    onClick={() => handleSelect(item)}
-                    className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 border-b border-gray-50 last:border-0 flex items-center gap-2"
-                  >
-                    <MapPin size={14} className="text-gray-400 shrink-0" />
-                    {label}
-                  </li>
-                );
-              })
+            {filteredLocations.length > 0 ? (
+              filteredLocations.map((loc, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleSelect(loc)}
+                  className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 border-b border-gray-50 last:border-0 flex items-center gap-2"
+                >
+                  <MapPin size={14} className="text-gray-400 shrink-0" />
+                  {loc}
+                </li>
+              ))
             ) : (
               isFreeText &&
               query.length > 0 && (
@@ -233,7 +193,7 @@ export default function AutocompleteInput({
               )
             )}
 
-            {suggestions.length === 0 && !isFreeText && (
+            {filteredLocations.length === 0 && !isFreeText && (
               <li className="px-4 py-3 text-sm text-gray-400 italic">
                 Aucun résultat trouvé
               </li>
@@ -244,3 +204,4 @@ export default function AutocompleteInput({
     </div>
   );
 }
+

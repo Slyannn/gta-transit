@@ -95,8 +95,12 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-sm text-gray-400 hover:text-white transition-colors block leading-snug"
                 >
+                  Groupeur Transitaire Associés. (G.T.A.)<br/>
+                  du Groupe R.V.S et Compagnie. SAS<br/> <br/>
                   126, Avenue de la République.<br/>
-                  93800 Épinay-sur-Seine.
+                  Escalier 1, 1er étage,<br/>
+                  93800 Épinay-sur-Seine<br/>
+                  France
                 </a>
              </div>
           </div>
@@ -112,8 +116,10 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-sm text-gray-400 hover:text-white transition-colors block leading-snug"
                 >
+                  Nord Sud Transit<br/>
                   145 avenue du président Wilson.<br/>
-                  93210 La plaine Saint-Denis
+                  93210 La plaine Saint-Denis<br/>
+                  France
                 </a>
              </div>
           </div>

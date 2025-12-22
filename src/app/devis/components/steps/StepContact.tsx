@@ -69,58 +69,18 @@ export default function StepContact() {
             <p className="text-red-500 text-xs mt-1">Email valide requis</p>
           )}
         </div>
-        <div className="md:col-span-2">
+        <div>
           <label className={getLabelClass(errors.adresse)}>Adresse *</label>
-          <AutocompleteInput
+          <input
+            type="text"
             name="adresse"
             value={formData.adresse || ""}
-            placeholder="Tapez votre adresse..."
-            onChange={(val) => handleChange("adresse", val)}
-            error={errors.adresse}
-            onSearch={async (query) => {
-              try {
-                const res = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=5`);
-                const data = await res.json();
-                // On retourne l'objet complet : label pour l'affichage, et les autres props pour le remplissage
-                return data.features.map((f: any) => ({
-                    label: f.properties.label,
-                    city: f.properties.city,
-                    postcode: f.properties.postcode,
-                    context: f.properties.context // ex: "75, Paris, Île-de-France"
-                }));
-              } catch (e) {
-                return [];
-              }
-            }}
-            onSelect={(item) => {
-                // Remplissage automatique des autres champs
-                if (item.city) handleChange("ville", item.city);
-                if (item.postcode) handleChange("codePostal", item.postcode);
-                handleChange("pays", "France"); // L'API adresse est française
-            }}
-          />
-        </div>
-        <div>
-          <label className={getLabelClass(errors.ville)}>Ville *</label>
-          <input
-            type="text"
-            name="ville"
-            value={formData.ville || ""}
             onChange={(e) => handleChange(e.target.name, e.target.value)}
-            className={getInputClass(errors.ville)}
+            className={getInputClass(errors.adresse)}
           />
-          {errors.ville && <p className="text-red-500 text-xs mt-1">Requis</p>}
-        </div>
-        <div>
-          <label className={getLabelClass(errors.codePostal)}>Code Postal *</label>
-          <input
-            type="text"
-            name="codePostal"
-            value={formData.codePostal || ""}
-            onChange={(e) => handleChange(e.target.name, e.target.value)}
-            className={getInputClass(errors.codePostal)}
-          />
-          {errors.codePostal && <p className="text-red-500 text-xs mt-1">Requis</p>}
+          {errors.adresse && (
+            <p className="text-red-500 text-xs mt-1">Requis</p>
+          )}
         </div>
         <div>
           <AutocompleteInput

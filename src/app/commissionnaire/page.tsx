@@ -1,7 +1,61 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Truck, Anchor, Globe, Shield, FileText, ArrowRight, User, CheckCircle } from "lucide-react";
+import { Check, Truck, Anchor, Globe, Shield, FileText, ArrowRight, User, CheckCircle, Plane } from "lucide-react";
+
+import { useState } from "react";
+
+// Helper component for Partner Card
+const PartnerCard = ({ name, logo, type }: { name: string, logo: string, type: 'maritime' | 'aerial' }) => {
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all flex flex-col items-center justify-center gap-4 group h-48 w-full cursor-pointer"
+    >
+      <div className="w-full h-24 flex items-center justify-center overflow-hidden relative p-2">
+        {/* L'image est chargée en "caché". Si elle charge (onLoad), on passe imgLoaded à true pour l'afficher */}
+        <img 
+          src={logo} 
+          alt={`Logo ${name}`} 
+          className={`w-auto h-auto max-w-[90%] max-h-[90%] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 ${imgLoaded ? 'block' : 'hidden absolute'}`}
+          onLoad={() => setImgLoaded(true)}
+          onError={() => setImgLoaded(false)}
+        />
+
+        {/* Le placeholder SVG est affiché par défaut, et caché seulement si l'image est chargée */}
+        {!imgLoaded && (
+          <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white transition-colors ${type === 'maritime' ? 'bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white' : 'bg-orange-100 text-orange-600 group-hover:bg-orange-600 group-hover:text-white'}`}>
+             {type === 'maritime' ? <Anchor size={28} /> : <Plane size={28} />}
+          </div>
+        )}
+      </div>
+      <span className="font-bold text-gray-700 text-center text-sm group-hover:text-primary transition-colors line-clamp-2">{name}</span>
+    </motion.div>
+  );
+};
+
+const maritimePartners = [
+  { name: "Grimaldi Group", logo: "/partners/Grimaldi_logo.png" },
+  { name: "MSC", logo: "/partners/MSC_logo.png" },
+  { name: "CMA-CGM", logo: "/partners/CMA_CGM_logo.svg" },
+  { name: "EOLIS Compagnie", logo: "/partners/EOLIS_logo.png" },
+  { name: "Hapag-Lloyd", logo: "/partners/hapag_lloyd.png" },
+  { name: "La Norddeutscher Llyod (NDL)", logo: "/partners/NDL_logo.svg" },
+  { name: "Maersk Lines", logo: "/partners/Maersk_logo.svg" }
+];
+
+const aerialPartners = [
+  { name: "Air France KLM Cargo", logo: "/partners/airfrance_cargo.gif" },
+  { name: "Cargolux", logo: "/partners/Cargolux_Logo.svg" },
+  { name: "Ethiopian Cargo Airlines", logo: "/partners/ethiopian_logo.png" },
+  { name: "British Airways", logo: "/partners/british_logo.png" },
+  { name: "Kenya Airways", logo: "/partners/kenya_logo.png" },
+  { name: "Lufthansa Cargo", logo: "/partners/lufthansa_logo.png" }
+];
 
 export default function CommissionnairePage() {
   return (
@@ -148,7 +202,7 @@ export default function CommissionnairePage() {
                 <Anchor /> Commissionnaire
               </h3>
               <p className="text-white text-lg leading-relaxed font-medium">
-                Nous organisons et garantissons le transport global de bout en bout.
+                Nous organisons et garantissons le transport de vos conteneurs de bout en bout.
               </p>
             </motion.div>
           </div>
@@ -190,6 +244,55 @@ export default function CommissionnairePage() {
           </div>
         </div>
       </section>
+
+      {/* Nos partenaires */}
+      <section className="py-20 bg-white overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-primary mb-4">Nos Partenaires Privilégiés</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Des alliances stratégiques avec les leaders mondiaux du transport.
+            </p>
+          </div>
+
+          {/* Maritime Section */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-8 px-2 justify-center">
+              <div className="bg-blue-100 p-2 rounded-lg text-blue-600">
+                <Anchor size={24} />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-primary">Compagnies Maritimes</h3>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-6">
+                {maritimePartners.map((partner, idx) => (
+                  <div key={idx} className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] flex justify-center">
+                    <PartnerCard name={partner.name} logo={partner.logo} type="maritime" />
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/* Aerial Section */}
+          <div>
+            <div className="flex items-center gap-3 mb-8 px-2 justify-center">
+              <div className="bg-orange-100 p-2 rounded-lg text-orange-600">
+                <Plane size={24} />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-primary">Compagnies Aériennes</h3>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-6">
+                {aerialPartners.map((partner, idx) => (
+                  <div key={idx} className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] flex justify-center">
+                    <PartnerCard name={partner.name} logo={partner.logo} type="aerial" />
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* Conclusion */}
       <section className="py-20 bg-white border-t border-gray-100">

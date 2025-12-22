@@ -11,7 +11,7 @@ const REQUIRED_FIELDS: Record<number, string[]> = {
   2: ["paysDepart", "depart", "dateDepart", "paysArrivee", "arrivee", "dateArrivee"],
   3: ["natureMarchandise", "description", "typeContainer", "nbColis", "valeur"],
   4: ["objectif"],
-  5: ["nom", "prenom", "email", "adresse", "ville", "codePostal", "pays", "telephone"]
+  5: ["nom", "prenom", "email", "adresse", "pays", "telephone"]
 };
 
 export function DevisProvider({ children }: { children: ReactNode }) {

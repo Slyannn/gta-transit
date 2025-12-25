@@ -9,8 +9,11 @@ export default function AfriqueBagagesPage() {
       {/* Hero Section */}
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1718197029571-51a53883c636?q=80&w=1332&auto=format&fit=crop')" }} // Image voyage/bus/avion
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-60"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1631798067409-b63b8fea2649?q=80&w=1332&auto=format&fit=crop')",
+            backgroundPosition: "center 60%",
+            backgroundSize: "cover",
+          }} // Image voyage/bus/avion
         ></div>
         <div className="z-10 text-center px-4">
           <motion.h1 
@@ -98,21 +101,28 @@ export default function AfriqueBagagesPage() {
               </ul>
             </div>
 
-            {/* Offre 3 */}
-            <div className="bg-zinc-50 p-8 rounded-2xl border border-gray-200 hover:border-accent transition-colors relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-3 py-1 rounded-bl-lg">PREMIUM</div>
-              <Globe className="w-12 h-12 text-gray-400 mb-6" />
-              <h3 className="text-2xl font-bold text-primary mb-2">Offre 3</h3>
-              <p className="text-gray-500 text-sm mb-6 uppercase tracking-wider">Porte à Porte</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-gray-700">
-                  <CheckCircle className="w-5 h-5 text-green-500" /> Enlèvement Domicile
+            {/* Offre 3 - Premium */}
+            <div className="bg-primary text-white p-8 rounded-2xl border-2 border-accent shadow-2xl relative overflow-hidden md:transform md:scale-105 z-10 flex flex-col justify-center">
+              <div className="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-4 py-2 rounded-bl-xl shadow-md z-10">PREMIUM</div>
+              
+              {/* Cercle décoratif en fond */}
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-3xl"></div>
+              
+              <Globe className="w-12 h-12 text-accent mb-6 relative z-10" />
+              <h3 className="text-2xl font-bold text-white mb-2 relative z-10">Offre 3</h3>
+              <p className="text-blue-200 text-sm mb-6 uppercase tracking-wider relative z-10">Porte à Porte Intégral</p>
+              
+              <ul className="space-y-4 relative z-10">
+                <li className="flex items-center gap-3">
+                  <div className="bg-white/10 p-1 rounded-full"><CheckCircle className="w-4 h-4 text-accent" /></div>
+                  <span className="text-gray-100">Enlèvement à Domicile</span>
                 </li>
-                <li className="flex items-center gap-3 text-gray-700">
-                  <CheckCircle className="w-5 h-5 text-green-500" /> Livraison Adresse Arrivée
+                <li className="flex items-center gap-3">
+                  <div className="bg-white/10 p-1 rounded-full"><CheckCircle className="w-4 h-4 text-accent" /></div>
+                  <span className="text-gray-100">Livraison Adresse Arrivée</span>
                 </li>
-                <li className="flex items-center gap-3 text-gray-700 italic text-sm">
-                  "Nous nous chargeons de tout"
+                <li className="flex items-center gap-3 text-sm italic text-blue-200 border-l-2 border-accent pl-3 mt-4">
+                  "Sérénité totale : nous gérons tout de A à Z."
                 </li>
               </ul>
             </div>

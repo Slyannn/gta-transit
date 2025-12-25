@@ -21,8 +21,11 @@ export default function CamerounBagagesPage() {
       {/* Hero Section */}
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('/Fret-istock.jpg')" }} // Image chargement bagages
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-50"
+          style={{ 
+            backgroundImage: "url('https://images.unsplash.com/photo-1564035105550-e1f02aa8556b?q=80&w=2070&auto=format&fit=crop')",
+            backgroundPosition: "center 70%",
+           }} // Image chargement bagages
         ></div>
         <div className="z-10 text-center px-4">
           <motion.h1 

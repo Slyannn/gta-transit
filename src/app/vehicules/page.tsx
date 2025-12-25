@@ -10,7 +10,10 @@ export default function VehiculesPage() {
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('/transport_vehicule.jpg')" }}
+          style={{ backgroundImage: "url('/Cargo_ro_ro_hero.png')",
+            backgroundPosition: "center 60%",
+            backgroundSize: "cover",
+          }}
         ></div>
         <div className="z-10 text-center px-4">
           <motion.h1 

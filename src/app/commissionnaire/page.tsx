@@ -21,7 +21,7 @@ const PartnerCard = ({ name, logo, type }: { name: string, logo: string, type: '
         <img 
           src={logo} 
           alt={`Logo ${name}`} 
-          className={`w-auto h-auto max-w-[90%] max-h-[90%] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 ${imgLoaded ? 'block' : 'hidden absolute'}`}
+          className={`w-auto h-auto max-w-[90%] max-h-[90%] object-contain filter lg:grayscale group-hover:grayscale-0 transition-all duration-300 ${imgLoaded ? 'block' : 'hidden absolute'}`}
           onLoad={() => setImgLoaded(true)}
           onError={() => setImgLoaded(false)}
         />

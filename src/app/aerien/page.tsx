@@ -9,8 +9,12 @@ export default function AerienPage() {
       {/* Hero Section */}
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1665600292329-abab212a031f?q=80&w=1170&auto=format&fit=crop')" }}
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-50"
+          style={{ 
+            backgroundImage: "url('https://images.unsplash.com/photo-1698594691277-62dba3f51eda?q=80&w=1170&auto=format&fit=crop')",
+            backgroundPosition: "center 60%",
+            backgroundSize: "cover",
+          }}
         ></div>
         <div className="z-10 text-center px-4">
           <motion.h1 
@@ -82,7 +86,7 @@ export default function AerienPage() {
         </div>
       </section>
 
-      {/* Avantages du Fret Aérien (Contenu ajouté) */}
+      {/* Avantages du Fret Aérien */}
       <section className="py-20 bg-zinc-50 border-y border-gray-200">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-16 text-center">
@@ -207,5 +211,4 @@ export default function AerienPage() {
     </main>
   );
 }
-
 

@@ -11,7 +11,13 @@ export default function ModalitesVehiculesPage() {
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1616432043562-3671ea2e5242?q=80&w=2670&auto=format&fit=crop')" }} // Image Ro-Ro / Chargement
+          style={{ 
+            backgroundImage: "url('https://images.unsplash.com/photo-1573710459621-bb101783ca0f?q=80&w=2670&auto=format&fit=crop')",
+            backgroundPosition: "center 60%",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundAttachment: "fixed",
+          }} // Image Ro-Ro / Chargement
         ></div>
         <div className="z-10 text-center px-4 max-w-4xl">
           <motion.h1 
@@ -23,7 +29,6 @@ export default function ModalitesVehiculesPage() {
             Conditions d'Expédition des Véhicules
           </motion.h1>
           <div className="h-1 bg-accent w-24 mx-auto rounded-full mb-4"></div>
-          <p className="text-xl text-gray-200 font-light">Vers l'Afrique et les DOM-TOM</p>
         </div>
       </section>
 

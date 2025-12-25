@@ -11,7 +11,11 @@ export default function PresentationPage() {
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2670&auto=format&fit=crop')" }} // Chaine logistique
+          style={{ 
+            backgroundImage: "url('https://images.unsplash.com/photo-1759216373582-a24c4a65b031?q=80&w=2070&auto=format&fit=crop')", 
+            backgroundPosition: "center 99%",
+            backgroundSize: "cover",
+          }} // Chaine logistique
         ></div>
         <div className="z-10 text-center px-4">
           <motion.h1 
@@ -43,13 +47,13 @@ export default function PresentationPage() {
             <h2 className="text-3xl font-bold text-primary mb-6">
               Groupeur Transitaire Associés (GTA)
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+            <p className="text-lg text-gray-900 leading-relaxed mb-6">
               GTA est une société de transport international, commissionnaire en transport et spécialisée dans le fret maritime, aérien et routier.
             </p>
             <p className="text-gray-600 leading-relaxed mb-6 border-l-4 border-accent pl-4 italic">
               "GTA se présente comme l’interlocuteur unique d’un grand nombre de ses clients pour l’ensemble de leurs transports internationaux."
             </p>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-900 leading-relaxed">
               Pour assurer sa mission tout au long de la chaîne de transport, GTA s’est doté d’une structure internationale de correspondants et de représentants répartis sur toute la surface du globe.
             </p>
           </motion.div>
@@ -63,7 +67,9 @@ export default function PresentationPage() {
              {/* Placeholder pour une image de bureau/équipe */}
              <div 
                className="absolute inset-0 bg-cover bg-center"
-               style={{ backgroundImage: "url('https://img.freepik.com/photos-gratuite/gestionnaires-logistiques-analysent-inventaire-comparent-donnees-ordinateur-portable-bloc-notes-dans-entrepot-hommes-afro-americains-verifient-calendrier-approvisionnement-marchandises-travaillent-dans-entrepot-du-departement-distribution_482257-71407.jpg')" }} // Équipe logistique professionnelle
+               style={{ 
+                backgroundImage: "url('https://images.unsplash.com/photo-1739877907105-2e578ee67bca?q=80&w=2070&auto=format&fit=crop')"
+              }} // Équipe logistique professionnelle
              ></div>
           </motion.div>
         </div>
@@ -83,7 +89,9 @@ export default function PresentationPage() {
                <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
                  <div 
                    className="absolute inset-0 bg-cover bg-center"
-                   style={{ backgroundImage: "url('https://images.unsplash.com/photo-1713859326033-f75e04439c3e?q=80&w=1074&auto=format&fit=crop')" }} // Image Business/Contrat
+                   style={{ 
+                    backgroundImage: "url('https://images.unsplash.com/photo-1583911026662-95161686d9a6?q=80&w=2070&auto=format&fit=crop')"
+                  }} // Équipe logistique professionnelle                 
                  ></div>
                  <div className="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
                </div>
@@ -102,7 +110,7 @@ export default function PresentationPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
                 Notre Rôle de Commissionnaire
               </h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              <p className="text-lg text-gray-900 mb-8 leading-relaxed">
                 En tant que <span className="font-semibold text-primary">Commissionnaire de Transport agréé</span>, GTA ne se limite pas à exécuter un transport. Nous sommes les architectes juridiques et techniques de vos expéditions internationales.
               </p>
               
@@ -158,7 +166,7 @@ export default function PresentationPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-primary mb-4">Notre Expertise Globale</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">
+            <p className="text-gray-800 max-w-2xl mx-auto">
               Nous assurons à l’échelle mondiale toutes les fonctions de transit et de commerce international.
             </p>
           </div>

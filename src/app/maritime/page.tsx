@@ -9,8 +9,11 @@ export default function MaritimePage() {
       {/* Hero Section */}
       <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('/Fret-istock.jpg')" }}
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-60"
+          style={{ 
+            backgroundImage: "url('/Fret-istock.jpg')" ,
+            backgroundPosition: "center",
+          }}
         ></div>
         <div className="z-10 text-center px-4">
           <motion.h1 
@@ -26,10 +29,10 @@ export default function MaritimePage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-20 container mx-auto px-4">
+      <section className="py-10 container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-primary mb-8">Une expertise mondiale à votre service</h2>
-          <p className="text-lg text-gray-600 leading-relaxed mb-8">
+          <p className="text-lg text-gray-900 leading-relaxed mb-8">
             Présent directement ou indirectement dans tous les ports du monde, GTA suit au plus près l’ensemble des frets qui lui sont confiés.
             Exporter, importer, c’est transporter et distribuer en faisant la preuve de votre dynamisme commercial.
           </p>
@@ -39,69 +42,8 @@ export default function MaritimePage() {
         </div>
       </section>
 
-      {/* Services Détaillés */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            {/* Colonne Gauche : Nos Offres */}
-            <div>
-              <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3">
-                <Ship className="text-accent" /> Des transports sur mesure
-              </h3>
-              <ul className="space-y-6">
-                <li className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 font-bold">1</div>
-                  <div>
-                    <h4 className="font-bold text-gray-800">Dessertes Régulières</h4>
-                    <p className="text-gray-600 text-sm">Pour vos conteneurs de groupage (LCL) ou conteneurs complets (FCL).</p>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 font-bold">2</div>
-                  <div>
-                    <h4 className="font-bold text-gray-800">Acheminements Spécialisés</h4>
-                    <p className="text-gray-600 text-sm">Ponctuels et programmés avec vous pour répondre à vos impératifs.</p>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 font-bold">3</div>
-                  <div>
-                    <h4 className="font-bold text-gray-800">Couverture Mondiale</h4>
-                    <p className="text-gray-600 text-sm">Liaisons avec tous les ports vers tous les pays du monde et l’ensemble de l’Europe.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            {/* Colonne Droite : Tarifs & Administratif */}
-            <div>
-              <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3">
-                <FileCheck className="text-accent" /> Tarifs & Administratif
-              </h3>
-              <div className="bg-zinc-50 p-8 rounded-2xl border border-gray-100">
-                <p className="mb-4 text-gray-700 font-medium">Un seul contact pour un service complet :</p>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
-                    <span className="text-gray-600">Prix applicable de bout en bout tendant à effacer les frontières tarifaires.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
-                    <span className="text-gray-600">Prix négociable au cas par cas et stable pendant un an.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
-                    <span className="text-gray-600">Contrat unique quel que soit le nombre d’expéditions.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION AVANTAGES GROUPAGE MARITIME */}
-      <section className="py-20 bg-zinc-50 border-t border-gray-100">
+      <section className="py-10 bg-zinc-50 border-t border-gray-100">
         <div className="container mx-auto px-4">
            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden mb-12">
               <div className="bg-primary text-white p-8 md:p-12 text-center">
@@ -111,12 +53,13 @@ export default function MaritimePage() {
               
               <div className="p-8 md:p-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="bg-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform hover:scale-110">
-                      <TrendingDown className="text-accent w-8 h-8" />
+                  <div className="flex flex-col items-center text-center bg-white p-6 rounded-2xl shadow-lg border-2 border-accent transform md:-translate-y-2 relative">
+                    <div className="absolute -top-3 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Avantage N°1</div>
+                    <div className="bg-accent w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform hover:scale-110 shadow-md">
+                      <TrendingDown className="text-white w-8 h-8" />
                     </div>
-                    <h4 className="font-bold text-gray-800 text-lg mb-2">Économies</h4>
-                    <p className="text-gray-600 text-sm">Réduisez vos coûts de transport en regroupant vos marchandises avec d'autres expéditeurs.</p>
+                    <h4 className="font-bold text-accent text-xl mb-2">Économies Garanties</h4>
+                    <p className="text-gray-600 text-sm">Réduisez significativement vos coûts de transport en regroupant vos marchandises avec d'autres expéditeurs.</p>
                   </div>
                   
                   <div className="flex flex-col items-center text-center">
@@ -207,6 +150,74 @@ export default function MaritimePage() {
            </div>
         </div>
       </section>
+
+
+
+
+
+      {/* Services Détaillés */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            {/* Colonne Gauche : Nos Offres */}
+            <div>
+              <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3">
+                <Ship className="text-accent" /> Des transports sur mesure
+              </h3>
+              <ul className="space-y-6">
+                <li className="flex gap-4">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 font-bold">1</div>
+                  <div>
+                    <h4 className="font-bold text-gray-800">Dessertes Régulières</h4>
+                    <p className="text-gray-600 text-sm">Pour vos conteneurs de groupage (LCL) ou conteneurs complets (FCL).</p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 font-bold">2</div>
+                  <div>
+                    <h4 className="font-bold text-gray-800">Acheminements Spécialisés</h4>
+                    <p className="text-gray-600 text-sm">Ponctuels et programmés avec vous pour répondre à vos impératifs.</p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 font-bold">3</div>
+                  <div>
+                    <h4 className="font-bold text-gray-800">Couverture Mondiale</h4>
+                    <p className="text-gray-600 text-sm">Liaisons avec tous les ports vers tous les pays du monde et l’ensemble de l’Europe.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            {/* Colonne Droite : Tarifs & Administratif */}
+            <div>
+              <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3">
+                <FileCheck className="text-accent" /> Tarifs & Administratif
+              </h3>
+              <div className="bg-zinc-50 p-8 rounded-2xl border border-gray-100">
+                <p className="mb-4 text-gray-700 font-medium">Un seul contact pour un service complet :</p>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
+                    <span className="text-gray-600">Prix applicable de bout en bout tendant à effacer les frontières tarifaires.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
+                    <span className="text-gray-600">Prix négociable au cas par cas et stable pendant un an.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
+                    <span className="text-gray-600">Contrat unique quel que soit le nombre d’expéditions.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
 
       {/* CTA */}
       <section className="py-20 bg-primary text-white text-center">

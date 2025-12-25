@@ -11,7 +11,7 @@ export default function AfriqueBagagesPage() {
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-60"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1631798067409-b63b8fea2649?q=80&w=1332&auto=format&fit=crop')",
-            backgroundPosition: "center 60%",
+            backgroundPosition: "center 70%",
             backgroundSize: "cover",
           }} // Image voyage/bus/avion
         ></div>
@@ -102,7 +102,7 @@ export default function AfriqueBagagesPage() {
             </div>
 
             {/* Offre 3 - Premium */}
-            <div className="bg-primary text-white p-8 rounded-2xl border-2 border-accent shadow-2xl relative overflow-hidden md:transform md:scale-105 z-10 flex flex-col justify-center">
+            <div className="bg-primary text-white p-8 rounded-2xl border-2 border-accent shadow-2xl relative overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
               <div className="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-4 py-2 rounded-bl-xl shadow-md z-10">PREMIUM</div>
               
               {/* Cercle décoratif en fond */}
@@ -112,7 +112,7 @@ export default function AfriqueBagagesPage() {
               <h3 className="text-2xl font-bold text-white mb-2 relative z-10">Offre 3</h3>
               <p className="text-blue-200 text-sm mb-6 uppercase tracking-wider relative z-10">Porte à Porte Intégral</p>
               
-              <ul className="space-y-4 relative z-10">
+              <ul className="space-y-4 mb-8 relative z-10">
                 <li className="flex items-center gap-3">
                   <div className="bg-white/10 p-1 rounded-full"><CheckCircle className="w-4 h-4 text-accent" /></div>
                   <span className="text-gray-100">Enlèvement à Domicile</span>
@@ -125,6 +125,13 @@ export default function AfriqueBagagesPage() {
                   "Sérénité totale : nous gérons tout de A à Z."
                 </li>
               </ul>
+
+              <a 
+                href="/devis" 
+                className="w-full block text-center py-3 bg-accent hover:bg-white hover:text-primary text-white font-bold rounded-lg transition-colors relative z-10"
+              >
+                Choisir cette offre
+              </a>
             </div>
           </div>
         </div>

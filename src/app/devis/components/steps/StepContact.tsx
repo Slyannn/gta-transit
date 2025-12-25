@@ -133,6 +133,25 @@ export default function StepContact() {
         </div>
       </div>
 
+      {/* Option Carte Fidélité */}
+      <div className="bg-orange-50 p-4 rounded-lg flex items-start gap-3 mt-8 border border-orange-100">
+        <input 
+          type="checkbox" 
+          id="carteFidelite" 
+          name="carteFidelite"
+          checked={formData.carteFidelite || false}
+          onChange={(e) => handleChange("carteFidelite", e.target.checked)}
+          className="mt-1 w-5 h-5 text-accent rounded border-gray-300 focus:ring-accent shrink-0 cursor-pointer" 
+        />
+        <label htmlFor="carteFidelite" className="text-sm text-gray-800 cursor-pointer select-none">
+          <strong>Je souhaite recevoir ma Carte de Fidélité GTA gratuitement.</strong>
+          <br/>
+          <span className="text-gray-500 text-xs">
+            Profitez de l'offre 5 = 1 (La 6ème expédition offerte sur les effets personnels).
+          </span>
+        </label>
+      </div>
+
       <div className="bg-blue-50 p-4 rounded-lg flex items-start gap-3 mt-6">
         <input
           required

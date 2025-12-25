@@ -23,7 +23,7 @@ export function DevisProvider({ children }: { children: ReactNode }) {
 
   // --- LOGIQUE METIER ---
 
-  const handleChange = (name: string, value: string) => {
+  const handleChange = (name: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
     // Reset error when user types
     if (errors[name]) {

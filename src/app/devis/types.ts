@@ -34,6 +34,7 @@ export interface DevisFormData {
   telephone: string;
   societe: string;
   website: string;
+  carteFidelite?: boolean;
 }
 
 export type FormErrors = Record<string, boolean>;
@@ -46,7 +47,7 @@ export interface DevisContextType {
   isSuccess: boolean;
   
   // Actions
-  handleChange: (name: string, value: string) => void;
+  handleChange: (name: string, value: string | boolean) => void;
   nextStep: () => void;
   prevStep: () => void;
   submitForm: () => void;

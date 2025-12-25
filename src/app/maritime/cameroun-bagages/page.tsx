@@ -105,9 +105,9 @@ export default function CamerounBagagesPage() {
             </div>
           </div>
 
-          {/* Sidebar Offres & Promo */}
+          {/* Sidebar Offres & Promo - Simplifiée */}
           <div className="lg:w-1/3 space-y-8">
-            {/* Carte Fidelité */}
+            {/* Carte Fidelité Info */}
             <div className="bg-gradient-to-br from-accent to-orange-600 text-white p-8 rounded-2xl shadow-xl text-center relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
               <Gift className="w-16 h-16 mx-auto mb-4" />
@@ -118,90 +118,41 @@ export default function CamerounBagagesPage() {
               </p>
               <p className="text-xs opacity-80">*Valable sur colis effets personnels usagés, max 15kg.</p>
             </div>
-
-            {/* Parrainage */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="bg-primary/10 p-3 rounded-full">
-                  <UserPlus className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-primary">Parrainage</h3>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Gagnez <strong>5% de réduction</strong> pour chaque personne parrainée !
-              </p>
-              <p className="text-sm text-gray-500">
-                Il suffit de faire tamponner votre carte de fidélité à chaque passage. 
-                Valable pour vos filleuls en France, Afrique ou Europe.
-              </p>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Formulaire Carte Fidélité */}
-      <section id="carte-fidelite" className="py-20 bg-white border-t border-gray-100">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-primary mb-4">Demandez votre Carte de Fidélité</h2>
-            <p className="text-gray-600">
-              Remplissez ce formulaire pour recevoir votre carte et commencer à cumuler vos avantages.
-            </p>
-          </div>
+      {/* Remplacement du Formulaire Carte Fidélité par Info + CTA */}
+      <section id="carte-fidelite" className="py-16 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+            
+            {/* Image / Visuel */}
+            <div className="md:w-1/3 bg-accent p-8 flex items-center justify-center relative overflow-hidden">
+               <div className="absolute inset-0 bg-white/10 rotate-12 scale-150"></div>
+               <div className="relative z-10 text-center">
+                 <Gift className="w-20 h-20 text-white mx-auto mb-2" />
+                 <span className="text-white font-bold text-lg">Carte Fidélité</span>
+               </div>
+            </div>
 
-          <div className="bg-zinc-50 p-8 rounded-2xl shadow-inner">
-            {formStatus === 'success' ? (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-10"
-              >
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
-                  <CheckCircle size={32} />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800">Demande enregistrée !</h3>
-                <p className="text-gray-600 mt-2">Votre carte de fidélité est en cours de création.</p>
-                <button onClick={() => setFormStatus('idle')} className="mt-6 text-accent underline font-medium">Faire une autre demande</button>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Nom</label>
-                    <input required type="text" className="w-full p-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-accent outline-none" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Prénom</label>
-                    <input required type="text" className="w-full p-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-accent outline-none" />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Adresse Complète</label>
-                  <input required type="text" className="w-full p-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-accent outline-none" />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Téléphone</label>
-                    <input required type="tel" className="w-full p-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-accent outline-none" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                    <input required type="email" className="w-full p-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-accent outline-none" />
-                  </div>
-                </div>
-
-                <button 
-                  type="submit" 
-                  disabled={formStatus === 'submitting'}
-                  className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-secondary transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-70"
+            {/* Contenu */}
+            <div className="md:w-2/3 p-8 md:p-12 text-white">
+              <h2 className="text-3xl font-bold mb-4">Programme de Fidélité GTA</h2>
+              <p className="text-blue-100 text-lg mb-6 leading-relaxed">
+                Profitez de nos avantages exclusifs ! Vous pouvez demander votre carte de fidélité directement lors de votre demande de devis.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 items-center">
+                <a 
+                  href="/devis" 
+                  className="inline-flex items-center justify-center gap-2 bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-accent hover:text-white transition-all shadow-lg w-full sm:w-auto"
                 >
-                  {formStatus === 'submitting' ? 'Envoi en cours...' : 'COMMANDER MA CARTE'} 
-                  {!formStatus && <Send size={20} />}
-                </button>
-              </form>
-            )}
+                  Demander un devis (+ Carte) <Send size={18} />
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

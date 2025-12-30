@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Search, FileText, Menu, X, Ship, Plane, Truck, ChevronDown, MapPin } from "lucide-react";
+import { Search, FileText, Menu, X, Ship, Plane, Truck, ChevronDown, MapPin, Zap } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -33,7 +33,8 @@ const navItems = [
     hasDropdown: true,
     dropdownItems: [
       { name: "Fret Standard", href: "/aerien" },
-      { name: "Afrique Bagages", href: "/aerien/afrique-bagages" }
+      { name: "Afrique Bagages", href: "/aerien/afrique-bagages" },
+      { name: "Transport Express", href: "/transport-express" }
     ]
   },
   { 
@@ -117,9 +118,12 @@ const Header = () => {
 
         {/* Right Actions */}
         <div className="hidden lg:flex items-center space-x-6 z-10">
-          <Link href="/contact" className="flex items-center gap-2 text-primary font-semibold hover:text-secondary transition-colors">
-            <MapPin size={20} />
-            Contact
+          <Link 
+            href="/transport-express" 
+            className="flex items-center gap-2 bg-gradient-to-r from-slate-900 to-blue-900 text-white px-4 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-md"
+          >
+            <Zap size={18} className="text-amber-400" />
+            EXPRESS
           </Link>
           <Link 
             href="/devis" 
@@ -179,11 +183,11 @@ const Header = () => {
               ))}
               <div className="pt-4 flex flex-col gap-4">
                  <Link 
-                   href="/contact" 
-                   className="flex items-center gap-2 text-primary font-semibold"
+                   href="/transport-express" 
+                   className="flex items-center justify-center gap-2 bg-gradient-to-r from-slate-900 to-blue-900 text-white px-4 py-3 rounded-lg font-bold"
                    onClick={() => setIsMobileMenuOpen(false)}
                  >
-                    <MapPin size={18} /> Contact
+                    <Zap size={18} className="text-amber-400" /> EXPRESS
                  </Link>
                  <Link 
                    href="/devis" 

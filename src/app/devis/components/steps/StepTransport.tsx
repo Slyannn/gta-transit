@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Truck, Ship, Plane, Shield, Box, HelpCircle } from "lucide-react";
+import { Truck, Ship, Plane, Shield, Box, HelpCircle, FastForward } from "lucide-react";
 import { useDevis } from "../../context/DevisContext";
 
 export default function StepTransport() {
   const { formData, handleChange, nextStep } = useDevis();
 
-  const modes = ["Maritime", "Aérien", "Routier", "Douane", "Logistique", "Autre"];
+  const modes = ["Maritime", "Aérien", "Déménagement", "Express", "Logistique", "Autre"];
 
   const handleSelection = (mode: string) => {
     handleChange("modeTransport", mode);
@@ -46,8 +46,8 @@ export default function StepTransport() {
                   <div className="flex flex-col items-center justify-center p-6 h-32 border-2 border-gray-300 rounded-xl text-gray-500 text-center hover:border-accent hover:bg-accent/5 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white peer-checked:shadow-lg transition-all duration-300 transform peer-checked:scale-105">
                     {mode === "Maritime" && <Ship className="mb-2" size={32} />}
                     {mode === "Aérien" && <Plane className="mb-2" size={32} />}
-                    {mode === "Routier" && <Truck className="mb-2" size={32} />}
-                    {mode === "Douane" && <Shield className="mb-2" size={32} />}
+                    {mode === "Déménagement" && <Truck className="mb-2" size={32} />}
+                    {mode === "Express" && <FastForward className="mb-2" size={32} />}
                     {mode === "Logistique" && <Box className="mb-2" size={32} />}
                     {mode === "Autre" && <HelpCircle className="mb-2" size={32} />}
                     

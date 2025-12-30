@@ -52,11 +52,7 @@ export default function PartnersSection() {
         <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
       </div>
 
-      <div className="relative w-full max-w-[1920px] mx-auto">
-        {/* Gradient fade effect on edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-gray-50 via-gray-50/80 to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-
+      <div className="relative w-full max-w-[1920px] mx-auto mask-gradient">
         {/* Row 1: Maritime - Vitesse Rapide */}
         <div className="flex w-full mb-8">
             <motion.div 
@@ -65,16 +61,16 @@ export default function PartnersSection() {
                 transition={{ 
                   repeat: Infinity, 
                   ease: "linear", 
-                  duration: 25 // Plus rapide
+                  duration: 40 
                 }}
               >
-                {[...maritimePartners, ...maritimePartners, ...maritimePartners].map((partner, idx) => (
+                {[...maritimePartners, ...maritimePartners, ...maritimePartners, ...maritimePartners].map((partner, idx) => (
                   <PartnerLogo key={`maritime-${idx}`} name={partner.name} logo={partner.logo} type="maritime" />
                 ))}
             </motion.div>
         </div>
 
-        {/* Row 2: Aérien - Vitesse Différente (sens inverse ou juste différent ?) - On garde même sens mais vitesse différente */}
+        {/* Row 2: Aérien */}
         <div className="flex w-full">
             <motion.div 
                 className="flex w-max items-center"
@@ -82,7 +78,7 @@ export default function PartnersSection() {
                 transition={{ 
                   repeat: Infinity, 
                   ease: "linear", 
-                  duration: 20 // Encore plus rapide
+                  duration: 35 
                 }}
               >
                 {[...aerialPartners, ...aerialPartners, ...aerialPartners, ...aerialPartners].map((partner, idx) => (
@@ -91,6 +87,13 @@ export default function PartnersSection() {
             </motion.div>
         </div>
       </div>
+
+      <style jsx>{`
+        .mask-gradient {
+          mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+      `}</style>
     </section>
   );
 }

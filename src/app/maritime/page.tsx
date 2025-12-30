@@ -12,7 +12,7 @@ export default function MaritimePage() {
           className="absolute inset-0 z-0 bg-cover bg-center opacity-60"
           style={{ 
             backgroundImage: "url('/Fret-istock.jpg')" ,
-            backgroundPosition: "center",
+            backgroundPosition: "center 30%",
           }}
         ></div>
         <div className="z-10 text-center px-4">

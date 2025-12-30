@@ -63,50 +63,68 @@ export default function StepMarchandise() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className={getLabelClass(errors.typeContainer)}>
-                Type de conteneur souhaité *
-              </label>
-              <select
-                name="typeContainer"
-                value={formData.typeContainer || ""}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-                className={getInputClass(errors.typeContainer)}
-              >
-                <option value="">Sélectionner...</option>
-                <option value="groupage">Conteneur de groupage (LCL)</option>
-                <option value="perso">Conteneur personnalisé (FCL)</option>
-                <optgroup label="Détail Conteneurs">
-                  <option value="20_dry">Conteneur 20’ dry</option>
-                  <option value="20_reefer">Conteneur 20’ reefer/frigorifique</option>
-                  <option value="20_opentop">Conteneur 20’ open top</option>
-                  <option value="20_flatrack">Conteneur 20’ flat rack</option>
-                  <option value="40_dry">Conteneur 40’ dry</option>
-                  <option value="40_hc">Conteneur 40’ High Cube</option>
-                  <option value="40_reefer">Conteneur 40’ reefer/frigorifique</option>
-                  <option value="40_opentop">Conteneur 40’ open top</option>
-                  <option value="40_flatrack">Conteneur 40’ flat rack</option>
-                </optgroup>
-              </select>
-              {errors.typeContainer && (
-                <p className="text-red-500 text-xs mt-1">Sélection requise</p>
-              )}
+          {formData.modeTransport === "Maritime" && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className={getLabelClass(errors.typeContainer)}>
+                  Type de conteneur souhaité *
+                </label>
+                <select
+                  name="typeContainer"
+                  value={formData.typeContainer || ""}
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  className={getInputClass(errors.typeContainer)}
+                >
+                  <option value="">Sélectionner...</option>
+                  <option value="groupage">Conteneur de groupage (LCL)</option>
+                  <option value="perso">Conteneur personnalisé (FCL)</option>
+                  <optgroup label="Détail Conteneurs">
+                    <option value="20_dry">Conteneur 20’ dry</option>
+                    <option value="20_reefer">Conteneur 20’ reefer/frigorifique</option>
+                    <option value="20_opentop">Conteneur 20’ open top</option>
+                    <option value="20_flatrack">Conteneur 20’ flat rack</option>
+                    <option value="40_dry">Conteneur 40’ dry</option>
+                    <option value="40_hc">Conteneur 40’ High Cube</option>
+                    <option value="40_reefer">Conteneur 40’ reefer/frigorifique</option>
+                    <option value="40_opentop">Conteneur 40’ open top</option>
+                    <option value="40_flatrack">Conteneur 40’ flat rack</option>
+                  </optgroup>
+                </select>
+                {errors.typeContainer && (
+                  <p className="text-red-500 text-xs mt-1">Sélection requise</p>
+                )}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Dimensions (L x l x H)
+                </label>
+                <input
+                  type="text"
+                  name="dimensions"
+                  value={formData.dimensions || ""}
+                  placeholder="Ex: 120x80x100 cm"
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white"
+                />
+              </div>
             </div>
+          )}
+
+          {formData.modeTransport !== "Maritime" && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Dimensions (L x l x H)
-              </label>
-              <input
-                type="text"
-                name="dimensions"
-                value={formData.dimensions || ""}
-                placeholder="Ex: 120x80x100 cm"
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white"
-              />
+               <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Dimensions (L x l x H)
+                </label>
+                <input
+                  type="text"
+                  name="dimensions"
+                  value={formData.dimensions || ""}
+                  placeholder="Ex: 120x80x100 cm"
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent outline-none text-gray-900 bg-white"
+                />
             </div>
-          </div>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div>

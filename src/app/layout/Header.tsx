@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { 
-    name: "QUI NOUS SOMMES ?", 
+    name: "L'ENTREPRISE", 
     href: "/presentation", 
     hasDropdown: true,
     dropdownItems:[
@@ -33,8 +33,7 @@ const navItems = [
     hasDropdown: true,
     dropdownItems: [
       { name: "Fret Standard", href: "/aerien" },
-      { name: "Afrique Bagages", href: "/aerien/afrique-bagages" },
-      { name: "Transport Express", href: "/transport-express" }
+      { name: "Afrique Bagages", href: "/aerien/afrique-bagages" }
     ]
   },
   { 
@@ -55,23 +54,23 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+      <div className="w-full max-w-[1920px] mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-start gap-2 z-10" onClick={() => setIsMobileMenuOpen(false)}>
            {/* Logo GTA Stylisé CSS */}
-           <div className="h-20 w-[350px] overflow-hidden flex items-center justify-center">
+           <div className="h-20 w-[240px] xl:w-[350px] overflow-hidden flex items-center justify-center transition-all duration-300">
              <img src="/Logo_GTA_1.jpg" alt="Logo GTA" className="h-full w-auto object-cover scale-[1.35] -translate-y-3" />
            </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-1 font-medium text-sm text-gray-700 relative" onMouseLeave={() => setHoveredIndex(null)}>
+        <nav className="hidden lg:flex items-center space-x-1 font-medium text-[13px] xl:text-sm text-gray-700 relative" onMouseLeave={() => setHoveredIndex(null)}>
           {navItems.map((item, index) => {
             const Icon = item.icon;
             return (
               <div 
                 key={item.name}
-                className="relative px-4 py-6 group"
+                className="relative px-3 xl:px-4 py-6 group"
                 onMouseEnter={() => setHoveredIndex(index)}
               >
                 <Link 
@@ -117,20 +116,23 @@ const Header = () => {
         </nav>
 
         {/* Right Actions */}
-        <div className="hidden lg:flex items-center space-x-6 z-10">
+        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 z-10">
           <Link 
             href="/transport-express" 
-            className="flex items-center gap-2 bg-gradient-to-r from-slate-900 to-blue-900 text-white px-4 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-md"
+            className="group relative flex items-center gap-2 bg-gradient-to-r from-slate-900 to-blue-900 text-white px-4 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-md overflow-hidden"
           >
-            <Zap size={18} className="text-amber-400" />
-            EXPRESS
+             {/* Shine Effect */}
+             <div className="absolute top-0 -left-[100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] transition-all duration-700 group-hover:left-[200%]" />
+
+            <Zap size={18} className="text-amber-400 relative z-10" />
+            <span className="relative z-10">EXPRESS</span>
           </Link>
           <Link 
             href="/devis" 
-            className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg"
+            className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg text-sm whitespace-nowrap"
           >
             <FileText size={18} />
-            DEMANDER UN DEVIS
+            <span>DEMANDER UN DEVIS</span>
           </Link>
         </div>
 

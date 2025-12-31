@@ -1,99 +1,165 @@
 "use client";
 
-import { ArrowRight, Ship, Plane, Truck } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, Ship, Plane, Truck, Zap, Package, CheckCircle2 } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+
+const services = [
+  {
+    id: "express",
+    title: "Transport Express",
+    description: "Une solution rapide et fiable pour vos envois urgents. Nous garantissons des délais optimisés pour vos colis et documents importants, avec un suivi en temps réel.",
+    link: "/transport-express",
+    icon: Zap,
+    image: "https://images.unsplash.com/photo-1579992822406-2092a7bd5a36?q=80&w=2070&auto=format&fit=crop", // Warehouse/Express vibe
+    color: "from-slate-900 to-blue-900",
+    accent: "text-amber-400",
+    features: ["Livraison J+1 / J+2", "Suivi en temps réel", "Service porte-à-porte"]
+  },
+  {
+    id: "aerien",
+    title: "Fret Aérien",
+    description: "La rapidité au service de votre compétitivité. Idéal pour les marchandises à haute valeur ajoutée ou les délais critiques, avec des départs quotidiens vers l'Afrique et le monde.",
+    link: "/aerien",
+    icon: Plane,
+    image: "https://images.unsplash.com/photo-1698594691277-62dba3f51eda?q=80&w=1170&auto=format&fit=crop", // Plane
+    color: "from-sky-900 to-blue-600",
+    accent: "text-sky-300",
+    features: ["Vols directs et groupage", "Gestion des formalités", "Réseau mondial IATA"]
+  },
+  {
+    id: "maritime",
+    title: "Fret Maritime",
+    description: "L'option économique pour vos grands volumes. Nous gérons vos conteneurs complets (FCL) ou de groupage (LCL) avec une expertise reconnue sur les axes Afrique et Asie.",
+    link: "/maritime",
+    icon: Ship,
+    image: "/Fret-istock.jpg", // Ship
+    color: "from-blue-900 to-indigo-900",
+    accent: "text-blue-300",
+    features: ["Conteneurs Complets (FCL)", "Groupage (LCL)", "Transport Roulier (RO-RO)"]
+  },
+  {
+    id: "demenagement",
+    title: "Déménagement International",
+    description: "Un accompagnement sur-mesure pour votre changement de vie. Nous prenons soin de vos biens personnels et véhicules avec des solutions d'emballage et de transport sécurisées.",
+    link: "/vehicules", // Ou /maritime/groupage selon le besoin, je mets véhicules/général pour l'instant
+    icon: Package,
+    image: "https://images.unsplash.com/photo-1586781383963-8e66f88077ec?q=80&w=2070&auto=format&fit=crop", // Moving boxes / Home
+    color: "from-orange-700 to-red-900",
+    accent: "text-orange-300",
+    features: ["Emballage professionnel", "Transport de véhicules", "Douane export/import"]
+  }
+];
+
+const ServiceCard = ({ service, index }: { service: typeof services[0], index: number }) => {
+  const isEven = index % 2 === 0;
+  
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-16 py-20 px-4 max-w-7xl mx-auto relative z-10`}
+    >
+      {/* Text Content */}
+      <div className="flex-1 space-y-6 lg:px-8">
+        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold bg-white/10 backdrop-blur-sm border border-white/20 ${service.accent.replace('text-', 'text-opacity-80 text-')}`}>
+           <service.icon size={16} className={service.accent} />
+           <span className="text-white/90 uppercase tracking-wider">{service.title}</span>
+        </div>
+        
+        <h3 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
+          {service.title}
+        </h3>
+        
+        <p className="text-lg text-gray-300 leading-relaxed">
+          {service.description}
+        </p>
+        
+        <ul className="space-y-3 pt-2">
+          {service.features.map((feature, idx) => (
+            <li key={idx} className="flex items-center gap-3 text-gray-300">
+              <CheckCircle2 size={18} className={service.accent} />
+              {feature}
+            </li>
+          ))}
+        </ul>
+        
+        <div className="pt-6">
+          <Link 
+            href={service.link}
+            className={`inline-flex items-center gap-2 text-white font-bold hover:gap-4 transition-all duration-300 border-b-2 border-transparent hover:border-white pb-1`}
+          >
+            Découvrir ce service <ArrowRight size={20} className={service.accent} />
+          </Link>
+        </div>
+      </div>
+
+      {/* Image Content */}
+      <div className="flex-1 w-full">
+        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group">
+            <Image 
+              src={service.image} 
+              alt={service.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Overlay Gradient */}
+            <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 mix-blend-multiply`}></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-80"></div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const ServicesSection = () => {
   return (
-    <section className="py-20 bg-zinc-50" id="services">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Une gamme complète de services</h2>
-            <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
-          </div>
+    <section className="relative bg-zinc-900 overflow-hidden">
+      {/* Heading */}
+      <div className="relative py-20 bg-zinc-900 text-white text-center z-10">
+         <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           className="container mx-auto px-4"
+         >
+           <h2 className="text-3xl md:text-4xl font-bold mb-4">Nos Solutions de Transport</h2>
+           <div className="w-24 h-1 bg-accent mx-auto rounded-full mb-6"></div>
+           <p className="max-w-2xl mx-auto text-gray-300">
+             Une gamme complète de services logistiques pour répondre à tous vos besoins d'import-export.
+           </p>
+         </motion.div>
+         {/* Gradient fade to first section */}
+         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none"></div>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Carte Maritime */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100 group flex flex-col"
-            >
-              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
-                <Ship size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-primary mb-4">Fret Maritime</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                Présent dans tous les ports, GTA simplifie vos échanges. 
-                Nous offrons des transports sur mesure, des tarifs compétitifs négociés et une gestion administrative complète pour éviter les pertes de temps.
-              </p>
-              <ul className="space-y-2 mb-8 text-sm text-gray-500">
-                <li className="flex items-center">• Dessertes régulières (Groupage & Complet)</li>
-                <li className="flex items-center">• Prix stable et négociable</li>
-                <li className="flex items-center">• Suivi de bout en bout</li>
-              </ul>
-              <a href="/maritime" className="text-accent font-semibold flex items-center hover:gap-2 transition-all mt-auto">
-                En savoir plus <ArrowRight size={16} className="ml-1" />
-              </a>
-            </motion.div>
-
-            {/* Carte Aérien */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-accent/20 relative overflow-hidden group flex flex-col"
-            >
-               <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-bl-full -mr-4 -mt-4"></div>
-              <div className="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors text-accent">
-                <Plane size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-primary mb-4">Fret Aérien</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                Améliorez votre rentabilité et compétitivité grâce à la rapidité de l'aérien.
-                Idéal pour répondre aux urgences et limiter les risques de change, avec un service spécialement conçu pour le commerce international.
-              </p>
-               <ul className="space-y-2 mb-8 text-sm text-gray-500">
-                <li className="flex items-center">• Optimisation de trésorerie</li>
-                <li className="flex items-center">• Réponse rapide aux commandes</li>
-                <li className="flex items-center">• Service commercial dédié</li>
-              </ul>
-              <a href="/aerien" className="text-accent font-semibold flex items-center hover:gap-2 transition-all mt-auto">
-                En savoir plus <ArrowRight size={16} className="ml-1" />
-              </a>
-            </motion.div>
-
-            {/* Carte Véhicules */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100 group flex flex-col"
-            >
-              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
-                <Truck size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-primary mb-4">Transport de Véhicules</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                Une solution sur-mesure en RO/RO ou conteneur pour vos véhicules neufs, d'occasion ou accidentés.
-                Prise en charge complète depuis la France ou la Belgique vers l'Afrique et l'international.
-              </p>
-               <ul className="space-y-2 mb-8 text-sm text-gray-500">
-                <li className="flex items-center">• RO/RO et Conteneur sécurisé</li>
-                <li className="flex items-center">• Enlèvement et livraison à quai</li>
-                <li className="flex items-center">• Formalités douanières incluses</li>
-              </ul>
-              <a href="/vehicules" className="text-accent font-semibold flex items-center hover:gap-2 transition-all mt-auto">
-                En savoir plus <ArrowRight size={16} className="ml-1" />
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      {/* Services List with Transitions */}
+      <div className="relative pt-10">
+         {services.map((service, index) => (
+           <div key={service.id} className="relative">
+              {/* Background Transition Gradient for each section */}
+              <div 
+                className={`absolute inset-0 bg-gradient-to-b ${service.color} opacity-20`}
+                style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}
+              ></div>
+              
+              <ServiceCard service={service} index={index} />
+              
+              {/* Decorative separator */}
+              {index < services.length - 1 && (
+                <div className="h-px w-1/2 mx-auto bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+              )}
+           </div>
+         ))}
+      </div>
+      
+      {/* Bottom transition */}
+      <div className="h-20 bg-gradient-to-b from-zinc-900 to-white"></div>
+    </section>
   );
 };
 

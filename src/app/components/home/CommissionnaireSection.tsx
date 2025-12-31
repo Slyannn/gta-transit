@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const CommissionnaireSection = () => {
   return (
-    <section className="py-20 bg-primary text-white overflow-hidden relative">
+    <section className="py-20 bg-gradient-to-b from-primary to-zinc-900 text-white overflow-hidden relative">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 transform origin-top-right pointer-events-none"></div>
       

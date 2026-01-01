@@ -1,67 +1,87 @@
 "use client";
 
-import { Globe } from "lucide-react";
 import { motion } from "framer-motion";
+import { Globe, Users, Navigation, Calendar } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 const WorldMapSection = () => {
   return (
-    <section className="relative py-24 bg-primary overflow-hidden text-white">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 transform origin-top-right"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
-        
-        <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center gap-16">
-          <div className="w-full md:w-1/2 space-y-8">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
-                Présent dans tous les ports <br/>
-                <span className="text-accent">et aéroports du monde</span>
-              </h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Présent dans tous les ports et aéroports du monde, notre réseau 
-                de partenaires couvre les cinq continents pour vous assurer des solutions
-                stratégiques et maîtrisées et des livraisons de port à port ou porte à porte.
-              </p>
-            </motion.div>
+    <section className="relative h-[60vh] min-h-[600px] w-full overflow-hidden flex items-center justify-center">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+            src="/World_presence.jpg" 
+            alt="Carte du monde GTA Transit"
+            fill
+            className="object-cover object-center"
+            priority
+        />
+        {/* Overlays for readability */}
+        <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+      </div>
 
-            <motion.div 
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ delay: 0.2 }}
-            >
-              <a 
-                href="/devis" 
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-accent hover:text-white transition-all duration-300 shadow-lg group transform hover:scale-105"
-              >
-                <Globe className="mr-3 h-5 w-5 text-accent group-hover:text-white group-hover:rotate-180 transition-all duration-500" />
-                DECOUVRIR NOTRE RÉSEAU
-              </a>
-            </motion.div>
+      <div className="container mx-auto px-4 relative z-10 text-center text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto space-y-8"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold leading-tight">
+              Une présence mondiale <br/>
+              <span className="text-accent">pour une action locale</span>
+            </h2>
+            
+            <p className="text-xl text-gray-200 max-w-2xl mx-auto">
+                Notre réseau étendu de partenaires nous permet d'opérer sur les 5 continents avec la même efficacité et le même niveau d'exigence.
+            </p>
+
+            <div className="pt-8">
+               <Link 
+                 href="/devis" 
+                 className="inline-flex items-center px-8 py-4 bg-accent hover:bg-white hover:text-accent text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/20"
+               >
+                 <Globe className="mr-2 h-5 w-5" />
+                 Découvrir notre réseau
+               </Link>
+            </div>
+          </motion.div>
+      </div>
+
+      {/* Stats Band */}
+      <div className="absolute bottom-0 w-full bg-slate-900/80 backdrop-blur-md border-t border-white/10 py-10 z-20">
+          <div className="container mx-auto px-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  <div className="text-center space-y-2">
+                      <div className="text-4xl font-bold text-accent">+50</div>
+                      <div className="text-sm text-gray-400 uppercase tracking-wider flex items-center justify-center gap-2">
+                          <Navigation size={16} /> Destinations
+                      </div>
+                  </div>
+                  <div className="text-center space-y-2">
+                      <div className="text-4xl font-bold text-white">+200</div>
+                      <div className="text-sm text-gray-400 uppercase tracking-wider flex items-center justify-center gap-2">
+                          <Users size={16} /> Partenaires
+                      </div>
+                  </div>
+                  <div className="text-center space-y-2">
+                      <div className="text-4xl font-bold text-accent">+15</div>
+                      <div className="text-sm text-gray-400 uppercase tracking-wider flex items-center justify-center gap-2">
+                          <Calendar size={16} /> Années d'expérience
+                      </div>
+                  </div>
+                   <div className="text-center space-y-2">
+                      <div className="text-4xl font-bold text-white">24/7</div>
+                      <div className="text-sm text-gray-400 uppercase tracking-wider flex items-center justify-center gap-2">
+                          <Globe size={16} /> Support
+                      </div>
+                  </div>
+              </div>
           </div>
-
-          {/* World Map Visualization */}
-          <div className="w-full md:w-1/2 relative h-[400px] flex items-center justify-center">
-             
-             {/* Illustration Logistique Mondiale */}
-             <div 
-               className="absolute inset-0 bg-contain bg-center bg-no-repeat rounded-2xl overflow-hidden"
-               style={{ 
-                 backgroundImage: "url('/World_presence.jpg')"
-               }}
-             ></div>
-             
-             {/* Note: Je remplace l'image par une URL externe temporaire qui ressemble au style demandé. 
-                 Idéalement, vous devriez télécharger votre image "image.png", la mettre dans le dossier /public 
-                 et utiliser src="/image.png" pour un résultat exact. */}
-
-          </div>
-        </div>
-      </section>
+      </div>
+    </section>
   );
 };
 

@@ -59,9 +59,7 @@ const HeroSection = () => {
           </motion.div>
         </div>
         
-        {/* Smooth Gradient Transition to Next Section */}
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-primary to-transparent z-20 pointer-events-none"></div>
-      </section>
+       </section>
   );
 };
 

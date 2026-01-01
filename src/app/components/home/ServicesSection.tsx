@@ -50,6 +50,17 @@ const services = [
     color: "from-orange-700 to-red-900",
     accent: "text-orange-300",
     features: ["Emballage professionnel", "Transport de véhicules", "Douane export/import"]
+  },
+  {
+    id: "vehicules",
+    title: "Transport de Véhicules",
+    description: "Une expertise reconnue dans le transport de tous types de véhicules (tourisme, utilitaire, engins TP). Nous assurons le chargement, l'arrimage sécurisé et les formalités douanières.",
+    link: "/vehicules",
+    icon: Truck,
+    image: "/Cargo_ro_ro_hero.png", // Car carrier / transport
+    color: "from-zinc-800 to-stone-900",
+    accent: "text-zinc-400",
+    features: ["Ro-Ro & Conteneur", "Prise en charge parc auto", "Formalités export"]
   }
 ];
 
@@ -127,15 +138,14 @@ const ServicesSection = () => {
            viewport={{ once: true }}
            className="container mx-auto px-4"
          >
-           <h2 className="text-3xl md:text-4xl font-bold mb-4">Nos Solutions de Transport</h2>
+           <h2 className="text-3xl md:text-5xl font-bold mb-4">Nos Solutions de Transport</h2>
            <div className="w-24 h-1 bg-accent mx-auto rounded-full mb-6"></div>
            <p className="max-w-2xl mx-auto text-gray-300">
              Une gamme complète de services logistiques pour répondre à tous vos besoins d'import-export.
            </p>
          </motion.div>
-         {/* Gradient fade to first section */}
-         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none"></div>
-      </div>
+        
+        </div>
 
       {/* Services List with Transitions */}
       <div className="relative pt-10">
@@ -157,8 +167,6 @@ const ServicesSection = () => {
          ))}
       </div>
       
-      {/* Bottom transition */}
-      <div className="h-20 bg-gradient-to-b from-zinc-900 to-white"></div>
     </section>
   );
 };

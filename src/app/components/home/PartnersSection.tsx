@@ -48,7 +48,7 @@ export default function PartnersSection() {
   return (
     <section className="py-16 bg-gradient-to-b from-gray-50 to-white overflow-hidden border-t border-gray-100">
       <div className="container mx-auto px-4 mb-10 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Ils nous font confiance</h2>
+        <h2 className="text-2xl md:text-5xl font-bold text-gray-800 mb-2">Ils nous font confiance</h2>
         <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
       </div>
 

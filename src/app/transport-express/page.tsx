@@ -11,9 +11,11 @@ import {
   Phone, 
   CheckCircle2, 
   ArrowRight,
-  UserCheck
+  UserCheck,
+  Star
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function TransportExpressPage() {
   const containerVariants = {
@@ -38,48 +40,76 @@ export default function TransportExpressPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200 selection:bg-amber-500 selection:text-white overflow-hidden">
       
-      {/* Background Global Gradient */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-amber-900/10 rounded-full blur-[120px]" />
-      </div>
-
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 z-10">
-        <div className="container mx-auto max-w-6xl text-center">
+      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        
+        {/* Background Image with Network Effect */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1506972849873-0ce0dfc4d187?q=80&w=1974&auto=format&fit=crop" // Night City/Road with lights
+            alt="Transport Express Background"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Overlays */}
+          <div className="absolute inset-0 bg-slate-700/80 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-slate-900/40"></div>
+          
+          {/* Network/Constellation Effect (CSS Overlay or SVG if needed, simulating with radial gradient for focus) */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent opacity-50"></div>
+        </div>
+
+        <div className="container mx-auto px-4 z-10 text-center relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold text-sm tracking-wider mb-6">
-              Qualité, rapidité, sécurité
-            </span>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
-              Transport Express <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">
-                Colis & Courriers
-              </span>
+            {/* Top Label with Star */}
+            <div className="flex items-center justify-center gap-2 text-amber-500 font-semibold tracking-wider uppercase text-sm mb-6">
+              <Star className="fill-amber-500 w-4 h-4" />
+              <span>Qualité, rapidité, sécurité</span>
+            </div>
+
+            {/* Main Title */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-2 tracking-tight">
+              Transport Express
             </h1>
-            <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Rapide, fiable, partout en France sur le territoire national.
+            
+            {/* Subtitle with Gradient */}
+            <h2 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600 mb-8">
+              Colis & Courriers
+            </h2>
+
+            {/* Description */}
+            <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+              Rapide, fiable, partout en France sur le territoire national. <br className="hidden md:block" />
               Une solution sur-mesure pour vos urgences critiques.
             </p>
+
+            {/* Buttons */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link 
                 href="/devis" 
-                className="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] transform hover:-translate-y-1 flex items-center justify-center gap-2 group"
               >
-                Commander une course <Zap size={20} />
+                Commander une course 
+                <Zap size={20} className="group-hover:text-yellow-200 transition-colors" />
               </Link>
               <Link 
                 href="/contact" 
-                className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold rounded-full transition-all backdrop-blur-sm"
+                className="px-8 py-4 bg-transparent border border-white text-white font-bold rounded-full transition-all hover:bg-white hover:text-slate-900"
               >
                 Nous contacter
               </Link>
             </div>
           </motion.div>
+        </div>
+        
+        {/* Bottom Decorative Element (Star icon in corner as per some designs, or just scroll indicator) */}
+        <div className="absolute bottom-8 right-8 text-white/20 animate-pulse">
+           <Star size={48} />
         </div>
       </section>
 
@@ -115,11 +145,14 @@ export default function TransportExpressPage() {
               viewport={{ once: true }}
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/20 to-blue-500/20 blur-2xl rounded-full"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1579992822406-2092a7bd5a36?q=80&w=2070&auto=format&fit=crop" 
-                alt="Transport Express Véhicule" 
-                className="relative rounded-2xl shadow-2xl border border-white/10 z-10 w-full object-cover h-[400px]"
-              />
+              <div className="relative rounded-2xl shadow-2xl border border-white/10 overflow-hidden h-[400px]">
+                 <Image 
+                    src="https://images.unsplash.com/photo-1579992822406-2092a7bd5a36?q=80&w=2070&auto=format&fit=crop"
+                    alt="Transport Express Véhicule" 
+                    fill
+                    className="object-cover"
+                 />
+              </div>
             </motion.div>
           </div>
         </div>
@@ -158,7 +191,7 @@ export default function TransportExpressPage() {
                 variants={itemVariants}
                 className="group p-8 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-amber-500/30 transition-all duration-300 backdrop-blur-sm"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-orange-500/20">
                   <service.icon size={28} />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
@@ -207,7 +240,8 @@ export default function TransportExpressPage() {
       {/* Dedicated Transport Banner */}
       <section className="py-20 relative z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-orange-700 opacity-90"></div>
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+        {/* Placeholder for texture if needed */}
+        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         
         <div className="container mx-auto px-4 relative z-20 text-center">
           <motion.div
@@ -242,10 +276,10 @@ export default function TransportExpressPage() {
               Obtenir un devis express
             </Link>
             <Link 
-              href="tel:+33123456789" 
+              href="/contact" 
               className="px-10 py-5 bg-transparent border-2 border-slate-700 hover:border-white rounded-full text-white font-bold text-lg transition-all"
             >
-              Appeler maintenant
+              Nous contacter
             </Link>
           </div>
         </div>
@@ -254,6 +288,3 @@ export default function TransportExpressPage() {
     </main>
   );
 }
-
-
-

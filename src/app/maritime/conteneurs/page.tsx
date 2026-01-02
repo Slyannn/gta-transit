@@ -21,7 +21,12 @@ export default function ConteneursPage() {
           >
             Types de Conteneurs
           </motion.h1>
-          <div className="h-1 bg-accent w-24 mx-auto rounded-full"></div>
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: "100px" }}
+            transition={{ delay: 0.1, duration: 0.8 }}
+            className="h-1 bg-accent w-24 mx-auto rounded-full"
+          ></motion.div>
           <p className="text-xl text-gray-200 mt-4 font-light">Guide technique pour choisir le bon équipement</p>
         </div>
       </section>

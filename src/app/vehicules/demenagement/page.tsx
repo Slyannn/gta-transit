@@ -31,7 +31,13 @@ const DemenagementPage = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Déménagement International
             </h1>
-            <div className="h-1 bg-accent w-24 mx-auto rounded-full"></div>
+            
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: "100px" }}
+            transition={{ delay: 0.1, duration: 0.8 }}
+            className="h-1 bg-accent w-24 mx-auto rounded-full"
+          ></motion.div>
             <br/>
             <p className="text-xl md:text-2xl font-light max-w-3xl mx-auto mb-10 text-gray-200">
               Votre spécialiste du déménagement international. <br/> Déménagez à l’étranger en toute sérénité.

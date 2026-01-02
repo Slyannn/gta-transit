@@ -28,7 +28,12 @@ export default function ModalitesVehiculesPage() {
           >
             Conditions d'Expédition des Véhicules
           </motion.h1>
-          <div className="h-1 bg-accent w-24 mx-auto rounded-full mb-4"></div>
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: "100px" }}
+            transition={{ delay: 0.1, duration: 0.8 }}
+            className="h-1 bg-accent w-24 mx-auto rounded-full"
+          ></motion.div>
         </div>
       </section>
 

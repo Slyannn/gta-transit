@@ -29,8 +29,8 @@ export default function PresentationPage() {
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: "100px" }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="h-1 bg-accent mx-auto"
+            transition={{ delay: 0.1, duration: 0.8 }}
+            className="h-1 bg-accent w-24 mx-auto rounded-full"
           ></motion.div>
         </div>
       </section>

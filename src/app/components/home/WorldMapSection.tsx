@@ -24,7 +24,7 @@ const WorldMapSection = () => {
       </div>
 
       {/* Main Content Wrapper - Flex column to push stats to bottom naturally on mobile */}
-      <div className="relative z-10 flex flex-col min-h-[600px] md:h-[70vh]">
+      <div className="relative z-10 flex flex-col min-h-[600px] md:min-h-[70vh]">
           
           {/* Text Content - Centered in remaining space */}
           <div className="flex-grow flex items-center justify-center px-4 py-20">

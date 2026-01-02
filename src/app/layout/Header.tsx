@@ -43,7 +43,8 @@ const navItems = [
     hasDropdown: true,
     dropdownItems: [
       { name: "Transport de voitures", href: "/vehicules" },
-      { name: "Modalités de livraison", href: "/vehicules/modalites" }
+      { name: "Modalités de livraison", href: "/vehicules/modalites" },
+      { name: "Déménagement International", href: "/vehicules/demenagement" }
     ]
   }
 ];

@@ -44,7 +44,7 @@ const services = [
     id: "demenagement",
     title: "Déménagement International",
     description: "Un accompagnement sur-mesure pour votre changement de vie. Nous prenons soin de vos biens personnels et véhicules avec des solutions d'emballage et de transport sécurisées.",
-    link: "/vehicules", // Ou /maritime/groupage selon le besoin, je mets véhicules/général pour l'instant
+    link: "/vehicules/demenagement",
     icon: Package,
     image: "https://images.unsplash.com/photo-1586781383963-8e66f88077ec?q=80&w=2070&auto=format&fit=crop", // Moving boxes / Home
     color: "from-orange-700 to-red-900",

@@ -43,8 +43,16 @@ export default function AutocompleteInput({
 
     // Filtrage dynamique
     if (query.length > 0) {
+      const normalizeText = (text: string) =>
+        text
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+
+      const normalizedQuery = normalizeText(query);
+
       const filtered = options.filter((loc) =>
-        loc.toLowerCase().includes(query.toLowerCase())
+        normalizeText(loc).includes(normalizedQuery)
       );
       // Limite le nombre de résultats pour éviter une liste trop longue
       setFilteredLocations(filtered.slice(0, 50));

@@ -37,6 +37,10 @@ const PartnerLogo = ({ name, logo, type }: { name: string, logo: string, type: '
           className={`w-full h-full object-contain transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
           onLoad={() => setImgLoaded(true)}
           onError={() => setImgLoaded(false)}
+          // Astuce pour forcer le check si l'image est déjà en cache
+          ref={(img) => {
+            if (img?.complete) setImgLoaded(true);
+          }}
         />
         {!imgLoaded && (
              <span className="text-gray-400 font-bold text-sm text-center">{name}</span>

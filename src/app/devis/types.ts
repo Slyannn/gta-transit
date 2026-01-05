@@ -20,6 +20,15 @@ export interface DevisFormData {
   volume: string;
   valeur: string;
 
+  // Optionnels Déménagement
+  demenagementType?: string;
+  demenagementVolume?: string;
+  demenagementMeubles?: string;
+  demenagementServices?: string[];
+  demenagementModeTransport?: string; // 'Maritime', 'Aérien', 'Routier'
+  demenagementContainerType?: string; // '20_dry', '40_hc'
+  demenagementFormalites?: boolean;
+
   // Étape 4 : Projet
   objectif: string;
   frequence: string;
@@ -47,7 +56,7 @@ export interface DevisContextType {
   isSuccess: boolean;
   
   // Actions
-  handleChange: (name: string, value: string | boolean) => void;
+  handleChange: (name: string, value: string | boolean | string[]) => void;
   nextStep: () => void;
   prevStep: () => void;
   submitForm: () => void;
@@ -56,4 +65,3 @@ export interface DevisContextType {
   getAvailableCountries: (mode?: string) => string[];
   getAvailableLocations: (type: 'depart' | 'arrivee') => string[];
 }
-

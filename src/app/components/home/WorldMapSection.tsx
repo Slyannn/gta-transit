@@ -27,7 +27,7 @@ const WorldMapSection = () => {
       <div className="relative z-10 flex flex-col min-h-[600px] md:min-h-[70vh]">
           
           {/* Text Content - Centered in remaining space */}
-          <div className="flex-grow flex items-center justify-center px-4 py-20">
+          <div className="flex-grow flex items-center justify-center px-4 py-10">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -55,37 +55,7 @@ const WorldMapSection = () => {
             </motion.div>
           </div>
 
-          {/* Stats Band - Part of the flex flow, stays at bottom */}
-          <div className="w-full bg-slate-900/90 backdrop-blur-md border-t border-white/10 py-10 mt-auto">
-              <div className="container mx-auto px-4">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                      <div className="text-center space-y-2">
-                          <div className="text-3xl md:text-4xl font-bold text-accent">+50</div>
-                          <div className="text-xs md:text-sm text-gray-400 uppercase tracking-wider flex items-center justify-center gap-2">
-                              <Navigation size={16} /> Destinations
-                          </div>
-                      </div>
-                      <div className="text-center space-y-2">
-                          <div className="text-3xl md:text-4xl font-bold text-white">+200</div>
-                          <div className="text-xs md:text-sm text-gray-400 uppercase tracking-wider flex items-center justify-center gap-2">
-                              <Users size={16} /> Partenaires
-                          </div>
-                      </div>
-                      <div className="text-center space-y-2">
-                          <div className="text-3xl md:text-4xl font-bold text-accent">+15</div>
-                          <div className="text-xs md:text-sm text-gray-400 uppercase tracking-wider flex items-center justify-center gap-2">
-                              <Calendar size={16} /> Années d'expérience
-                          </div>
-                      </div>
-                      <div className="text-center space-y-2">
-                          <div className="text-3xl md:text-4xl font-bold text-white">24/7</div>
-                          <div className="text-xs md:text-sm text-gray-400 uppercase tracking-wider flex items-center justify-center gap-2">
-                              <Globe size={16} /> Support
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+          {/* Stats Band Removed - Moved to dedicated section */}
       </div>
     </section>
   );

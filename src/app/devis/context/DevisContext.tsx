@@ -14,6 +14,18 @@ const REQUIRED_FIELDS: Record<number, string[]> = {
   5: ["nom", "prenom", "email", "adresse", "pays", "telephone"]
 };
 
+// Required fields specifically for "Déménagement" mode in Step 3
+const REQUIRED_FIELDS_DEMENAGEMENT: string[] = [
+  // User asked for "Optional" fields, so we might want to relax this.
+  // However, usually at least some info is needed.
+  // Let's keep it minimal if requested "optional", but logic usually dictates volume or inventory.
+  // We'll trust the user and make them truly optional if that's the request, 
+  // OR we can enforce minimal consistency. 
+  // But standard fields like "natureMarchandise" etc are NOT relevant for Demenagement if we switch the view.
+  // So we should return an empty array or minimal set.
+  "demenagementType" // Maybe just this one?
+];
+
 export function DevisProvider({ children }: { children: ReactNode }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<Partial<DevisFormData>>({ modeTransport: "Maritime" });
@@ -23,7 +35,7 @@ export function DevisProvider({ children }: { children: ReactNode }) {
 
   // --- LOGIQUE METIER ---
 
-  const handleChange = (name: string, value: string | boolean) => {
+  const handleChange = (name: string, value: string | boolean | string[]) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
     // Reset error when user types
     if (errors[name]) {
@@ -32,12 +44,22 @@ export function DevisProvider({ children }: { children: ReactNode }) {
   };
 
   const validateStep = (currentStep: number) => {
-    const fields = REQUIRED_FIELDS[currentStep] || [];
+    let fields = REQUIRED_FIELDS[currentStep] || [];
+
+    // Special handling for Déménagement in Step 3
+    if (currentStep === 3 && formData.modeTransport === "Déménagement") {
+       // Since the user asked for "optional" fields, we might strictly mean optional.
+       // However, to ensure the form makes sense, let's require at least one thing or just pass.
+       // The standard fields (nature, description, typeContainer...) are NOT displayed in Déménagement mode.
+       // So we MUST NOT validate them.
+       fields = []; // No required fields for step 3 if Déménagement (fully optional as requested)
+    }
+
     const newErrors: FormErrors = {};
     let isValid = true;
 
     fields.forEach((field) => {
-      // @ts-ignore - Accès dynamique typé mais TS rale parfois sur les Partials
+      // @ts-ignore
       if (!formData[field]) {
         newErrors[field] = true;
         isValid = false;
@@ -61,13 +83,13 @@ export function DevisProvider({ children }: { children: ReactNode }) {
   const nextStep = () => {
     if (validateStep(step)) {
       setErrors({});
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // window.scrollTo({ top: 0, behavior: "smooth" }); // Removed to prevent scroll jump
       setStep((prev) => prev + 1);
     }
   };
 
   const prevStep = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" }); // Removed to prevent scroll jump
     setStep((prev) => prev - 1);
   };
 
@@ -155,4 +177,3 @@ export const useDevis = () => {
   }
   return context;
 };
-

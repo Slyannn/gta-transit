@@ -33,10 +33,10 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-24 bg-slate-50 relative overflow-hidden">
+    <section className="py-6 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-4 space-y-4">
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900">Témoignages de nos clients</h2>
         </div>
 

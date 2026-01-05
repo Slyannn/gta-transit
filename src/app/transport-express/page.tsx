@@ -262,6 +262,43 @@ export default function TransportExpressPage() {
         </div>
       </section>
 
+      {/* Engagement Section */}
+      <section className="py-20 bg-slate-900/80 relative z-10 border-t border-white/5">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <motion.div
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+          >
+             <h2 className="text-3xl font-bold text-white mb-8 border-b border-amber-500/30 pb-4 inline-block">
+               Engagement GTA TRANSPORT ROUTIER EXPRESS
+             </h2>
+             <p className="text-xl text-slate-300 mb-12 leading-relaxed">
+               Chaque demande de devis est traitée avec la plus grande attention afin de vous proposer la solution la plus rapide et la plus adaptée à votre urgence.
+             </p>
+             
+             <div className="bg-gradient-to-br from-amber-500/10 to-orange-600/10 border border-amber-500/20 rounded-2xl p-8 md:p-10">
+                <div className="flex flex-col items-center gap-4">
+                   <div className="flex items-center gap-3 text-amber-400 font-bold text-xl md:text-2xl animate-pulse">
+                      <span className="text-3xl">🚨</span>
+                      <span>Une urgence immédiate ?</span>
+                   </div>
+                   <p className="text-white text-lg">
+                     Contactez-nous directement pour une prise en charge sans délai
+                   </p>
+                   <a 
+                     href="tel:+33607811308" 
+                     className="mt-4 inline-flex items-center gap-3 px-8 py-4 bg-white text-orange-700 font-bold text-2xl rounded-full hover:scale-105 transition-transform shadow-lg"
+                   >
+                      <Phone size={24} className="fill-current" />
+                      33 6 07 81 13 08
+                   </a>
+                </div>
+             </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Footer */}
       <section className="py-24 relative z-10 text-center">
         <div className="container mx-auto px-4">

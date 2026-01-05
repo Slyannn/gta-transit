@@ -6,10 +6,16 @@ import { useDevis } from "../../context/DevisContext";
 export default function StepTransport() {
   const { formData, handleChange, nextStep } = useDevis();
 
-  const modes = ["Maritime", "Aérien", "Déménagement", "Express", "Logistique", "Autre"];
+  const modes = [
+    { value: "Maritime", label: "Fret Maritime" },
+    { value: "Aérien", label: "Fret Aérien" },
+    { value: "Déménagement", label: "Déménagement" },
+    { value: "Express", label: "Transport Express" },
+    { value: "Logistique", label: "Logistique" }
+  ];
 
-  const handleSelection = (mode: string) => {
-    handleChange("modeTransport", mode);
+  const handleSelection = (modeValue: string) => {
+    handleChange("modeTransport", modeValue);
     // Petit délai pour laisser l'utilisateur voir la sélection avant de changer de page
     setTimeout(() => {
         nextStep();
@@ -25,33 +31,32 @@ export default function StepTransport() {
     >
       <div>
         <h2 className="text-2xl font-bold text-primary mb-6 flex items-center gap-2 border-b border-gray-100 pb-3">
-          <Truck className="text-accent" /> Mode de Transport
+          <Truck className="text-accent" /> Service de Transport
         </h2>
         <div className="space-y-6">
           <div>
             <label className="block text-lg font-medium text-gray-700 mb-6 text-center">
-              Comment souhaitez-vous acheminer vos colis ?
+              Quel service souhaitez-vous ?
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-3xl mx-auto ">
+            <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
               {modes.map((mode) => (
-                <label key={mode} className="cursor-pointer group">
+                <label key={mode.value} className="cursor-pointer group w-full sm:w-[45%] md:w-[30%]">
                   <input
                     type="radio"
                     name="modeTransport"
-                    value={mode}
-                    checked={formData.modeTransport === mode}
-                    onChange={() => handleSelection(mode)}
+                    value={mode.value}
+                    checked={formData.modeTransport === mode.value}
+                    onChange={() => handleSelection(mode.value)}
                     className="peer sr-only"
                   />
-                  <div className="flex flex-col items-center justify-center p-6 h-32 border-2 border-gray-300 rounded-xl text-gray-500 text-center hover:border-accent hover:bg-accent/5 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white peer-checked:shadow-lg transition-all duration-300 transform peer-checked:scale-105">
-                    {mode === "Maritime" && <Ship className="mb-2" size={32} />}
-                    {mode === "Aérien" && <Plane className="mb-2" size={32} />}
-                    {mode === "Déménagement" && <Truck className="mb-2" size={32} />}
-                    {mode === "Express" && <FastForward className="mb-2" size={32} />}
-                    {mode === "Logistique" && <Box className="mb-2" size={32} />}
-                    {mode === "Autre" && <HelpCircle className="mb-2" size={32} />}
+                  <div className="flex flex-col items-center justify-center p-6 h-36 border-2 border-gray-200 bg-white rounded-2xl text-gray-500 text-center hover:border-accent hover:bg-accent/5 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white peer-checked:shadow-xl transition-all duration-300 transform peer-checked:scale-105 peer-checked:hover:bg-accent peer-checked:hover:text-white peer-checked:hover:border-accent">
+                    {mode.value === "Maritime" && <Ship className="mb-3" size={36} />}
+                    {mode.value === "Aérien" && <Plane className="mb-3" size={36} />}
+                    {mode.value === "Déménagement" && <Truck className="mb-3" size={36} />}
+                    {mode.value === "Express" && <FastForward className="mb-3" size={36} />}
+                    {mode.value === "Logistique" && <Box className="mb-3" size={36} />}
                     
-                    <span className="font-bold text-lg">{mode}</span>
+                    <span className="font-bold text-lg tracking-wide">{mode.label}</span>
                   </div>
                 </label>
               ))}

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Package } from "lucide-react";
+import { Package, Truck, Plane, Ship, CheckSquare, List } from "lucide-react";
 import { useDevis } from "../../context/DevisContext";
 
 export default function StepMarchandise() {
@@ -16,6 +16,196 @@ export default function StepMarchandise() {
   const getLabelClass = (hasError: boolean) =>
     `block text-sm font-medium mb-2 ${hasError ? 'text-red-500' : 'text-gray-700'}`;
 
+  // Helper pour les checkboxes multiples
+  const handleServiceChange = (service: string) => {
+    const currentServices = (formData.demenagementServices as string[]) || [];
+    const newServices = currentServices.includes(service)
+      ? currentServices.filter((s) => s !== service)
+      : [...currentServices, service];
+    handleChange("demenagementServices", newServices);
+  };
+
+  // Si c'est un Déménagement, on affiche le formulaire spécifique
+  if (formData.modeTransport === "Déménagement") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-10"
+      >
+        <div>
+          <h2 className="text-2xl font-bold text-primary mb-6 flex items-center gap-2 border-b border-gray-100 pb-3">
+            <Truck className="text-accent" /> Détails du Déménagement
+          </h2>
+          
+          <div className="space-y-8">
+            
+            {/* Type de déménagement */}
+            <div>
+              <label className="block text-lg font-medium text-gray-800 mb-4">Type de déménagement</label>
+              <div className="flex flex-wrap gap-4">
+                {["Déménagement international", "Déménagement national"].map((type) => (
+                   <label key={type} className="flex items-center gap-3 p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors flex-1 min-w-[200px]">
+                      <input 
+                        type="radio" 
+                        name="demenagementType" 
+                        value={type}
+                        checked={formData.demenagementType === type}
+                        onChange={(e) => handleChange("demenagementType", e.target.value)}
+                        className="w-5 h-5 text-accent focus:ring-accent"
+                      />
+                      <span className="font-medium text-gray-700">{type}</span>
+                   </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Volume et Liste */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Volume estimé (m³)
+                </label>
+                <input
+                  type="number"
+                  name="demenagementVolume"
+                  value={formData.demenagementVolume || ""}
+                  placeholder="Ex: 30"
+                  onChange={(e) => handleChange("demenagementVolume", e.target.value)}
+                  className={getInputClass(false)}
+                />
+              </div>
+              <div className="md:row-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                  <List size={16} /> Liste des meubles et cartons
+                </label>
+                <textarea
+                  name="demenagementMeubles"
+                  rows={5}
+                  value={formData.demenagementMeubles || ""}
+                  placeholder="Ex: 1 Canapé, 2 Lits, 20 Cartons livres..."
+                  onChange={(e) => handleChange("demenagementMeubles", e.target.value)}
+                  className={getInputClass(false)}
+                />
+              </div>
+            </div>
+
+            {/* Services Souhaités */}
+            <div>
+               <label className="block text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
+                 <CheckSquare size={20} className="text-accent" /> Services Supplémentaires souhaités
+               </label>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                 {[
+                   "Emballage professionnel",
+                   "Fourniture de cartons",
+                   "Démontage / remontage",
+                   "Je joins à ma demande une liste non exhaustive des effets"
+                 ].map((service) => (
+                    <label key={service} className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                      <input
+                        type="checkbox"
+                        checked={((formData.demenagementServices as string[]) || []).includes(service)}
+                        onChange={() => handleServiceChange(service)}
+                        className="w-5 h-5 text-accent rounded focus:ring-accent"
+                      />
+                      <span className="text-gray-700">{service}</span>
+                    </label>
+                 ))}
+               </div>
+            </div>
+
+            {/* Mode de transport spécifique Déménagement */}
+            <div>
+               <label className="block text-lg font-medium text-gray-800 mb-4">Mode de transport souhaité</label>
+               <div className="space-y-4">
+                  {/* Maritime */}
+                  <div className="border rounded-xl p-4 bg-gray-50/50">
+                     <label className="flex items-center gap-3 cursor-pointer mb-3">
+                        <input
+                          type="radio"
+                          name="demenagementModeTransport"
+                          value="Maritime"
+                          checked={formData.demenagementModeTransport === "Maritime"}
+                          onChange={(e) => handleChange("demenagementModeTransport", e.target.value)}
+                          className="w-5 h-5 text-accent focus:ring-accent"
+                        />
+                        <div className="flex items-center gap-2 font-bold text-gray-800">
+                           <Ship size={20} /> Transport maritime
+                        </div>
+                     </label>
+                     
+                     {/* Options Maritime */}
+                     {formData.demenagementModeTransport === "Maritime" && (
+                       <div className="ml-8 space-y-3 pl-4 border-l-2 border-gray-200">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                             {/* Container Type */}
+                             <select
+                                value={formData.demenagementContainerType || ""}
+                                onChange={(e) => handleChange("demenagementContainerType", e.target.value)}
+                                className="p-2 border rounded bg-white text-sm w-full"
+                             >
+                                <option value="">Type de conteneur...</option>
+                                <option value="groupage">Conteneur de groupage</option>
+                                <option value="perso_20_dry">Conteneur perso 20’ dry</option>
+                                <option value="perso_40_hc">Conteneur perso 40’ dry hc</option>
+                             </select>
+                          </div>
+                       </div>
+                     )}
+                  </div>
+
+                  {/* Aérien */}
+                  <label className="flex items-center gap-3 p-4 border rounded-xl cursor-pointer hover:bg-gray-50">
+                      <input
+                        type="radio"
+                        name="demenagementModeTransport"
+                        value="Aérien"
+                        checked={formData.demenagementModeTransport === "Aérien"}
+                        onChange={(e) => handleChange("demenagementModeTransport", e.target.value)}
+                        className="w-5 h-5 text-accent focus:ring-accent"
+                      />
+                      <div className="flex items-center gap-2 font-medium text-gray-700">
+                         <Plane size={20} /> Transport aérien
+                      </div>
+                  </label>
+
+                  {/* Routier */}
+                  <label className="flex items-center gap-3 p-4 border rounded-xl cursor-pointer hover:bg-gray-50">
+                      <input
+                        type="radio"
+                        name="demenagementModeTransport"
+                        value="Routier"
+                        checked={formData.demenagementModeTransport === "Routier"}
+                        onChange={(e) => handleChange("demenagementModeTransport", e.target.value)}
+                        className="w-5 h-5 text-accent focus:ring-accent"
+                      />
+                      <div className="flex items-center gap-2 font-medium text-gray-700">
+                         <Truck size={20} /> Transport routier
+                      </div>
+                  </label>
+               </div>
+            </div>
+
+            {/* Formalités */}
+            <label className="flex items-center gap-3 p-4 bg-blue-50 border border-blue-100 rounded-xl cursor-pointer">
+               <input
+                 type="checkbox"
+                 checked={formData.demenagementFormalites || false}
+                 onChange={(e) => handleChange("demenagementFormalites", e.target.checked)}
+                 className="w-5 h-5 text-accent rounded focus:ring-accent"
+               />
+               <span className="font-medium text-gray-800">Je souhaite inclure les formalités douanières</span>
+            </label>
+
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // --- FORMULAIRE STANDARD (NON DEMENAGEMENT) ---
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -187,4 +377,3 @@ export default function StepMarchandise() {
     </motion.div>
   );
 }
-

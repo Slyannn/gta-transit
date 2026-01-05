@@ -12,7 +12,8 @@ const maritimePartners = [
   { name: "EOLIS Compagnie", logo: "/partners/EOLIS_logo.png" },
   { name: "Hapag-Lloyd", logo: "/partners/hapag_lloyd.png" },
   { name: "La Norddeutscher Llyod (NDL)", logo: "/partners/NDL_logo.svg" },
-  { name: "Maersk Lines", logo: "/partners/Maersk_logo.svg" }
+  { name: "Maersk Lines", logo: "/partners/Maersk_logo.svg" },
+  { name: "Sealogis", logo: "/partners/Sealogis_logo.png" }
 ];
 
 const aerialPartners = [

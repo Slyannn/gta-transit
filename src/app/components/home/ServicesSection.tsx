@@ -118,9 +118,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            {/* Overlay Gradient */}
-            <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 mix-blend-multiply`}></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-80"></div>
+            
         </div>
       </div>
     </motion.div>
@@ -131,7 +129,7 @@ const ServicesSection = () => {
   return (
     <section className="relative bg-zinc-900 overflow-hidden">
       {/* Heading */}
-      <div className="relative py-20 bg-zinc-900 text-white text-center z-10">
+      <div className="relative py-10 bg-slate-900 text-white text-center z-10">
          <motion.div
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}

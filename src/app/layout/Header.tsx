@@ -60,7 +60,7 @@ const navItems = [
       },
       {
         name: "Logistique",
-        href: "/",
+        href: "/logistique",
         icon: Box,
         hasSubMenu: false,
         subItems: []
@@ -73,6 +73,12 @@ const navItems = [
         subItems: []
       }
     ]
+  },
+  {
+    name: "DEVENIR PARTENAIRE",
+    href: "/partenaires",
+    hasDropdown: false,
+    dropdownItems: []
   },
   {
     name: "CONTACT",

@@ -127,61 +127,50 @@ export default function LogistiquePage() {
       </section>
 
       {/* --- WHY CHOOSE US --- */}
-      <section className="py-20 bg-primary text-white overflow-hidden relative">
-        <div className="absolute inset-0 bg-[url('/pattern-dots.svg')] opacity-10" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-1/2">
-              <span className="text-accent font-bold tracking-wider uppercase text-sm mb-2 block">Pourquoi nous choisir ?</span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Votre logistique mérite l’excellence</h2>
-              <p className="text-slate-300 mb-8 text-lg leading-relaxed">
-                Confiez votre chaîne logistique à GTA et transformez vos contraintes en avantage concurrentiel.
-                Que vous soyez particulier, PME, e-commerçant, industrie ou grande entreprise, GTA conçoit des solutions flexibles.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {reasons.map((reason, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                    <CheckCircle2 className="text-accent flex-shrink-0" size={24} />
-                    <span className="font-medium">{reason}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+      <section className="relative py-24 min-h-[600px] flex items-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+             <Image 
+               src="https://images.unsplash.com/photo-1643894440673-553350d13370?q=80&w=2070&auto=format&fit=crop" 
+               alt="Logistique Entrepôt" 
+               fill
+               className="object-cover"
+             />
+             {/* Dark Overlays for readability */}
+             <div className="absolute inset-0 bg-slate-900/80 mix-blend-multiply" />
+             <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/80 to-transparent" />
+        </div>
+        
+        {/* Content Container */}
+        <div className="container mx-auto px-4 relative z-10 text-white">
+          <div className="max-w-3xl">
+            <span className="text-accent font-bold tracking-wider uppercase text-sm mb-2 block">Pourquoi nous choisir ?</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-8">Votre logistique mérite l’excellence</h2>
+            <p className="text-slate-200 mb-12 text-lg leading-relaxed">
+              Confiez votre chaîne logistique à GTA et transformez vos contraintes en avantage concurrentiel.
+              Que vous soyez particulier, PME, e-commerçant, industrie ou grande entreprise, GTA conçoit des solutions flexibles.
+            </p>
             
-            <div className="lg:w-1/2 relative">
-               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
-                 <img 
-                   src="https://images.unsplash.com/photo-1566576912902-199bd620dd87?q=80&w=2070&auto=format&fit=crop" 
-                   alt="Logistique Team" 
-                   className="w-full h-auto"
-                 />
-                 <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
-               </div>
-               
-               {/* Stats Overlay */}
-               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl hidden md:block text-slate-900">
-                  <div className="flex items-center gap-4">
-                    <div className="bg-accent/10 p-3 rounded-full text-accent">
-                      <ShieldCheck size={32} />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold">100%</div>
-                      <div className="text-sm text-slate-500 font-medium">Sécurisé</div>
-                    </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {reasons.map((reason, index) => (
+                <div key={index} className="flex items-center gap-4 bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/10 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent shrink-0">
+                    <CheckCircle2 size={20} />
                   </div>
-               </div>
+                  <span className="font-medium text-lg">{reason}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* --- TARGET AUDIENCE --- */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-slate-900 border-t border-white/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Des solutions pour tous</h2>
-            <p className="text-slate-600 mt-4 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">Des solutions pour tous</h2>
+            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
               Nous accompagnons une grande variété de clients avec des solutions personnalisées et adaptées à chaque besoin.
             </p>
           </div>
@@ -190,7 +179,7 @@ export default function LogistiquePage() {
             {targets.map((target, index) => (
               <span 
                 key={index} 
-                className="px-6 py-3 bg-slate-100 rounded-full text-slate-700 font-medium border border-slate-200 hover:bg-slate-200 transition-colors"
+                className="px-8 py-4 bg-white/5 rounded-full text-slate-300 font-bold border border-white/10 hover:bg-accent hover:text-white hover:border-accent hover:scale-105 transition-all cursor-default backdrop-blur-sm shadow-lg"
               >
                 {target}
               </span>
@@ -200,24 +189,19 @@ export default function LogistiquePage() {
       </section>
 
       {/* --- CTA FOOTER --- */}
-      <section className="py-20 bg-slate-900 text-white text-center">
+      <section className="py-20 bg-slate-50 text-center">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Besoin d’un prestataire logistique fiable ?</h2>
-          <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Besoin d’un prestataire logistique fiable ?</h2>
+          <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
             Contactez GTA dès maintenant pour un devis personnalisé et une étude de vos besoins logistiques.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-             <Link 
-                href="/devis" 
-                className="bg-accent hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg text-lg"
-              >
-                Obtenir un devis gratuit
-              </Link>
               <Link 
                 href="/contact" 
-                className="bg-transparent border border-white/30 hover:bg-white/10 text-white px-8 py-4 rounded-full font-bold transition-all text-lg"
+                className="bg-accent hover:bg-orange-600 text-white px-10 py-4 rounded-full font-bold transition-all shadow-lg text-lg flex items-center gap-2"
               >
                 Contacter un expert
+                <ArrowRight size={20} />
               </Link>
           </div>
         </div>

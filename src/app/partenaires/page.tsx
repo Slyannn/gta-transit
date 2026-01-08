@@ -75,31 +75,31 @@ export default function PartenairesPage() {
       </section>
 
       {/* --- NOTRE MISSION --- */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
-           <div className="flex flex-col md:flex-row items-center gap-12">
-              <div className="md:w-1/2">
-                <h2 className="text-3xl font-bold text-slate-900 mb-6">Notre mission</h2>
-                <p className="text-lg text-slate-600 mb-6">
+           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+              <div className="lg:w-1/2">
+                <h2 className="text-4xl font-bold text-slate-900 mb-6">Notre mission</h2>
+                <p className="text-lg text-slate-600 mb-8 leading-relaxed">
                   Offrir aux plateformes e-commerce un réseau de points relais fiables, flexibles et sécurisés, afin de :
                 </p>
-                <ul className="space-y-4">
+                <ul className="space-y-6">
                   {[
                     "Réduire les délais de livraison",
                     "Désengorger les circuits traditionnels",
                     "Améliorer l’expérience client finale",
                     "Optimiser les coûts logistiques"
                   ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3">
-                      <div className="bg-accent/10 p-2 rounded-full text-accent">
+                    <li key={idx} className="flex items-center gap-4">
+                      <div className="shrink-0 w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-accent">
                          <CheckCircle2 size={20} />
                       </div>
-                      <span className="text-slate-700 font-medium">{item}</span>
+                      <span className="text-slate-700 font-medium text-lg">{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="md:w-1/2 relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl">
+              <div className="lg:w-1/2 relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
                  <Image 
                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop"
                    alt="Logistique E-commerce"

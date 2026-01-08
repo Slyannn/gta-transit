@@ -224,6 +224,7 @@ export default function ContactPage() {
                     <option value="info">Renseignement général</option>
                     <option value="suivi">Suivi de dossier</option>
                     <option value="partenariat">Partenariat</option>
+                    <option value="logistique">Demande de service logistique</option>
                     <option value="autre">Autre</option>
                   </select>
                 </div>

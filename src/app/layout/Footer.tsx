@@ -77,6 +77,9 @@ const Footer = () => {
             <li><Link href="/maritime" className="hover:text-accent transition-colors">Fret Maritime</Link></li>
             <li><Link href="/aerien" className="hover:text-accent transition-colors">Fret Aérien</Link></li>
             <li><Link href="/vehicules" className="hover:text-accent transition-colors">Transport de véhicules</Link></li>
+            <li><Link href="/demenagement" className="hover:text-accent transition-colors">Déménagement international</Link></li>
+            <li><Link href="/logistique" className="hover:text-accent transition-colors">Logistique et entreposage</Link></li>
+            <li><Link href="/transport-express" className="hover:text-accent transition-colors">Transport Express</Link></li>
           </ul>
         </div>
 

@@ -133,7 +133,7 @@ export default function AfriqueBagagesPage() {
               </ul>
 
               <a 
-                href="/devis" 
+                href="/devis?mode=aerien" 
                 className="w-full block text-center py-3 bg-accent hover:bg-white hover:text-primary text-white font-bold rounded-lg transition-colors relative z-10"
               >
                 Choisir cette offre
@@ -154,7 +154,7 @@ export default function AfriqueBagagesPage() {
                 GTA a la solution adaptée à votre statut.
               </p>
               <a 
-                href="/devis" 
+                href="/devis?mode=aerien" 
                 className="inline-flex items-center bg-accent text-white font-bold py-4 px-8 rounded-full hover:bg-white hover:text-accent transition-colors shadow-lg"
               >
                 Obtenir un devis <ArrowRight className="ml-2" />

@@ -55,10 +55,23 @@ export default function ContactPage() {
             </p>
          </div>
       </section>
-
+    
+        {/* Demande d'enlèvement CTA */}
+        <div className="mt-12 bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 md:p-8 text-white text-center">
+          <p className="text-lg md:text-xl mb-4">
+            Vous avez déjà reçu une réponse de nos équipes et vous souhaitez faire une <strong>demande d'enlèvement</strong> ?
+          </p>
+          <a 
+            href="/demande-enlevement" 
+            className="inline-flex items-center gap-2 px-8 py-3 bg-white text-primary font-bold rounded-full hover:bg-accent hover:text-white transition-all transform hover:scale-105"
+          >
+            Cliquez ici pour planifier votre enlèvement
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
+      
           {/* Contact Information */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
@@ -296,6 +309,7 @@ export default function ContactPage() {
              </div>
           </div>
         </div>
+
 
       </div>
     </main>

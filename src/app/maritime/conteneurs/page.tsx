@@ -181,7 +181,7 @@ export default function ConteneursPage() {
         <div className="container mx-auto px-4">
           <p className="text-gray-600 mb-6">Vous ne savez pas quel conteneur choisir ?</p>
           <a 
-            href="/devis" 
+            href="/devis?mode=maritime" 
             className="inline-flex items-center bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-secondary transition-colors"
           >
             Demander conseil à nos experts <ArrowRight className="ml-2" />

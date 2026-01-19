@@ -150,7 +150,7 @@ export default function CamerounBagagesPage() {
               
               <div className="flex flex-col sm:flex-row gap-4 items-center">
                 <a 
-                  href="/devis" 
+                  href="/devis?mode=maritime" 
                   className="inline-flex items-center justify-center gap-2 bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-accent hover:text-white transition-all shadow-lg w-full sm:w-auto"
                 >
                   Demander un devis (+ Carte) <Send size={18} />

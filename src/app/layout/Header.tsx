@@ -11,7 +11,7 @@ const navItems = [
     href: "/presentation", 
     hasDropdown: true,
     dropdownItems: [
-      { name : "Qui nous sommes ?", href : "/presentation" },
+      { name : "Qui sommes nous ?", href : "/presentation" },
       { name : "Commissionnaire de transport international", href : "/commissionnaire" },
     ] 
   },
@@ -59,7 +59,7 @@ const navItems = [
         subItems: []
       },
       {
-        name: "Logistique",
+        name: "Logistique et Entreposage",
         href: "/logistique",
         icon: Box,
         hasSubMenu: false,

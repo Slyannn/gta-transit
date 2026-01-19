@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { DevisProvider, useDevis } from "./context/DevisContext";
@@ -87,14 +88,43 @@ function DevisContent() {
           {/* Navigation Buttons */}
           <Navigation />
         </div>
+
+        {/* Demande d'enlèvement CTA */}
+        <div className="mt-8 bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 text-white text-center">
+          <p className="text-base md:text-lg mb-3">
+            Vous avez déjà reçu une réponse de nos équipes et vous souhaitez faire une <strong>demande d'enlèvement</strong> ?
+          </p>
+          <a 
+            href="/demande-enlevement" 
+            className="inline-flex items-center gap-2 px-6 py-2 bg-white text-primary font-bold rounded-full hover:bg-accent hover:text-white transition-all transform hover:scale-105 text-sm"
+          >
+            Cliquez ici
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
     </main>
   );
 }
 
+// Mapping des modes valides depuis l'URL
+const VALID_MODES: Record<string, string> = {
+  "maritime": "Maritime",
+  "aerien": "Aérien",
+  "demenagement": "Déménagement",
+  "express": "Express",
+  "logistique": "Logistique",
+};
+
 export default function DevisPage() {
+  const searchParams = useSearchParams();
+  const modeParam = searchParams.get("mode")?.toLowerCase();
+  
+  // Récupère le mode valide depuis l'URL (ex: /devis?mode=express)
+  const initialMode = modeParam && VALID_MODES[modeParam] ? VALID_MODES[modeParam] : undefined;
+
   return (
-    <DevisProvider>
+    <DevisProvider initialMode={initialMode}>
       <DevisContent />
     </DevisProvider>
   );

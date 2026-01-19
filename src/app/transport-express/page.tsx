@@ -91,7 +91,7 @@ export default function TransportExpressPage() {
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link 
-                href="/devis" 
+                href="/devis?mode=express" 
                 className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] transform hover:-translate-y-1 flex items-center justify-center gap-2 group"
               >
                 Commander une course 
@@ -307,7 +307,7 @@ export default function TransportExpressPage() {
           </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <Link 
-              href="/devis" 
+              href="/devis?mode=express" 
               className="px-10 py-5 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full text-white font-bold text-lg shadow-lg hover:shadow-orange-500/40 transition-all hover:scale-105"
             >
               Obtenir un devis express

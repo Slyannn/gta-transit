@@ -3,11 +3,12 @@ export interface DevisFormData {
   modeTransport: string;
 
   // Étape 2 : Trajet
+  typeTrajet?: "national" | "international"; // Pour Déménagement et Express
   paysDepart: string;
-  depart: string;
+  depart: string; // Ville d'enlèvement
   dateDepart: string;
   paysArrivee: string;
-  arrivee: string;
+  arrivee: string; // Ville de livraison
   dateArrivee: string;
 
   // Étape 3 : Marchandise
@@ -57,7 +58,7 @@ export interface DevisContextType {
   
   // Actions
   handleChange: (name: string, value: string | boolean | string[]) => void;
-  nextStep: () => void;
+  nextStep: (overrideMode?: string) => void;
   prevStep: () => void;
   submitForm: () => void;
   

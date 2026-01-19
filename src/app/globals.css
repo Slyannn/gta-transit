@@ -21,12 +21,13 @@
   --color-accent: var(--accent);
 }
 
-@media (prefers-color-scheme: dark) {
+/* Mode sombre désactivé pour ce site professionnel */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);

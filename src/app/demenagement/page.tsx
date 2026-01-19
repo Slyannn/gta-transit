@@ -183,7 +183,7 @@ const DemenagementPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
              <Link
-              href="/devis"
+              href="/devis?mode=demenagement"
               className="px-8 py-4 bg-white text-accent font-bold rounded-full hover:bg-slate-900 hover:text-white transition-all duration-300 shadow-xl"
             >
               Demander mon devis

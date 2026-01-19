@@ -147,7 +147,7 @@ export default function ModalitesVehiculesPage() {
             Maintenant que vous connaissez les modalités, obtenez une estimation précise pour votre transport.
           </p>
           <Link 
-            href="/devis" 
+            href="/devis?mode=maritime" 
             className="inline-flex items-center bg-accent text-white font-bold py-4 px-10 rounded-full hover:bg-orange-600 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all"
           >
             Demander un devis en ligne <ArrowRight className="ml-2" />

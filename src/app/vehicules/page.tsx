@@ -120,7 +120,7 @@ export default function VehiculesPage() {
             Particulier ou professionnel, nous garantissons une expédition dans de parfaites conditions de sécurité.
           </p>
           <a 
-            href="/devis" 
+            href="/devis?mode=maritime" 
             className="inline-flex items-center bg-accent text-white font-bold py-4 px-8 rounded-full hover:bg-white hover:text-accent transition-colors shadow-lg"
           >
             Obtenir un tarif transport <ArrowRight className="ml-2" />

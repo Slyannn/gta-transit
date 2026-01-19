@@ -188,7 +188,7 @@ export default function AerienPage() {
                    </div>
 
                    <a 
-                     href="/devis" 
+                     href="/devis?mode=aerien" 
                      className="inline-flex items-center text-accent font-bold hover:underline"
                    >
                      Contactez-nous pour en savoir plus <ArrowRight size={16} className="ml-1" />
@@ -207,7 +207,7 @@ export default function AerienPage() {
             Profitez de notre réseau aérien mondial pour accélérer vos échanges.
           </p>
           <a 
-            href="/devis" 
+            href="/devis?mode=aerien" 
             className="inline-flex items-center bg-accent text-white font-bold py-4 px-8 rounded-full hover:bg-orange-600 transition-colors shadow-lg"
           >
             Obtenir une cotation express <ArrowRight className="ml-2" />

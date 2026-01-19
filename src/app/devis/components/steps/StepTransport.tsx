@@ -17,8 +17,9 @@ export default function StepTransport() {
   const handleSelection = (modeValue: string) => {
     handleChange("modeTransport", modeValue);
     // Petit délai pour laisser l'utilisateur voir la sélection avant de changer de page
+    // On passe le mode directement à nextStep pour éviter les problèmes de sync du state React
     setTimeout(() => {
-        nextStep();
+        nextStep(modeValue);
     }, 300);
   };
 

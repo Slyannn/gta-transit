@@ -7,21 +7,40 @@ import { DevisContextType, DevisFormData, FormErrors } from "../types";
 
 const DevisContext = createContext<DevisContextType | null>(null);
 
-const REQUIRED_FIELDS: Record<number, string[]> = {
+// Champs requis par défaut (Maritime, Aérien)
+const REQUIRED_FIELDS_DEFAULT: Record<number, string[]> = {
   2: ["paysDepart", "depart", "dateDepart", "paysArrivee", "arrivee", "dateArrivee"],
   3: ["natureMarchandise", "description", "typeContainer", "nbColis", "valeur"],
   4: ["objectif"],
   5: ["nom", "prenom", "email", "adresse", "pays", "telephone"]
 };
 
-// Required fields specifically for "Déménagement" mode in Step 3
-const REQUIRED_FIELDS_DEMENAGEMENT: string[] = [
-  "demenagementType" 
-];
+// Champs requis pour Déménagement et Express (national)
+const REQUIRED_FIELDS_NATIONAL: string[] = ["depart", "arrivee", "dateArrivee"];
 
-export function DevisProvider({ children }: { children: ReactNode }) {
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<Partial<DevisFormData>>({ modeTransport: "Maritime" });
+// Champs requis pour Déménagement et Express (international)
+const REQUIRED_FIELDS_INTERNATIONAL: string[] = ["paysDepart", "depart", "paysArrivee", "arrivee", "dateArrivee"];
+
+// Logistique n'a pas de step 2
+
+interface DevisProviderProps {
+  children: ReactNode;
+  initialMode?: string; // Mode pré-sélectionné depuis l'URL (ex: /devis?mode=express)
+}
+
+export function DevisProvider({ children, initialMode }: DevisProviderProps) {
+  // Si un mode est fourni via l'URL, on démarre à l'étape 2 (ou 3 pour Logistique)
+  const getInitialStep = () => {
+    if (initialMode) {
+      return initialMode === "Logistique" ? 3 : 2;
+    }
+    return 1;
+  };
+
+  const [step, setStep] = useState(getInitialStep);
+  const [formData, setFormData] = useState<Partial<DevisFormData>>({ 
+    modeTransport: initialMode || "Maritime" 
+  });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -37,11 +56,34 @@ export function DevisProvider({ children }: { children: ReactNode }) {
   };
 
   const validateStep = (currentStep: number) => {
-    let fields = REQUIRED_FIELDS[currentStep] || [];
+    let fields: string[] = [];
+    const mode = formData.modeTransport;
 
-    // Special handling for Déménagement in Step 3
-    if (currentStep === 3 && formData.modeTransport === "Déménagement") {
-       fields = []; // No required fields for step 3 if Déménagement (fully optional as requested)
+    // Step 2 validation depends on mode
+    if (currentStep === 2) {
+      if (mode === "Logistique") {
+        // Logistique skip step 2 entirely
+        fields = [];
+      } else if (mode === "Déménagement" || mode === "Express") {
+        // Déménagement et Express: check typeTrajet
+        if (formData.typeTrajet === "national") {
+          fields = REQUIRED_FIELDS_NATIONAL;
+        } else {
+          fields = REQUIRED_FIELDS_INTERNATIONAL;
+        }
+      } else {
+        // Maritime, Aérien: full fields
+        fields = REQUIRED_FIELDS_DEFAULT[currentStep] || [];
+      }
+    } else if (currentStep === 3) {
+      // Special handling for Déménagement in Step 3
+      if (mode === "Déménagement") {
+        fields = []; // No required fields for step 3 if Déménagement (fully optional)
+      } else {
+        fields = REQUIRED_FIELDS_DEFAULT[currentStep] || [];
+      }
+    } else {
+      fields = REQUIRED_FIELDS_DEFAULT[currentStep] || [];
     }
 
     const newErrors: FormErrors = {};
@@ -69,17 +111,29 @@ export function DevisProvider({ children }: { children: ReactNode }) {
     return isValid;
   };
 
-  const nextStep = () => {
+  const nextStep = (overrideMode?: string) => {
     if (validateStep(step)) {
       setErrors({});
-      // window.scrollTo({ top: 0, behavior: "smooth" }); // Removed to prevent scroll jump
-      setStep((prev) => prev + 1);
+      
+      // Use overrideMode if provided (for immediate mode selection), otherwise use formData
+      const currentMode = overrideMode || formData.modeTransport;
+      
+      // Logistique: skip step 2 (Trajet) - go directly from step 1 to step 3
+      if (step === 1 && currentMode === "Logistique") {
+        setStep(3);
+      } else {
+        setStep((prev) => prev + 1);
+      }
     }
   };
 
   const prevStep = () => {
-    // window.scrollTo({ top: 0, behavior: "smooth" }); // Removed to prevent scroll jump
-    setStep((prev) => prev - 1);
+    // Logistique: skip step 2 when going back from step 3
+    if (step === 3 && formData.modeTransport === "Logistique") {
+      setStep(1);
+    } else {
+      setStep((prev) => prev - 1);
+    }
   };
 
   const submitForm = () => {

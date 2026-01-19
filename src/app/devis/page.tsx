@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check } from "lucide-react";
@@ -116,7 +116,8 @@ const VALID_MODES: Record<string, string> = {
   "logistique": "Logistique",
 };
 
-export default function DevisPage() {
+// Composant séparé pour utiliser useSearchParams (doit être dans Suspense)
+function DevisPageWithParams() {
   const searchParams = useSearchParams();
   const modeParam = searchParams.get("mode")?.toLowerCase();
   
@@ -127,5 +128,20 @@ export default function DevisPage() {
     <DevisProvider initialMode={initialMode}>
       <DevisContent />
     </DevisProvider>
+  );
+}
+
+export default function DevisPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-zinc-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-gray-600">Chargement...</p>
+        </div>
+      </div>
+    }>
+      <DevisPageWithParams />
+    </Suspense>
   );
 }

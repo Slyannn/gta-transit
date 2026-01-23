@@ -112,6 +112,7 @@ const TYPES_COLIS = [
 ];
 
 const OBSERVATIONS_OPTIONS = [
+  "Aucun",
   "Accès difficile",
   "Étage avec ascenseur",
   "Étage sans ascenseur",
@@ -219,6 +220,121 @@ function CityAutocompleteField({
   );
 }
 
+// Address Autocomplete Component with API Adresse
+function AddressAutocompleteField({
+  label,
+  value,
+  onChange,
+  onAddressSelect,
+  placeholder,
+  error,
+  required = false
+}: {
+  label: string;
+  value: string;
+  onChange: (val: string) => void;
+  onAddressSelect?: (address: any) => void;
+  placeholder?: string;
+  error?: boolean;
+  required?: boolean;
+}) {
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const fetchAddresses = useCallback(async (query: string) => {
+    if (query.length < 3) {
+      setSuggestions([]);
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const res = await fetch(
+        `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=8`
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setSuggestions(data.features || []);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    onChange(val);
+    fetchAddresses(val);
+    setShowSuggestions(true);
+  };
+
+  const handleSelect = (address: any) => {
+    const properties = address.properties;
+    onChange(properties.name || properties.label);
+    if (onAddressSelect) {
+      onAddressSelect({
+        fullAddress: properties.label,
+        street: properties.name,
+        postcode: properties.postcode,
+        city: properties.city,
+        context: properties.context,
+        citycode: properties.citycode,
+      });
+    }
+    setShowSuggestions(false);
+  };
+
+  return (
+    <div className="relative">
+      <label className="block text-sm font-semibold text-slate-800 mb-1">
+        {label} {required && "*"}
+      </label>
+      <input
+        type="text"
+        value={value}
+        onChange={handleChange}
+        onFocus={() => setShowSuggestions(true)}
+        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+        placeholder={placeholder}
+        className={`w-full p-3 border rounded-lg outline-none transition-all text-slate-900 placeholder:text-slate-400 ${
+          error ? "border-red-500 bg-red-50" : "border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent"
+        }`}
+      />
+      {isLoading && (
+        <div className="absolute right-3 top-10">
+          <Loader2 size={16} className="animate-spin text-accent" />
+        </div>
+      )}
+      {showSuggestions && suggestions.length > 0 && (
+        <ul className="absolute z-50 w-full bg-white mt-1 rounded-lg shadow-xl border border-gray-100 max-h-64 overflow-y-auto">
+          {suggestions.map((address, idx) => (
+            <li
+              key={idx}
+              onMouseDown={() => handleSelect(address)}
+              className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm border-b last:border-b-0"
+            >
+              <div className="flex items-start gap-2">
+                <MapPin size={14} className="text-accent mt-1 shrink-0" />
+                <div>
+                  <div className="font-medium text-slate-900">
+                    {address.properties.name}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    {address.properties.postcode} {address.properties.city}
+                    <span className="text-gray-400 ml-1">• {address.properties.context}</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 export default function DemandeEnlevementPage() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -241,6 +357,10 @@ export default function DemandeEnlevementPage() {
         return { ...prev, [field]: [...arr, item] };
       }
     });
+    // Clear error for this field when user interacts with it
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: false }));
+    }
   };
 
   const handleCitySelectEnlevement = (city: any) => {
@@ -249,6 +369,19 @@ export default function DemandeEnlevementPage() {
       villeEnlevement: city.nom,
       codePostalEnlevement: city.codesPostaux?.[0] || "",
       communeEnlevement: city.departement?.nom || "",
+    }));
+  };
+
+  const handleAddressSelectEnlevement = (address: any) => {
+    // Extract department name from context (format: "77, Seine-et-Marne, Île-de-France")
+    const departmentName = address.context?.split(', ')[1] || "";
+    
+    setFormData((prev) => ({
+      ...prev,
+      adresseEnlevement: address.street || address.fullAddress,
+      villeEnlevement: address.city,
+      codePostalEnlevement: address.postcode,
+      communeEnlevement: departmentName,
     }));
   };
 
@@ -264,16 +397,22 @@ export default function DemandeEnlevementPage() {
       "villeEnlevement",
       "destinataireNom",
       "destinataireTelephone",
+      "typeLieuLivraison",
+      "adresseLivraison",
       "villeDestination",
       "paysDestination",
+      "natureEnvoi",
       "nombreColis",
+      "observations",
     ];
 
     const newErrors: Record<string, boolean> = {};
     let isValid = true;
 
     required.forEach((field) => {
-      if (!formData[field]) {
+      const value = formData[field];
+      // Check for empty strings, null, undefined, or empty arrays
+      if (!value || (typeof value === 'string' && value.trim() === '') || (Array.isArray(value) && value.length === 0)) {
         newErrors[field] = true;
         isValid = false;
       }
@@ -287,7 +426,9 @@ export default function DemandeEnlevementPage() {
     setErrors(newErrors);
     
     if (!isValid) {
-      toast.error("Veuillez remplir tous les champs obligatoires");
+      toast.error("Veuillez remplir tous les champs obligatoires marqués d'un *");
+      // Scroll to first error
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     return isValid;
@@ -532,56 +673,66 @@ export default function DemandeEnlevementPage() {
                   </div>
                 </div>
 
-                {/* Adresse complète */}
+                {/* Adresse complète avec autocomplétion */}
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-semibold text-slate-800 mb-1">
-                    Adresse complète d'enlèvement *
+                  <AddressAutocompleteField
+                    label="Adresse complète d'enlèvement"
+                    value={formData.adresseEnlevement}
+                    onChange={(val) => handleChange("adresseEnlevement", val)}
+                    onAddressSelect={handleAddressSelectEnlevement}
+                    placeholder="N°, nom de rue, allée, boulevard, avenue, lieu-dit..."
+                    error={errors.adresseEnlevement}
+                    required
+                  />
+                  <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                    <MapPin size={12} />
+                    Les champs ville, code postal et département seront remplis automatiquement
+                  </p>
+                </div>
+
+                {/* Ville */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-800 mb-1 flex items-center gap-1">
+                    Ville *
+                    <span className="text-xs text-gray-400 font-normal">(auto-remplie)</span>
                   </label>
                   <input
                     type="text"
-                    value={formData.adresseEnlevement}
-                    onChange={(e) => handleChange("adresseEnlevement", e.target.value)}
-                    placeholder="N°, nom de rue, allée, boulevard, avenue, lieu-dit..."
+                    value={formData.villeEnlevement}
+                    onChange={(e) => handleChange("villeEnlevement", e.target.value)}
+                    placeholder="Auto-remplie depuis l'adresse"
                     className={`w-full p-3 border rounded-lg outline-none transition-all text-slate-900 placeholder:text-slate-400 ${
-                      errors.adresseEnlevement ? "border-red-500 bg-red-50" : "border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent"
+                      errors.villeEnlevement ? "border-red-500" : "border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent bg-gray-50"
                     }`}
                   />
                 </div>
 
-                {/* Ville */}
-                <CityAutocompleteField
-                  label="Ville *"
-                  value={formData.villeEnlevement}
-                  onChange={(val) => handleChange("villeEnlevement", val)}
-                  onCitySelect={handleCitySelectEnlevement}
-                  placeholder="Tapez le nom de la ville..."
-                  error={errors.villeEnlevement}
-                />
-
                 {/* Code postal */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-800 mb-1">
+                  <label className="block text-sm font-semibold text-slate-800 mb-1 flex items-center gap-1">
                     Code postal
+                    <span className="text-xs text-gray-400 font-normal">(auto-rempli)</span>
                   </label>
                   <input
                     type="text"
                     value={formData.codePostalEnlevement}
                     onChange={(e) => handleChange("codePostalEnlevement", e.target.value)}
-                    placeholder="Ex: 77450"
+                    placeholder="Auto-rempli depuis l'adresse"
                     className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-accent bg-gray-50 text-slate-900 placeholder:text-slate-400"
                   />
                 </div>
 
                 {/* Commune/Département */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-800 mb-1">
+                  <label className="block text-sm font-semibold text-slate-800 mb-1 flex items-center gap-1">
                     Département
+                    <span className="text-xs text-gray-400 font-normal">(auto-rempli)</span>
                   </label>
                   <input
                     type="text"
                     value={formData.communeEnlevement}
                     onChange={(e) => handleChange("communeEnlevement", e.target.value)}
-                    placeholder="Ex: Seine-et-Marne"
+                    placeholder="Auto-rempli depuis l'adresse"
                     className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-accent bg-gray-50 text-slate-900 placeholder:text-slate-400"
                   />
                 </div>
@@ -618,7 +769,7 @@ export default function DemandeEnlevementPage() {
                     type="text"
                     value={formData.destinataireNom}
                     onChange={(e) => handleChange("destinataireNom", e.target.value)}
-                    placeholder="Ex: Marie Martin"
+                    placeholder="Ex: Marie Martin ou Société ABC"
                     className={`w-full p-3 border rounded-lg outline-none transition-all text-slate-900 placeholder:text-slate-400 ${
                       errors.destinataireNom ? "border-red-500 bg-red-50" : "border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent"
                     }`}
@@ -650,7 +801,54 @@ export default function DemandeEnlevementPage() {
                     type="date"
                     value={formData.dateExpedition}
                     onChange={(e) => handleChange("dateExpedition", e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-accent text-slate-900 placeholder:text-slate-400"
+                    className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-accent text-slate-900"
+                  />
+                </div>
+
+                {/* Placeholder vide pour alignement */}
+                <div></div>
+
+                {/* Type de lieu livraison */}
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-semibold text-slate-800 mb-2">
+                    Type de lieu de livraison *
+                  </label>
+                  <div className="flex flex-wrap gap-3">
+                    {TYPES_LIEU.map((lieu) => (
+                      <label key={lieu.value} className="cursor-pointer">
+                        <input
+                          type="radio"
+                          name="typeLieuLivraison"
+                          value={lieu.value}
+                          checked={formData.typeLieuLivraison === lieu.value}
+                          onChange={(e) => handleChange("typeLieuLivraison", e.target.value)}
+                          className="peer sr-only"
+                        />
+                        <div className={`flex items-center gap-2 px-4 py-2 border-2 rounded-lg transition-all
+                          ${errors.typeLieuLivraison ? "border-red-300 bg-red-50" : "border-gray-200"}
+                          hover:border-accent/50 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white`}
+                        >
+                          <lieu.icon size={18} />
+                          <span className="text-sm font-medium">{lieu.label}</span>
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Adresse complète */}
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-semibold text-slate-800 mb-1">
+                    Adresse complète de livraison *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.adresseLivraison}
+                    onChange={(e) => handleChange("adresseLivraison", e.target.value)}
+                    placeholder="N°, nom de rue, allée, boulevard, avenue, lieu-dit..."
+                    className={`w-full p-3 border rounded-lg outline-none transition-all text-slate-900 placeholder:text-slate-400 ${
+                      errors.adresseLivraison ? "border-red-500 bg-red-50" : "border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent"
+                    }`}
                   />
                 </div>
 
@@ -663,7 +861,7 @@ export default function DemandeEnlevementPage() {
                     type="text"
                     value={formData.villeDestination}
                     onChange={(e) => handleChange("villeDestination", e.target.value)}
-                    placeholder="Ex: Douala, Abidjan..."
+                    placeholder="Ex: Douala, Abidjan, Yaoundé..."
                     className={`w-full p-3 border rounded-lg outline-none transition-all text-slate-900 placeholder:text-slate-400 ${
                       errors.villeDestination ? "border-red-500 bg-red-50" : "border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent"
                     }`}
@@ -700,6 +898,11 @@ export default function DemandeEnlevementPage() {
                   />
                 </div>
 
+                {/* Placeholder vide pour alignement si pas d'aéroport/port */}
+                {(formData.typePrestation !== "groupage-aerien" && formData.typePrestation !== "groupage-maritime") && (
+                  <div></div>
+                )}
+
                 {/* Aéroport destination (conditionnel) */}
                 {(formData.typePrestation === "groupage-aerien") && (
                   <div>
@@ -731,45 +934,6 @@ export default function DemandeEnlevementPage() {
                     />
                   </div>
                 )}
-
-                {/* Type de lieu livraison */}
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-semibold text-slate-800 mb-2">
-                    Type de lieu de livraison
-                  </label>
-                  <div className="flex flex-wrap gap-3">
-                    {TYPES_LIEU.map((lieu) => (
-                      <label key={lieu.value} className="cursor-pointer">
-                        <input
-                          type="radio"
-                          name="typeLieuLivraison"
-                          value={lieu.value}
-                          checked={formData.typeLieuLivraison === lieu.value}
-                          onChange={(e) => handleChange("typeLieuLivraison", e.target.value)}
-                          className="peer sr-only"
-                        />
-                        <div className="flex items-center gap-2 px-4 py-2 border-2 border-gray-200 rounded-lg transition-all hover:border-accent/50 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white">
-                          <lieu.icon size={18} />
-                          <span className="text-sm font-medium">{lieu.label}</span>
-                        </div>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Adresse livraison */}
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-semibold text-slate-800 mb-1">
-                    Adresse complète de livraison
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.adresseLivraison}
-                    onChange={(e) => handleChange("adresseLivraison", e.target.value)}
-                    placeholder="N°, nom de rue, allée, boulevard, avenue, lieu-dit..."
-                    className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-accent text-slate-900 placeholder:text-slate-400"
-                  />
-                </div>
               </div>
             </div>
 
@@ -815,14 +979,16 @@ export default function DemandeEnlevementPage() {
                   {/* Nature envoi */}
                   <div className="md:col-span-2">
                     <label className="block text-sm font-semibold text-slate-800 mb-1">
-                      Nature ou désignation de l'envoi
+                      Nature ou désignation de l'envoi *
                     </label>
                     <textarea
                       value={formData.natureEnvoi}
                       onChange={(e) => handleChange("natureEnvoi", e.target.value)}
                       placeholder="Ex: Effets personnels, vêtements, électroménager..."
                       rows={2}
-                      className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-accent text-slate-900 placeholder:text-slate-400 resize-none"
+                      className={`w-full p-3 border rounded-lg outline-none transition-all text-slate-900 placeholder:text-slate-400 resize-none ${
+                        errors.natureEnvoi ? "border-red-500 bg-red-50" : "border-gray-300 focus:ring-2 focus:ring-accent focus:border-accent"
+                      }`}
                     />
                   </div>
 
@@ -898,30 +1064,45 @@ export default function DemandeEnlevementPage() {
               </h3>
               
               <div className="space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  {OBSERVATIONS_OPTIONS.map((obs) => (
-                    <button
-                      key={obs}
-                      type="button"
-                      onClick={() => toggleArrayItem("observations", obs)}
-                      className={`px-4 py-2 rounded-full border-2 text-sm font-medium transition-all ${
-                        formData.observations.includes(obs)
-                          ? "border-accent bg-accent text-white"
-                          : "border-gray-200 hover:border-accent/50"
-                      }`}
-                    >
-                      {obs}
-                    </button>
-                  ))}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-800 mb-2">
+                    Sélectionnez une ou plusieurs options *
+                  </label>
+                  <div className={`flex flex-wrap gap-2 p-4 border-2 rounded-lg ${
+                    errors.observations ? "border-red-300 bg-red-50" : "border-gray-100"
+                  }`}>
+                    {OBSERVATIONS_OPTIONS.map((obs) => (
+                      <button
+                        key={obs}
+                        type="button"
+                        onClick={() => toggleArrayItem("observations", obs)}
+                        className={`px-4 py-2 rounded-full border-2 text-sm font-medium transition-all ${
+                          formData.observations.includes(obs)
+                            ? "border-accent bg-accent text-white"
+                            : "border-gray-200 hover:border-accent/50"
+                        }`}
+                      >
+                        {obs}
+                      </button>
+                    ))}
+                  </div>
+                  {errors.observations && (
+                    <p className="text-red-500 text-xs mt-2">Veuillez sélectionner au moins une option</p>
+                  )}
                 </div>
                 
-                <textarea
-                  value={formData.autreObservation}
-                  onChange={(e) => handleChange("autreObservation", e.target.value)}
-                  placeholder="Autres observations ou instructions particulières..."
-                  rows={3}
-                  className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-accent text-slate-900 placeholder:text-slate-400 resize-none"
-                />
+                <div>
+                  <label className="block text-sm font-semibold text-slate-800 mb-2">
+                    Commentaires supplémentaires
+                  </label>
+                  <textarea
+                    value={formData.autreObservation}
+                    onChange={(e) => handleChange("autreObservation", e.target.value)}
+                    placeholder="Autres observations ou instructions particulières..."
+                    rows={3}
+                    className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-accent text-slate-900 placeholder:text-slate-400 resize-none"
+                  />
+                </div>
               </div>
             </div>
 
@@ -956,7 +1137,7 @@ export default function DemandeEnlevementPage() {
                 <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
                   <FileText className="text-amber-600 shrink-0" size={20} />
                   <p className="text-sm text-amber-800">
-                    <strong>Documents requis :</strong> Facture d'achat, liste de colisage, 
+                    <strong>Documents qui pourraient être requis :</strong> Facture d'achat, liste de colisage, 
                     liste des effets personnels, déclaration d'exportation, bon de commande, etc.
                   </p>
                 </div>

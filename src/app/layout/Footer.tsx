@@ -39,6 +39,10 @@ const Footer = () => {
              <span className="text-3xl font-bold text-white tracking-tighter">GTA</span>
              <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mt-1">
               Groupeur Transitaire Associés
+              <br/>
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest mt-1">
+              Une société du Groupe R.V.S et Compagnie. SAS
+              </span>
             </p>
           </Link>
           <p className="text-sm leading-relaxed">
@@ -65,6 +69,7 @@ const Footer = () => {
             <li><Link href="/about" className="hover:text-accent transition-colors">À propos</Link></li>
             <li><Link href="/#services" className="hover:text-accent transition-colors">Nos Services</Link></li>
             <li><Link href="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
+            <li><Link href="/demande-enlevement" className="hover:text-accent transition-colors">Demande d'enlevement et de livraison</Link></li>
             <li><Link href="/devis" className="text-accent font-bold hover:text-white transition-colors">Demander un devis</Link></li>
           </ul>
         </div>

@@ -10,10 +10,13 @@ const DevisContext = createContext<DevisContextType | null>(null);
 // Champs requis par défaut (Maritime, Aérien)
 const REQUIRED_FIELDS_DEFAULT: Record<number, string[]> = {
   2: ["paysDepart", "depart", "dateDepart", "paysArrivee", "arrivee", "dateArrivee"],
-  3: ["natureMarchandise", "description", "typeContainer", "nbColis", "valeur"],
+  3: ["natureMarchandise", "description", "nbColis", "valeur"],
   4: ["objectif"],
   5: ["nom", "prenom", "email", "adresse", "pays", "telephone"]
 };
+
+// Champs requis spécifiques pour Maritime (étape 3)
+const REQUIRED_FIELDS_MARITIME_STEP3: string[] = ["natureMarchandise", "description", "typeContainer", "nbColis", "valeur"];
 
 // Champs requis pour Déménagement et Express (national)
 const REQUIRED_FIELDS_NATIONAL: string[] = ["depart", "arrivee", "dateArrivee"];
@@ -76,9 +79,11 @@ export function DevisProvider({ children, initialMode }: DevisProviderProps) {
         fields = REQUIRED_FIELDS_DEFAULT[currentStep] || [];
       }
     } else if (currentStep === 3) {
-      // Special handling for Déménagement in Step 3
+      // Special handling for Déménagement and Maritime in Step 3
       if (mode === "Déménagement") {
         fields = []; // No required fields for step 3 if Déménagement (fully optional)
+      } else if (mode === "Maritime") {
+        fields = REQUIRED_FIELDS_MARITIME_STEP3;
       } else {
         fields = REQUIRED_FIELDS_DEFAULT[currentStep] || [];
       }

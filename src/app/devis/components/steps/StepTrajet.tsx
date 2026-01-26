@@ -155,7 +155,8 @@ export default function StepTrajet() {
                   value={formData.paysDepart || ""}
                   onChange={(val) => {
                     handleChange("paysDepart", val);
-                    handleChange("depart", ""); // Reset ville/port si pays change
+                    handleChange("depart", ""); // Reset port si pays change
+                    handleChange("villeEnlevement", ""); // Reset ville enlevement
                   }}
                   placeholder="Ex: France, Côte d'Ivoire, Allemagne..."
                   options={getAvailableCountries()}
@@ -164,7 +165,7 @@ export default function StepTrajet() {
                 />
               )}
               
-              {/* Ville de départ - CityAutocomplete pour national, AutocompleteInput sinon */}
+              {/* Port/Aéroport de départ - CityAutocomplete pour national, AutocompleteInput sinon */}
               {isNationalMode && isNational ? (
                 <CityAutocomplete
                   label={getDepartLabel()}
@@ -186,6 +187,35 @@ export default function StepTrajet() {
                   disabled={!formData.paysDepart}
                   error={errors.depart}
                 />
+              )}
+
+              {/* Ville d'enlèvement (Post-port) - Pour Maritime/Aérien APRÈS le port */}
+              {(mode === "Maritime" || mode === "Aérien") && !isNational && (
+                formData.paysDepart === "France" ? (
+                  <CityAutocomplete
+                    label="Ville d'enlèvement *"
+                    name="villeEnlevement"
+                    value={formData.villeEnlevement || ""}
+                    onChange={(val) => handleChange("villeEnlevement", val)}
+                    placeholder="Ex: Lyon, Bordeaux..."
+                    disabled={!formData.depart}
+                    // @ts-ignore
+                    error={errors.villeEnlevement}
+                  />
+                ) : (
+                  <AutocompleteInput
+                    label="Ville d'enlèvement *"
+                    name="villeEnlevement"
+                    value={formData.villeEnlevement || ""}
+                    onChange={(val) => handleChange("villeEnlevement", val)}
+                    placeholder="Ex: Munich, Bamako..."
+                    options={[]}
+                    isFreeText={true}
+                    disabled={!formData.paysDepart || !formData.depart}
+                    // @ts-ignore
+                    error={errors.villeEnlevement}
+                  />
+                )
               )}
               
               {/* Date d'enlèvement - masquée pour national (Déménagement/Express) */}
@@ -237,6 +267,7 @@ export default function StepTrajet() {
                   onChange={(val) => {
                     handleChange("paysArrivee", val);
                     handleChange("arrivee", "");
+                    handleChange("villeLivraison", ""); // Reset ville livraison
                   }}
                   placeholder="Ex: Cameroun, Chine, Etats-Unis..."
                   options={getAvailableCountries()}
@@ -245,7 +276,7 @@ export default function StepTrajet() {
                 />
               )}
               
-              {/* Ville d'arrivée - CityAutocomplete pour national, AutocompleteInput sinon */}
+              {/* Port/Aéroport d'arrivée - CityAutocomplete pour national, AutocompleteInput sinon */}
               {isNationalMode && isNational ? (
                 <CityAutocomplete
                   label={getArriveeLabel()}
@@ -267,6 +298,35 @@ export default function StepTrajet() {
                   disabled={!formData.paysArrivee}
                   error={errors.arrivee}
                 />
+              )}
+
+              {/* Ville de livraison finale (Post-port) - Pour Maritime/Aérien APRÈS le port */}
+              {(mode === "Maritime" || mode === "Aérien") && !isNational && (
+                formData.paysArrivee === "France" ? (
+                  <CityAutocomplete
+                    label="Ville de livraison *"
+                    name="villeLivraison"
+                    value={formData.villeLivraison || ""}
+                    onChange={(val) => handleChange("villeLivraison", val)}
+                    placeholder="Ex: Marseille, Bordeaux..."
+                    disabled={!formData.arrivee}
+                    // @ts-ignore
+                    error={errors.villeLivraison}
+                  />
+                ) : (
+                  <AutocompleteInput
+                    label="Ville de livraison *"
+                    name="villeLivraison"
+                    value={formData.villeLivraison || ""}
+                    onChange={(val) => handleChange("villeLivraison", val)}
+                    placeholder="Ex: Douala, Los Angeles..."
+                    options={[]}
+                    isFreeText={true}
+                    disabled={!formData.paysArrivee || !formData.arrivee}
+                    // @ts-ignore
+                    error={errors.villeLivraison}
+                  />
+                )
               )}
               
               <div>

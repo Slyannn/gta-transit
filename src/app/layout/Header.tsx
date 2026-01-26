@@ -12,7 +12,7 @@ const navItems = [
     hasDropdown: true,
     dropdownItems: [
       { name : "Qui sommes nous ?", href : "/presentation" },
-      { name : "Commissionnaire de transport international", href : "/commissionnaire" },
+      { name : "Commissionnaire de transport national et international", href : "/commissionnaire" },
     ] 
   },
   { 
@@ -28,7 +28,8 @@ const navItems = [
         subItems: [
           { name: "Transport maritime", href: "/maritime" },
           { name: "Cameroun Bagages", href: "/maritime/cameroun-bagages" },
-          { name: "Différents types de conteneurs", href: "/maritime/conteneurs" }
+          { name: "Différents types de conteneurs", href: "/maritime/conteneurs" },
+          { name: "Reservation de conteneur", href: "/reservation-conteneur" },
         ]
       },
       { 
@@ -72,6 +73,7 @@ const navItems = [
         hasSubMenu: false,
         subItems: []
       }
+
     ]
   },
   {

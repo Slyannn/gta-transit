@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight, Ship } from "lucide-react";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
@@ -31,7 +31,7 @@ const HeroSection = () => {
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               VOTRE COMMISSIONNAIRE EN <br/>
-              <span className="text-accent">TRANSPORT INTERNATIONAL.</span>
+              <span className="text-accent">TRANSPORT NATIONAL <br/> ET <br/> INTERNATIONAL.</span>
             </h1>
             
             <p className="text-lg md:text-xl text-gray-200 max-w-2xl font-light">
@@ -49,11 +49,11 @@ const HeroSection = () => {
               </a>
               
               <a 
-                href="/transport-express" 
+                href="/reservation-conteneur" 
                 className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white border-2 border-white/30 rounded-full hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm"
               >
-                <Zap className="mr-2 h-5 w-5 text-amber-400" />
-                Une course Express ?
+                <Ship className="mr-2 h-5 w-5 text-blue-300" />
+                Réserver un conteneur
               </a>
             </div>
           </motion.div>

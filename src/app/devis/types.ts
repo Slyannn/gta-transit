@@ -5,10 +5,12 @@ export interface DevisFormData {
   // Étape 2 : Trajet
   typeTrajet?: "national" | "international"; // Pour Déménagement et Express
   paysDepart: string;
-  depart: string; // Ville d'enlèvement
+  depart: string; // Port/Aéroport de départ
+  villeEnlevement?: string; // Ville d'enlèvement (Post-port)
   dateDepart: string;
   paysArrivee: string;
-  arrivee: string; // Ville de livraison
+  arrivee: string; // Port/Aéroport d'arrivée
+  villeLivraison?: string; // Ville de livraison finale (Post-port)
   dateArrivee: string;
 
   // Étape 3 : Marchandise

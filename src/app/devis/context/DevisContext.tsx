@@ -9,7 +9,7 @@ const DevisContext = createContext<DevisContextType | null>(null);
 
 // Champs requis par défaut (Maritime, Aérien)
 const REQUIRED_FIELDS_DEFAULT: Record<number, string[]> = {
-  2: ["paysDepart", "depart", "dateDepart", "paysArrivee", "arrivee", "dateArrivee"],
+  2: ["paysDepart", "depart", "villeEnlevement", "dateDepart", "paysArrivee", "arrivee", "villeLivraison", "dateArrivee"],
   3: ["natureMarchandise", "description", "nbColis", "valeur"],
   4: ["objectif"],
   5: ["nom", "prenom", "email", "adresse", "pays", "telephone"]

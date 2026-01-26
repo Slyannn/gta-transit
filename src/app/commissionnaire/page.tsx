@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Truck, Anchor, Globe, Shield, FileText, ArrowRight, User, CheckCircle, Plane } from "lucide-react";
+import { Check, Truck, Anchor, Globe, Shield, FileText, ArrowRight, User, CheckCircle, Plane, Ship } from "lucide-react";
 
 import { useState } from "react";
 
@@ -63,7 +63,7 @@ export default function CommissionnairePage() {
     <main className="bg-zinc-50 min-h-screen">
       
       {/* Hero Section */}
-      <section className="relative h-[400px] flex items-center justify-center bg-primary overflow-hidden">
+      <section className="relative h-[500px] flex items-center justify-center bg-primary overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
           style={{ 
@@ -71,22 +71,48 @@ export default function CommissionnairePage() {
             backgroundPosition: "center 75%",
           }}
         ></div>
-        <div className="z-10 text-center px-4">
+        <div className="z-10 text-center px-4 max-w-4xl mx-auto">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold text-white mb-4"
+            className="text-4xl md:text-6xl font-bold text-white mb-6"
           >
-            Commissionnaire de Transport
+            Commissionnaire de Transport 
           </motion.h1>
           
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: "100px" }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="h-1 bg-accent w-24 mx-auto rounded-full"
+            className="h-1 bg-accent w-24 mx-auto rounded-full mb-6"
           ></motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto"
+          >
+            Agrément officiel pour les opérations de transport national et international. <br/>
+            Nous sommes les architectes juridiques et techniques de vos expéditions internationales <br/>
+          
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <a 
+              href="/reservation-conteneur" 
+              className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-accent rounded-full hover:bg-orange-600 transition-all shadow-lg hover:shadow-orange-500/25 transform hover:-translate-y-1"
+            >
+              <Ship className="mr-2 h-5 w-5" />
+              Réserver un conteneur
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </motion.div>
         </div>
       </section>
 
@@ -108,7 +134,7 @@ export default function CommissionnairePage() {
             transition={{ delay: 0.2 }}
           >
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              Groupeur Transitaire Associés est un <span className="font-semibold text-primary">commissionnaire et transitaire en transport international</span> spécialisé dans l’organisation de solutions logistiques maritimes, aériennes et multimodales.
+              Groupeur Transitaire Associés est un <span className="font-semibold text-primary">commissionnaire et transitaire en transport national et international</span> spécialisé dans l’organisation de solutions logistiques maritimes, aériennes et multimodales.
             </p>
             <p className="text-gray-700 text-lg leading-relaxed">
               Nous accompagnons nos clients dans l’acheminement de leurs marchandises de l’origine à la destination finale, en garantissant fiabilité, conformité réglementaire et maîtrise des délais.
@@ -163,7 +189,7 @@ export default function CommissionnairePage() {
           
           <div className="mt-12 max-w-3xl mx-auto p-6 bg-blue-50 border-l-4 border-accent rounded-r-xl text-center">
             <p className="text-blue-900 font-semibold text-lg">
-              En tant que commissionnaire de transport international, nous engageons notre responsabilité sur la bonne exécution des opérations confiées.
+              En tant que commissionnaire de transport national et international, nous engageons notre responsabilité sur la bonne exécution des opérations confiées.
             </p>
           </div>
         </div>
@@ -311,6 +337,31 @@ export default function CommissionnairePage() {
           <blockquote className="text-2xl md:text-3xl font-serif italic text-accent max-w-3xl mx-auto">
             "Vous confiez votre conteneur, votre marchandise, nous garantissons son acheminement."
           </blockquote>
+        </div>
+      </section>
+
+      {/* CTA Final - Réservation Conteneur */}
+      <section className="py-20 bg-primary text-white text-center">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-6">Besoin d'un conteneur pour votre prochain envoi ?</h2>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+              Nous mettons à votre disposition des conteneurs maritimes adaptés à vos besoins.
+              Professionnels ou particuliers, contactez-nous pour une réservation rapide et efficace.
+            </p>
+            <a 
+              href="/reservation-conteneur" 
+              className="inline-flex items-center justify-center bg-accent text-white font-bold py-5 px-10 rounded-full hover:bg-orange-600 transition-all shadow-xl hover:shadow-orange-500/25 transform hover:-translate-y-1 text-lg"
+            >
+              <Ship className="mr-3 h-6 w-6" />
+              Réserver un conteneur
+              <ArrowRight className="ml-3 h-6 w-6" />
+            </a>
+          </motion.div>
         </div>
       </section>
 

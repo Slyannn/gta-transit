@@ -42,6 +42,8 @@ export interface DevisFormData {
   prenom: string;
   email: string;
   adresse: string;
+  ville?: string;
+  codePostal?: string;
   pays: string;
   telephone: string;
   societe: string;

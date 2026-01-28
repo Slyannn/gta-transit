@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import { Package, MapPin, User, FileText, CheckCircle, ArrowRight, Mail, Phone, Building, Truck, Ship, Calendar, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 
+// URL de l'API (À configurer selon l'environnement)
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function ReservationConteneurPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -110,20 +113,40 @@ export default function ReservationConteneurPage() {
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!validateForm()) return;
     
     setIsSubmitting(true);
     
-    // Simulation d'envoi API
-    setTimeout(() => {
+    try {
+      // Envoyer l'email via l'API Resend
+      const response = await fetch(`${API_BASE_URL}/api/send-reservation`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        toast.success("Votre demande a été envoyée avec succès ! Nous vous contacterons rapidement.");
+      } else {
+        throw new Error(result.error || "Échec de l'envoi de l'email");
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de la réservation:", error);
       setIsSubmitting(false);
-      setIsSuccess(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      toast.success("Votre demande a été envoyée avec succès !");
-    }, 2000);
+      toast.error("Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement.", {
+        description: "Email: gta_transitaire@yahoo.com | Tél: +33 6 07 81 13 08"
+      });
+    }
   };
 
   const getInputClass = (hasError: boolean) =>

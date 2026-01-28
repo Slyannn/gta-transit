@@ -434,20 +434,38 @@ export default function DemandeEnlevementPage() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!validateForm()) return;
 
     setIsSubmitting(true);
     
-    // Simulation d'envoi
-    setTimeout(() => {
+    try {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
+      const response = await fetch(`${API_BASE_URL}/api/send-enlevement`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        toast.success("Demande d'enlèvement envoyée avec succès ! Nous vous contacterons rapidement.");
+      } else {
+        throw new Error(result.error || "Échec de l'envoi de l'email");
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de la demande d'enlèvement:", error);
       setIsSubmitting(false);
-      setIsSuccess(true);
-      toast.success("Demande d'enlèvement envoyée avec succès !");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 2000);
+      toast.error("Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement.", {
+        description: "Email: gta_transitaire@yahoo.com | Tél: +33 6 07 81 13 08"
+      });
+    }
   };
 
   if (isSuccess) {

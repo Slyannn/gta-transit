@@ -45,7 +45,7 @@ const WorldMapSection = () => {
 
                 <div className="pt-4 md:pt-8">
                 <Link 
-                    href="/devis" 
+                    href="/presentation#presence_mondiale" 
                     className="inline-flex items-center px-8 py-4 bg-accent hover:bg-white hover:text-accent text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/20"
                 >
                     <Globe className="mr-2 h-5 w-5" />

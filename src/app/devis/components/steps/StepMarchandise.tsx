@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Package, Truck, Plane, Ship, CheckSquare, List } from "lucide-react";
+import { Package, Truck, Plane, Ship, CheckSquare, List, Info } from "lucide-react";
 import { useDevis } from "../../context/DevisContext";
 
 export default function StepMarchandise() {
@@ -41,24 +41,21 @@ export default function StepMarchandise() {
           
           <div className="space-y-8">
             
-            {/* Type de déménagement */}
-            <div>
-              <label className="block text-lg font-medium text-gray-800 mb-4">Type de déménagement</label>
-              <div className="flex flex-wrap gap-4">
-                {["Déménagement international", "Déménagement national"].map((type) => (
-                   <label key={type} className="flex items-center gap-3 p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors flex-1 min-w-[200px]">
-                      <input 
-                        type="radio" 
-                        name="demenagementType" 
-                        value={type}
-                        checked={formData.demenagementType === type}
-                        onChange={(e) => handleChange("demenagementType", e.target.value)}
-                        className="w-5 h-5 text-accent focus:ring-accent"
-                      />
-                      <span className="font-medium text-gray-700">{type}</span>
-                   </label>
-                ))}
+            {/* Info du type de déménagement (basé sur le choix précédent) */}
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <div className="flex items-center gap-2 mb-2">
+                <Info size={20} className="text-blue-600" />
+                <span className="font-medium text-blue-800">Type de déménagement sélectionné</span>
               </div>
+              <p className="text-blue-700">
+                <strong>
+                  {formData.typeTrajet === "national" ? "Déménagement National" : "Déménagement International"}
+                </strong>
+                {formData.typeTrajet === "national" 
+                  ? " (France uniquement)" 
+                  : " (Vers l'étranger ou depuis l'étranger)"
+                }
+              </p>
             </div>
 
             {/* Volume et Liste */}
@@ -86,15 +83,19 @@ export default function StepMarchandise() {
                   value={formData.demenagementMeubles || ""}
                   placeholder="Ex: 1 Canapé, 2 Lits, 20 Cartons livres..."
                   onChange={(e) => handleChange("demenagementMeubles", e.target.value)}
-                  className={getInputClass(false)}
+                  className={getInputClass(errors.demenagementMeubles)}
                 />
+                {errors.demenagementMeubles && <p className="text-red-500 text-xs mt-1">Ce champ est requis</p>}
               </div>
             </div>
 
             {/* Services Souhaités */}
             <div>
-               <label className="block text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
-                 <CheckSquare size={20} className="text-accent" /> Services Supplémentaires souhaités
+               <label className={`block text-lg font-medium mb-4 flex items-center gap-2 ${
+                 errors.demenagementServices ? 'text-red-500' : 'text-gray-800'
+               }`}>
+                 <CheckSquare size={20} className={errors.demenagementServices ? 'text-red-500' : 'text-accent'} /> 
+                 Services Supplémentaires souhaités *
                </label>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                  {[
@@ -114,11 +115,14 @@ export default function StepMarchandise() {
                     </label>
                  ))}
                </div>
+               {errors.demenagementServices && <p className="text-red-500 text-xs mt-1">Veuillez sélectionner au moins un service</p>}
             </div>
 
             {/* Mode de transport spécifique Déménagement */}
             <div>
-               <label className="block text-lg font-medium text-gray-800 mb-4">Mode de transport souhaité</label>
+               <label className={`block text-lg font-medium mb-4 ${
+                 errors.demenagementModeTransport ? 'text-red-500' : 'text-gray-800'
+               }`}>Mode de transport souhaité *</label>
                <div className="space-y-4">
                   {/* Maritime */}
                   <div className="border rounded-xl p-4 bg-gray-50/50">
@@ -186,7 +190,8 @@ export default function StepMarchandise() {
                       </div>
                   </label>
                </div>
-            </div>
+               </div>
+               {errors.demenagementModeTransport && <p className="text-red-500 text-xs mt-1">Veuillez sélectionner un mode de transport</p>}
 
             {/* Formalités */}
             <label className="flex items-center gap-3 p-4 bg-blue-50 border border-blue-100 rounded-xl cursor-pointer">

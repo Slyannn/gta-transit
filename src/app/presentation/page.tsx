@@ -203,7 +203,7 @@ export default function PresentationPage() {
 
 
       {/* Section Internationale & Destinations */}
-      <section className="py-20 bg-primary text-white relative overflow-hidden">
+      <section id="presence_mondiale" className="py-20 bg-primary text-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "40px 40px" }}></div>
 

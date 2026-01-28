@@ -1,10 +1,99 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDevis } from "../../context/DevisContext";
 import AutocompleteInput from "../ui/AutocompleteInput";
 
 export default function StepContact() {
   const { formData, handleChange, errors, getAvailableCountries } = useDevis();
+  const [addressSuggestions, setAddressSuggestions] = useState<string[]>([]);
+
+  // Fonction pour extraire seulement la partie adresse (sans ville/code postal)
+  const extractAddressOnly = (fullAddress: string): string => {
+    // L'API retourne: "126 Avenue de la République, 93800 Épinay-sur-Seine"
+    // On veut: "126 Avenue de la République"
+    const parts = fullAddress.split(',');
+    return parts[0]?.trim() || fullAddress;
+  };
+
+  // Fonction pour récupérer les suggestions d'adresses françaises
+  const fetchAddressSuggestions = async (query: string) => {
+    if (query.length < 3) {
+      setAddressSuggestions([]);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=8`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        const suggestions = data.features.map((feature: any) => feature.properties.label);
+        setAddressSuggestions(suggestions);
+      }
+    } catch (error) {
+      console.error("Erreur API Adresse:", error);
+      setAddressSuggestions([]);
+    }
+  };
+
+  // Fonction pour gérer la sélection d'une adresse
+  const handleAddressSelect = async (selectedAddress: string) => {
+    // Extraire seulement la partie adresse (sans ville/code postal)
+    const addressOnly = extractAddressOnly(selectedAddress);
+    handleChange("adresse", addressOnly);
+    
+    // Récupérer les détails de l'adresse sélectionnée pour auto-remplir
+    try {
+      const response = await fetch(
+        `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(selectedAddress)}&limit=1`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        if (data.features.length > 0) {
+          const feature = data.features[0].properties;
+          handleChange("ville", feature.city || "");
+          handleChange("codePostal", feature.postcode || "");
+          handleChange("pays", "France");
+        }
+      }
+    } catch (error) {
+      console.error("Erreur lors de la récupération des détails d'adresse:", error);
+    }
+  };
+
+  // Fonction pour valider l'adresse quand l'utilisateur tape sans sélectionner
+  const handleAddressBlur = () => {
+    const currentAddress = formData.adresse;
+    
+    // Si l'utilisateur a tapé une adresse mais n'a pas sélectionné de suggestion
+    // et que ville/code postal sont vides, on essaie de les remplir automatiquement
+    if (currentAddress && currentAddress.length > 5 && !formData.ville && !formData.codePostal) {
+      // Tentative de récupération automatique des données
+      fetchAddressDetails(currentAddress);
+    }
+  };
+
+  // Fonction pour récupérer les détails d'une adresse tapée manuellement
+  const fetchAddressDetails = async (address: string) => {
+    try {
+      const response = await fetch(
+        `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(address)}&limit=1`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        if (data.features.length > 0) {
+          const feature = data.features[0].properties;
+          // Auto-remplir seulement si les champs sont vides
+          if (!formData.ville) handleChange("ville", feature.city || "");
+          if (!formData.codePostal) handleChange("codePostal", feature.postcode || "");
+          if (!formData.pays) handleChange("pays", "France");
+        }
+      }
+    } catch (error) {
+      console.error("Erreur lors de la récupération automatique:", error);
+    }
+  };
 
   const getInputClass = (hasError: boolean) => 
     `w-full p-3 border rounded-lg outline-none text-gray-900 bg-white transition-all ${
@@ -69,18 +158,50 @@ export default function StepContact() {
             <p className="text-red-500 text-xs mt-1">Email valide requis</p>
           )}
         </div>
-        <div>
-          <label className={getLabelClass(errors.adresse)}>Adresse *</label>
-          <input
-            type="text"
+        <div className="md:col-span-2">
+          <AutocompleteInput
+            label="Adresse complète *"
             name="adresse"
             value={formData.adresse || ""}
-            onChange={(e) => handleChange(e.target.name, e.target.value)}
-            className={getInputClass(errors.adresse)}
+            onChange={(val) => {
+              handleChange("adresse", val);
+              fetchAddressSuggestions(val);
+            }}
+            onSelect={handleAddressSelect}
+            onBlur={handleAddressBlur}
+            placeholder="Commencez à taper votre adresse (ex: 126 Avenue de la République)"
+            options={addressSuggestions}
+            isFreeText={true}
+            error={errors.adresse}
           />
-          {errors.adresse && (
-            <p className="text-red-500 text-xs mt-1">Requis</p>
-          )}
+        </div>
+        <div>
+          <label className={getLabelClass(errors.ville)}>Ville</label>
+          <input
+            type="text"
+            name="ville"
+            value={formData.ville || ""}
+            onChange={(e) => handleChange(e.target.name, e.target.value)}
+            className={getInputClass(errors.ville)}
+            placeholder={formData.ville ? "Auto-rempli" : "Remplissage automatique"}
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            {formData.ville ? "✓ Rempli automatiquement" : "Se remplit en sélectionnant une adresse"}
+          </p>
+        </div>
+        <div>
+          <label className={getLabelClass(errors.codePostal)}>Code Postal</label>
+          <input
+            type="text"
+            name="codePostal"
+            value={formData.codePostal || ""}
+            onChange={(e) => handleChange(e.target.name, e.target.value)}
+            className={getInputClass(errors.codePostal)}
+            placeholder={formData.codePostal ? "Auto-rempli" : "Remplissage automatique"}
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            {formData.codePostal ? "✓ Rempli automatiquement" : "Se remplit en sélectionnant une adresse"}
+          </p>
         </div>
         <div>
           <AutocompleteInput

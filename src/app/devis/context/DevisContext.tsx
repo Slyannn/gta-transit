@@ -1,9 +1,12 @@
-"use client";
-
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { toast } from "sonner";
 import { AIRPORTS_BY_COUNTRY, SEAPORTS_BY_COUNTRY } from "../locations";
 import { DevisContextType, DevisFormData, FormErrors } from "../types";
+
+// URL de l'API (À configurer selon l'environnement)
+// En local : '' (relatif, utilise le proxy Next.js)
+// En prod hybride : 'https://votre-projet.vercel.app'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 const DevisContext = createContext<DevisContextType | null>(null);
 
@@ -17,6 +20,9 @@ const REQUIRED_FIELDS_DEFAULT: Record<number, string[]> = {
 
 // Champs requis spécifiques pour Maritime (étape 3)
 const REQUIRED_FIELDS_MARITIME_STEP3: string[] = ["natureMarchandise", "description", "typeContainer", "nbColis", "valeur"];
+
+// Champs requis spécifiques pour Déménagement (étape 3)
+const REQUIRED_FIELDS_DEMENAGEMENT_STEP3: string[] = ["demenagementMeubles", "demenagementServices", "demenagementModeTransport"];
 
 // Champs requis pour Déménagement et Express (national)
 const REQUIRED_FIELDS_NATIONAL: string[] = ["depart", "arrivee", "dateArrivee"];
@@ -81,7 +87,7 @@ export function DevisProvider({ children, initialMode }: DevisProviderProps) {
     } else if (currentStep === 3) {
       // Special handling for Déménagement and Maritime in Step 3
       if (mode === "Déménagement") {
-        fields = []; // No required fields for step 3 if Déménagement (fully optional)
+        fields = REQUIRED_FIELDS_DEMENAGEMENT_STEP3;
       } else if (mode === "Maritime") {
         fields = REQUIRED_FIELDS_MARITIME_STEP3;
       } else {
@@ -96,7 +102,15 @@ export function DevisProvider({ children, initialMode }: DevisProviderProps) {
 
     fields.forEach((field) => {
       // @ts-ignore
-      if (!formData[field]) {
+      const fieldValue = formData[field];
+      
+      // Special handling for array fields
+      if (Array.isArray(fieldValue)) {
+        if (fieldValue.length === 0) {
+          newErrors[field] = true;
+          isValid = false;
+        }
+      } else if (!fieldValue) {
         newErrors[field] = true;
         isValid = false;
       }
@@ -141,19 +155,39 @@ export function DevisProvider({ children, initialMode }: DevisProviderProps) {
     }
   };
 
-  const submitForm = () => {
+  const submitForm = async () => {
     if (!validateStep(5)) return;
 
     setErrors({});
     setIsSubmitting(true);
     
-    // Simulation API
-    setTimeout(() => {
+    try {
+      // Envoyer l'email via l'API Resend (URL absolue ou relative)
+      const response = await fetch(`${API_BASE_URL}/api/send-devis`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        toast.success("Demande de devis envoyée avec succès ! Nous vous répondrons dans les plus brefs délais.");
+      } else {
+        throw new Error(result.error || "Échec de l'envoi de l'email");
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi du devis:", error);
       setIsSubmitting(false);
-      setIsSuccess(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      toast.success("Demande de devis envoyée avec succès !");
-    }, 2000);
+      toast.error("Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement.", {
+        description: "Email: gta_transitaire@yahoo.com | Tél: +33 6 07 81 13 08"
+      });
+    }
   };
 
   // --- HELPERS LOCATION ---

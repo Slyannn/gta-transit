@@ -12,6 +12,8 @@ interface AutocompleteInputProps {
   isFreeText?: boolean;
   disabled?: boolean;
   error?: boolean;
+  onSelect?: (val: string) => void;
+  onBlur?: () => void;
 }
 
 export default function AutocompleteInput({
@@ -24,6 +26,8 @@ export default function AutocompleteInput({
   isFreeText = false,
   disabled = false,
   error = false,
+  onSelect,
+  onBlur,
 }: AutocompleteInputProps) {
   const [query, setQuery] = useState(value);
   const [isOpen, setIsOpen] = useState(false);
@@ -84,6 +88,9 @@ export default function AutocompleteInput({
     setQuery(loc);
     onChange(loc);
     setIsOpen(false);
+    if (onSelect) {
+      onSelect(loc);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,6 +131,13 @@ export default function AutocompleteInput({
           value={query}
           onChange={handleInputChange}
           onFocus={() => !disabled && setIsOpen(true)}
+          onBlur={() => {
+            // Délai pour permettre la sélection avant de fermer
+            setTimeout(() => {
+              setIsOpen(false);
+              if (onBlur) onBlur();
+            }, 150);
+          }}
           placeholder={
             disabled ? "Veuillez sélectionner un pays d'abord" : placeholder
           }

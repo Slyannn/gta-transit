@@ -3,34 +3,51 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
+
+// URL de l'API (À configurer selon l'environnement)
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState({ name: "", email: "", subject: "", message: "" });
+  const [formState, setFormState] = useState({ name: "", email: "", telephone: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Construction du lien mailto
-    const recipient = "gta_transitaire@yahoo.com";
-    const subject = encodeURIComponent(`[Contact Site Web] ${formState.subject} - ${formState.name}`);
-    const body = encodeURIComponent(
-      `Nom: ${formState.name}\n` +
-      `Email: ${formState.email}\n` +
-      `Sujet: ${formState.subject}\n\n` +
-      `Message:\n${formState.message}`
-    );
-
-    // Ouverture du client de messagerie par défaut
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-
-    // On réinitialise l'état après un court délai pour laisser le temps au mailto de se lancer
-    setTimeout(() => {
+    try {
+      // Envoyer l'email via l'API Resend
+      const response = await fetch(`${API_BASE_URL}/api/send-contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nom: formState.name,
+          email: formState.email,
+          telephone: formState.telephone,
+          sujet: formState.subject,
+          message: formState.message
+        }),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        setIsSubmitting(false);
+        setIsSent(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        toast.success("Votre message a bien été envoyé !");
+      } else {
+        throw new Error(result.error || "Échec de l'envoi");
+      }
+    } catch (error) {
+      console.error("Erreur d'envoi:", error);
       setIsSubmitting(false);
-      setIsSent(true);
-    }, 1000);
+      toast.error("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -222,6 +239,18 @@ export default function ContactPage() {
                       placeholder="votre@email.com"
                     />
                   </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+                  <input 
+                    type="tel" 
+                    name="telephone"
+                    value={formState.telephone}
+                    onChange={handleChange}
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all"
+                    placeholder="Votre numéro de téléphone"
+                  />
                 </div>
 
                 <div>

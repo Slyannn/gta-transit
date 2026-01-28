@@ -155,9 +155,8 @@ const Footer = () => {
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
           <p>© {new Date().getFullYear()} GTA - Groupeur Transitaire Associés. Tous droits réservés.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-white">Mentions légales</Link>
-            <Link href="#" className="hover:text-white">Politique de confidentialité</Link>
-            <Link href="#" className="hover:text-white">CGV</Link>
+            <Link href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</Link>
+            <Link href="/politique-confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</Link>
           </div>
         </div>
       </div>

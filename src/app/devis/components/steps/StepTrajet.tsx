@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Globe, Home } from "lucide-react";
+import { MapPin, Globe, Home, HelpCircle } from "lucide-react";
 import { useDevis } from "../../context/DevisContext";
 import AutocompleteInput from "../ui/AutocompleteInput";
 import CityAutocomplete from "../ui/CityAutocomplete";
@@ -11,6 +11,10 @@ export default function StepTrajet() {
   const mode = formData.modeTransport;
   const isNationalMode = mode === "Déménagement" || mode === "Express";
   const isNational = formData.typeTrajet === "national";
+  
+  // États pour les tooltips
+  const [showDepartTooltip, setShowDepartTooltip] = useState(false);
+  const [showArriveeTooltip, setShowArriveeTooltip] = useState(false);
 
   // Set default typeTrajet for Déménagement/Express if not set
   useEffect(() => {
@@ -176,17 +180,42 @@ export default function StepTrajet() {
                   error={errors.depart}
                 />
               ) : (
-                <AutocompleteInput
-                  label={getDepartLabel()}
-                  name="depart"
-                  value={formData.depart || ""}
-                  onChange={(val) => handleChange("depart", val)}
-                  placeholder={getDepartPlaceholder()}
-                  options={getAvailableLocations("depart")}
-                  isFreeText={mode !== "Maritime" && mode !== "Aérien"}
-                  disabled={!formData.paysDepart}
-                  error={errors.depart}
-                />
+                <div className="relative">
+                  {/* Label personnalisé avec icône info */}
+                  <div className="flex items-center gap-2 mb-1">
+                    <label className={`text-xs font-medium ${errors.depart ? 'text-red-500' : 'text-gray-500'}`}>
+                      {getDepartLabel()}
+                    </label>
+                    <div className="relative">
+                      <HelpCircle 
+                        size={16} 
+                        className="text-blue-500 cursor-help"
+                        onMouseEnter={() => setShowDepartTooltip(true)}
+                        onMouseLeave={() => setShowDepartTooltip(false)}
+                      />
+                      {showDepartTooltip && (
+                        <div className="absolute left-0 top-6 z-50 w-72 bg-gray-900 text-white text-xs rounded-lg p-3 shadow-xl">
+                          <div className="absolute -top-1 left-2 w-2 h-2 bg-gray-900 transform rotate-45"></div>
+                          <p className="font-semibold mb-1">💡 Information importante</p>
+                          <p>
+                            Vous pouvez saisir librement n'importe quel port ou aéroport, même s'il ne figure pas dans la liste proposée ou s'il n'est pas situé dans votre ville d'enlèvement.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <AutocompleteInput
+                    label="" // On enlève le label car on l'a ajouté au-dessus
+                    name="depart"
+                    value={formData.depart || ""}
+                    onChange={(val) => handleChange("depart", val)}
+                    placeholder={getDepartPlaceholder()}
+                    options={getAvailableLocations("depart")}
+                    isFreeText={mode !== "Maritime" && mode !== "Aérien"}
+                    disabled={!formData.paysDepart}
+                    error={errors.depart}
+                  />
+                </div>
               )}
 
               {/* Ville d'enlèvement (Post-port) - Pour Maritime/Aérien APRÈS le port */}
@@ -287,17 +316,42 @@ export default function StepTrajet() {
                   error={errors.arrivee}
                 />
               ) : (
-                <AutocompleteInput
-                  label={getArriveeLabel()}
-                  name="arrivee"
-                  value={formData.arrivee || ""}
-                  onChange={(val) => handleChange("arrivee", val)}
-                  placeholder={getArriveePlaceholder()}
-                  options={getAvailableLocations("arrivee")}
-                  isFreeText={mode !== "Maritime" && mode !== "Aérien"}
-                  disabled={!formData.paysArrivee}
-                  error={errors.arrivee}
-                />
+                <div className="relative">
+                  {/* Label personnalisé avec icône info */}
+                  <div className="flex items-center gap-2 mb-1">
+                    <label className={`text-xs font-medium ${errors.arrivee ? 'text-red-500' : 'text-gray-500'}`}>
+                      {getArriveeLabel()}
+                    </label>
+                    <div className="relative">
+                      <HelpCircle 
+                        size={16} 
+                        className="text-blue-500 cursor-help"
+                        onMouseEnter={() => setShowArriveeTooltip(true)}
+                        onMouseLeave={() => setShowArriveeTooltip(false)}
+                      />
+                      {showArriveeTooltip && (
+                        <div className="absolute left-0 top-6 z-50 w-72 bg-gray-900 text-white text-xs rounded-lg p-3 shadow-xl">
+                          <div className="absolute -top-1 left-2 w-2 h-2 bg-gray-900 transform rotate-45"></div>
+                          <p className="font-semibold mb-1">💡 Information importante</p>
+                          <p>
+                            Vous pouvez saisir librement n'importe quel port ou aéroport, même s'il ne figure pas dans la liste proposée ou s'il n'est pas situé dans votre ville de livraison.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <AutocompleteInput
+                    label="" // On enlève le label car on l'a ajouté au-dessus
+                    name="arrivee"
+                    value={formData.arrivee || ""}
+                    onChange={(val) => handleChange("arrivee", val)}
+                    placeholder={getArriveePlaceholder()}
+                    options={getAvailableLocations("arrivee")}
+                    isFreeText={mode !== "Maritime" && mode !== "Aérien"}
+                    disabled={!formData.paysArrivee}
+                    error={errors.arrivee}
+                  />
+                </div>
               )}
 
               {/* Ville de livraison finale (Post-port) - Pour Maritime/Aérien APRÈS le port */}

@@ -41,7 +41,7 @@ const Footer = () => {
               Groupeur Transitaire Associés
               <br/>
               <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest mt-1">
-              Une société du Groupe R.V.S et Compagnie. SAS
+               Du Groupe R.V.S et Compagnie. SAS
               </span>
             </p>
           </Link>

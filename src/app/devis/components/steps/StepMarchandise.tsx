@@ -269,7 +269,7 @@ export default function StepMarchandise() {
                   <option value="groupage">Conteneur de groupage (LCL)</option>
                   <option value="perso">Conteneur personnalisé (FCL)</option>
                   <optgroup label="Détail Conteneurs">
-                    <option value="ro/ro">Conteneur RO/RO (Véhicules)</option>
+                    <option value="ro/ro">RO - RO (Véhicules)</option>
                     <option value="20_dry">Conteneur 20’ dry</option>
                     <option value="20_reefer">Conteneur 20’ reefer/frigorifique</option>
                     <option value="20_opentop">Conteneur 20’ open top</option>

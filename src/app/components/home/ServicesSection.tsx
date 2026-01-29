@@ -76,7 +76,7 @@ const services = [
     color: "from-emerald-800 to-teal-900",
     gradient: "from-emerald-800 to-teal-900",
     accent: "text-emerald-300",
-    features: ["Stockage sécurisé", "Gestion des stocks"]
+    features: ["Stockage sécurisé", "Transport & Livraison", "Gestion des stocks"]
   }
 ];
 
@@ -87,10 +87,13 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.7, ease: "easeOut", delay: index * 0.1 }}
-      className="group"
+      className="group relative"
     >
       <Link href={service.link} className="block h-full">
         <div className="h-full bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
+          {/* Background subtil avec gradient */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-10 rounded-2xl -z-10`}></div>
+          
           {/* Image - Pas d'overlay, juste l'image */}
           <div className="relative aspect-[16/9] overflow-hidden">
             <Image
@@ -120,7 +123,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
             {/* 2 features principales */}
             <ul className="space-y-2 mb-4">
               {service.features.slice(0, 2).map((feature, idx) => (
-                <li key={idx} className="flex items-center gap-2 text-xs text-gray-400">
+                <li key={idx} className="flex items-center gap-2 text-xs text-gray-500">
                   <CheckCircle2 size={14} className={service.accent} />
                   {feature}
                 </li>

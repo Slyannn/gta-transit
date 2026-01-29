@@ -239,7 +239,7 @@ export default function PartenairesPage() {
                       href="/contact" 
                       className="w-full bg-accent hover:bg-orange-600 text-white py-4 rounded-xl font-bold transition-all shadow-lg flex items-center justify-center gap-2"
                     >
-                      Devenir Partenaire
+                      Contactez nous pour devenir Partenaire
                       <ArrowRight size={20} />
                     </Link>
                  </div>

@@ -50,13 +50,13 @@ const Footer = () => {
             Maritime, Aérien, et Routier.
           </p>
           <div className="flex gap-4">
-            <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
+            <a href="https://www.facebook.com/groups/soustraitantstransporteurs/" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
               <Linkedin size={20} />
             </a>
-            <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
+            <a href="https://www.facebook.com/groups/soustraitantstransporteurs/" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
               <Twitter size={20} />
             </a>
-            <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
+            <a href="https://www.facebook.com/groups/soustraitantstransporteurs/" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
               <Facebook size={20} />
             </a>
           </div>

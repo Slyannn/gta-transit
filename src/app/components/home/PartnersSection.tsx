@@ -69,7 +69,7 @@ export default function PartnersSection() {
                   duration: 40 
                 }}
               >
-                {[...maritimePartners, ...maritimePartners, ...maritimePartners, ...maritimePartners].map((partner, idx) => (
+                {[...maritimePartners, ...maritimePartners].map((partner, idx) => (
                   <PartnerLogo key={`maritime-${idx}`} name={partner.name} logo={partner.logo} type="maritime" />
                 ))}
             </motion.div>
@@ -86,7 +86,7 @@ export default function PartnersSection() {
                   duration: 35 
                 }}
               >
-                {[...aerialPartners, ...aerialPartners, ...aerialPartners, ...aerialPartners].map((partner, idx) => (
+                {[...aerialPartners, ...aerialPartners].map((partner, idx) => (
                   <PartnerLogo key={`aerial-${idx}`} name={partner.name} logo={partner.logo} type="aerial" />
                 ))}
             </motion.div>

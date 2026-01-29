@@ -73,22 +73,118 @@ export default function ContactPage() {
          </div>
       </section>
     
-        {/* Demande d'enlèvement CTA */}
-        <div className="mt-12 bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 md:p-8 text-white text-center">
-          <p className="text-lg md:text-xl mb-4">
-            Vous avez déjà reçu une réponse de nos équipes et vous souhaitez faire une <strong>demande d'enlèvement</strong> ?
-          </p>
-          <a 
-            href="/demande-enlevement" 
-            className="inline-flex items-center gap-2 px-8 py-3 bg-white text-primary font-bold rounded-full hover:bg-accent hover:text-white transition-all transform hover:scale-105"
-          >
-            Cliquez ici pour planifier votre enlèvement
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
       
+        
+
+          {/* Contact Form */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border-t-4 border-accent h-fit"
+          >
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
+            
+            {isSent ? (
+               <div className="text-center py-12">
+                  <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Send size={32} />
+                  </div>
+                  <h4 className="text-xl font-bold text-green-700 mb-2">Message envoyé !</h4>
+                  <p className="text-gray-600">Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.</p>
+                  <button onClick={() => setIsSent(false)} className="mt-6 text-accent font-bold hover:underline">Envoyer un autre message</button>
+               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5 text-black">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Nom complet ou Raison sociale *</label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      required
+                      value={formState.name}
+                      onChange={handleChange}
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all"
+                      placeholder="Votre nom"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                    <input 
+                      type="email" 
+                      name="email"
+                      required
+                      value={formState.email}
+                      onChange={handleChange}
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all"
+                      placeholder="votre@email.com"
+
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone *</label>
+                  <input 
+                    type="tel" 
+                    name="telephone"
+                    value={formState.telephone}
+                    onChange={handleChange}
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all"
+                    placeholder="Votre numéro de téléphone"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Sujet * </label>
+                  <select 
+                    name="subject"
+                    required
+                    value={formState.subject}
+                    onChange={(e: any) => handleChange(e)}
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all"
+                  >
+                    <option value="">Sélectionnez un sujet...</option>
+                    <option value="devis">Demande de devis</option>
+                    <option value="partenariat">Devenir partenaire</option>
+                    <option value="info">Renseignement général</option>
+                    <option value="suivi">Suivi de dossier</option>
+                    <option value="logistique">Demande de service logistique</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Message *</label>
+                  <textarea 
+                    name="message"
+                    required
+                    rows={5}
+                    value={formState.message}
+                    onChange={handleChange}
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all resize-none"
+                    placeholder="Comment pouvons-nous vous aider ? Une demande de partenariat , un renseignement, etc... ?  "
+                  ></textarea>
+                </div>
+
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-primary text-white font-bold rounded-lg hover:bg-secondary transition-all shadow-lg hover:shadow-xl disabled:opacity-70 flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'} <Send size={18} />
+                </button>
+                <p className="text-xs text-gray-400 text-center mt-4">
+                  En soumettant ce formulaire, vous acceptez que vos informations soient utilisées pour vous recontacter.
+                </p>
+              </form>
+            )}
+          </motion.div>
+
           {/* Contact Information */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
@@ -193,110 +289,21 @@ export default function ContactPage() {
             </div>
 
           </motion.div>
+        </div>
 
-          {/* Contact Form */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border-t-4 border-accent h-fit"
+        
+        {/* Demande d'enlèvement CTA */}
+        <div className="mt-12 bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 md:p-8 text-white text-center">
+          <p className="text-lg md:text-xl mb-4">
+            Vous avez déjà reçu une réponse de nos équipes et vous souhaitez faire une <strong>demande d'enlèvement</strong> ?
+          </p>
+          <a 
+            href="/demande-enlevement" 
+            className="inline-flex items-center gap-2 px-8 py-3 bg-white text-primary font-bold rounded-full hover:bg-accent hover:text-white transition-all transform hover:scale-105"
           >
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
-            
-            {isSent ? (
-               <div className="text-center py-12">
-                  <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Send size={32} />
-                  </div>
-                  <h4 className="text-xl font-bold text-green-700 mb-2">Message envoyé !</h4>
-                  <p className="text-gray-600">Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.</p>
-                  <button onClick={() => setIsSent(false)} className="mt-6 text-accent font-bold hover:underline">Envoyer un autre message</button>
-               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5 text-black">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
-                    <input 
-                      type="text" 
-                      name="name"
-                      required
-                      value={formState.name}
-                      onChange={handleChange}
-                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all"
-                      placeholder="Votre nom"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input 
-                      type="email" 
-                      name="email"
-                      required
-                      value={formState.email}
-                      onChange={handleChange}
-                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all"
-                      placeholder="votre@email.com"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-                  <input 
-                    type="tel" 
-                    name="telephone"
-                    value={formState.telephone}
-                    onChange={handleChange}
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all"
-                    placeholder="Votre numéro de téléphone"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Sujet</label>
-                  <select 
-                    name="subject"
-                    value={formState.subject}
-                    onChange={(e: any) => handleChange(e)}
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all"
-                  >
-                    <option value="">Sélectionnez un sujet...</option>
-                    <option value="devis">Demande de devis</option>
-                    <option value="info">Renseignement général</option>
-                    <option value="suivi">Suivi de dossier</option>
-                    <option value="partenariat">Partenariat</option>
-                    <option value="logistique">Demande de service logistique</option>
-                    <option value="autre">Autre</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                  <textarea 
-                    name="message"
-                    required
-                    rows={5}
-                    value={formState.message}
-                    onChange={handleChange}
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all resize-none"
-                    placeholder="Comment pouvons-nous vous aider ?"
-                  ></textarea>
-                </div>
-
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full py-4 bg-primary text-white font-bold rounded-lg hover:bg-secondary transition-all shadow-lg hover:shadow-xl disabled:opacity-70 flex items-center justify-center gap-2"
-                >
-                  {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'} <Send size={18} />
-                </button>
-                <p className="text-xs text-gray-400 text-center mt-4">
-                  En soumettant ce formulaire, vous acceptez que vos informations soient utilisées pour vous recontacter.
-                </p>
-              </form>
-            )}
-          </motion.div>
+            Cliquez ici pour planifier votre enlèvement
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
         </div>
 
         {/* Maps Section */}

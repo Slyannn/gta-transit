@@ -68,6 +68,10 @@ export default function StepContact() {
     
     // Si l'utilisateur a tapé une adresse mais n'a pas sélectionné de suggestion
     // et que ville/code postal sont vides, on essaie de les remplir automatiquement
+    // IMPORTANT: si des suggestions sont affichées, on ne pré-remplit pas automatiquement,
+    // car l'utilisateur est potentiellement en train de choisir une autre option.
+    if (addressSuggestions.length > 0) return;
+
     if (currentAddress && currentAddress.length > 5 && !formData.ville && !formData.codePostal) {
       // Tentative de récupération automatique des données
       fetchAddressDetails(currentAddress);

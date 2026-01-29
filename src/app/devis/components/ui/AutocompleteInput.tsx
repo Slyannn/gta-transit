@@ -34,6 +34,7 @@ export default function AutocompleteInput({
   const [filteredLocations, setFilteredLocations] = useState<string[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const isSelectingOptionRef = useRef(false);
 
   useEffect(() => {
     if (disabled) {
@@ -134,6 +135,12 @@ export default function AutocompleteInput({
           onBlur={() => {
             // Délai pour permettre la sélection avant de fermer
             setTimeout(() => {
+              // Si l'utilisateur est en train de cliquer une option, on ignore ce blur
+              // (sinon onBlur côté parent peut déclencher des auto-remplissages trop tôt).
+              if (isSelectingOptionRef.current) {
+                isSelectingOptionRef.current = false;
+                return;
+              }
               setIsOpen(false);
               if (onBlur) onBlur();
             }, 150);
@@ -199,7 +206,12 @@ export default function AutocompleteInput({
               filteredLocations.map((loc, index) => (
                 <li
                   key={index}
-                  onClick={() => handleSelect(loc)}
+                  onMouseDown={(e) => {
+                    // Empêche la perte de focus (blur) avant la sélection.
+                    e.preventDefault();
+                    isSelectingOptionRef.current = true;
+                    handleSelect(loc);
+                  }}
                   className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 border-b border-gray-50 last:border-0 flex items-center gap-2"
                 >
                   <MapPin size={14} className="text-gray-400 shrink-0" />

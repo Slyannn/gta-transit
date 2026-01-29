@@ -163,7 +163,7 @@ export function DevisProvider({ children, initialMode }: DevisProviderProps) {
     
     try {
       // Envoyer l'email via l'API Resend (URL absolue ou relative)
-      const response = await fetch(`${API_BASE_URL}/api/send-devis`, {
+      const response = await fetch(`/api/send-devis`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

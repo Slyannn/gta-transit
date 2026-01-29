@@ -19,7 +19,7 @@ export default function ContactPage() {
 
     try {
       // Envoyer l'email via l'API Resend
-      const response = await fetch(`${API_BASE_URL}/api/send-contact`, {
+      const response = await fetch(`/api/send-contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

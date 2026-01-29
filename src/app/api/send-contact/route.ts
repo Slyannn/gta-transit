@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 // URL du frontend pour CORS (À configurer selon l'environnement)
 
-const PUBLIC_FRONTEND_URL = process.env.NEXT_PUBLIC_API_URL || '';
+const PUBLIC_FRONTEND_URL = 'https://www.gta-transit.vercel.app';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 function getCorsHeaders() {

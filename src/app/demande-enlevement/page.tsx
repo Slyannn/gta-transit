@@ -443,7 +443,7 @@ export default function DemandeEnlevementPage() {
     
     try {
       const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
-      const response = await fetch(`${API_BASE_URL}/api/send-enlevement`, {
+      const response = await fetch(`/api/send-enlevement`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

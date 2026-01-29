@@ -122,7 +122,7 @@ export default function ReservationConteneurPage() {
     
     try {
       // Envoyer l'email via l'API Resend
-      const response = await fetch(`${API_BASE_URL}/api/send-reservation`, {
+      const response = await fetch(`/api/send-reservation`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

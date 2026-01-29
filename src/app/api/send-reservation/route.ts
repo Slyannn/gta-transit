@@ -115,6 +115,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'GTA Transit <delivered@resend.dev>',
       to: process.env.RESEND_TO_EMAIL || 'gta_transitaire@yahoo.com',
+      cc: process.env.RESEND_CC_EMAIL ,
       subject: `Nouvelle réservation de conteneur - ${formData.typeConteneur || 'Conteneur'}`,
       html: htmlContent,
       text: `

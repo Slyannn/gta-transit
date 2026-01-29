@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'GTA Enlèvement <onboarding@resend.dev>',
       to: process.env.RESEND_TO_EMAIL || 'gta_transitaire@yahoo.com',
+      cc: process.env.RESEND_CC_EMAIL ,
       subject: `Nouvelle demande d'enlèvement - ${formData.typePrestation || 'Service'}`,
       html: htmlContent,
       text: textContent,

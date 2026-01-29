@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 // URL du frontend pour CORS (À configurer selon l'environnement)
 
-const PUBLIC_FRONTEND_URL = 'https://www.gta-transit.vercel.app';
+const PUBLIC_FRONTEND_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.gta-transit.vercel.app';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 function getCorsHeaders() {
@@ -72,7 +72,9 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'GTA Contact <delivered@resend.dev>',
       to: process.env.RESEND_TO_EMAIL || 'gta_transitaire@yahoo.com',
+      cc: process.env.RESEND_CC_EMAIL || 'gta_transitaire@yahoo.com',
       subject: `Contact : ${sujet || 'Nouveau message'}`,
+      
       html: htmlContent,
       text: `
 Nouveau message de contact

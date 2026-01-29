@@ -5,7 +5,7 @@ import { Mail, Phone, Clock, MapPin, Linkedin, Facebook, Twitter } from "lucide-
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-gray-900 mt-8 text-gray-300">
       {/* Newsletter Section */}
       <div className="border-b border-gray-800">
         <div className="container mx-auto px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
